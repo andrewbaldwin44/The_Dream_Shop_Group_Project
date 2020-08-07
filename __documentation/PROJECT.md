@@ -10,7 +10,7 @@ Users should be able to
 
 - view all items in the _database_.
 - purchase items that are in stock.
-- view a cart containing the items they intend to purchase.
+- view a cart containing the items they intend to pcdurchase.
 - edit cart before completing the purchase.
 
 ### Backend Requirements
