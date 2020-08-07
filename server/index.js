@@ -6,6 +6,7 @@ const morgan = require('morgan');
 
 const {
   handleBacon,
+  modifyInventory,
 } = require("./handlers/handler");
 
 const PORT = 4000;
@@ -33,5 +34,6 @@ app.use(function(req, res, next) {
 .use('/', express.static(__dirname + '/'))
 
 .get('/bacon', handleBacon)
+.put('/inventory', modifyInventory)
 
 .listen(PORT, () => console.info(`Listening on port ${PORT}`));
