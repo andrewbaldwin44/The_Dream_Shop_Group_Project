@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 function App() {
@@ -11,10 +13,14 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Router>
       <GlobalStyles />
       <Header />
-    </>
+      <Switch>
+        <Route exact={true} path="/"></Route>
+        <Route path="/products/:categoryId"></Route>
+      </Switch>
+    </Router>
   );
 }
 
