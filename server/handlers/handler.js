@@ -10,7 +10,9 @@ function handleBrands(req, res) {
   res.status(200).json("Brands Go Here");
 }
 function handleProducts(req, res) {
-  res.status(200).json("Products Go Here");
+  const maxItems = items.slice(0, 10);
+
+  res.status(200).json({ status: 200, items: maxItems });
 }
 function handleCategories(req, res) {
   res.status(200).json(" Categories Go Here");
