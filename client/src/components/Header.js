@@ -5,16 +5,20 @@ import styled from "styled-components";
 const Logo = styled.h1`
   color: black;
   font-size: 50px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
 `;
 const Navbar = styled.div`
   background-color: white;
   min-height: 70px;
   margin-top: 15px;
   border-radius: 20px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
   a {
+    text-decoration: none;
     margin: 20px;
-    color: #696969;
-    text-align: center;
+    color: black;
   }
 `;
 //header component for everypage
