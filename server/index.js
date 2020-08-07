@@ -8,6 +8,7 @@ const {
   handleBacon,
   handleBrands,
   handleProducts,
+  handleProductCategories,
 } = require("./handlers/handler");
 
 const PORT = 4000;
@@ -39,5 +40,6 @@ app
   //Lucas Created this Friday
   .get("/brands", handleBrands)
   .get("/products", handleProducts)
+  .get("/products/categories/:category", handleProductCategories)
 
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));

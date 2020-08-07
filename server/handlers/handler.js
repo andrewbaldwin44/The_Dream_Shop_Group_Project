@@ -9,9 +9,13 @@ function handleBrands(req, res) {
 function handleProducts(req, res) {
   res.status(200).json("Products Go Here");
 }
+function handleProductCategories(req, res) {
+  res.status(200).json("Categories Go Here");
+}
 
 module.exports = {
   handleBrands,
   handleBacon,
   handleProducts,
+  handleProductCategories,
 };
