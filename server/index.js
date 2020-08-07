@@ -9,6 +9,7 @@ const {
   handleBrands,
   handleProducts,
   handleProductCategories,
+  handleSpecificBrands,
 } = require("./handlers/handler");
 
 const PORT = 4000;
@@ -41,5 +42,5 @@ app
   .get("/brands", handleBrands)
   .get("/products", handleProducts)
   .get("/products/categories/:category", handleProductCategories)
-
+  .get("/products/brands/:brandId", handleSpecificBrands)
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
