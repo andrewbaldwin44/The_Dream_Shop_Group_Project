@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Logo = styled.h1`
   color: black;
   font-size: 50px;
-  font-family: "Trebuchet MS", Helvetica, sans-serif;
 `;
 const Navbar = styled.div`
   background-color: white;
