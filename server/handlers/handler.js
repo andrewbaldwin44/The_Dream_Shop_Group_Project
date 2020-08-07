@@ -9,16 +9,27 @@ function handleBrands(req, res) {
 function handleProducts(req, res) {
   res.status(200).json("Products Go Here");
 }
-function handleProductCategories(req, res) {
-  res.status(200).json("Categories Go Here");
+function handleCategories(req, res) {
+  res.status(200).json(" Categories Go Here");
+}
+function handleProductCategoriesID(req, res) {
+  res.status(200).json(" indicidual Categories Go Here");
 }
 function handleSpecificBrands(req, res) {
   res.status(200).json("individual brands Go Here");
+}
+function handleSpecificBrands(req, res) {
+  res.status(200).json("individual brands Go Here");
+}
+function handleSpecificProduct(req, res) {
+  res.status(200).json("individual products Go Here");
 }
 module.exports = {
   handleBrands,
   handleBacon,
   handleProducts,
-  handleProductCategories,
+  handleCategories,
+  handleProductCategoriesID,
   handleSpecificBrands,
+  handleSpecificProduct,
 };
