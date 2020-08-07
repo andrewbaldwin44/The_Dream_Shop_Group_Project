@@ -7,31 +7,27 @@ const Logo = styled.h1`
   font-size: 50px;
 `;
 const Navbar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width:100%;
-  border: 1px solid black;
-  background-color:#fff;
+  background-color: white;
+  min-height: 70px;
+  margin-top: 15px;
+  border-radius: 20px;
+  a {
+    margin: 20px;
+    color: #696969;
+    text-align: center;
   }
- 
 `;
 //header component for everypage
 const Header = () => {
   return (
-    <ul>
+    <>
       <Logo>ESHOP</Logo>
       <Navbar>
-        <NavLink to="/">
-          <li>Home</li>
-        </NavLink>
-        <NavLink to="/Categories">
-          <li>Categories</li>
-        </NavLink>
-        <NavLink to="/Companies">
-          <li>Companies</li>
-        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/Categories">Categories</NavLink>
+        <NavLink to="/Companies">Companie</NavLink>
       </Navbar>
-    </ul>
+    </>
   );
 };
 

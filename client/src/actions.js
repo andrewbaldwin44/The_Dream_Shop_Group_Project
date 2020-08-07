@@ -1,25 +1,28 @@
-export const requestAccessToken = () => ({
-  type: "REQUEST_ACCESS_TOKEN",
+//CART
+export const cartAddItem = () => ({
+  type: "CART_ADD_ITEM",
 });
 
-export const receiveAccessToken = (token) => ({
-  type: "RECEIVE_ACCESS_TOKEN",
-  token,
+export const cartItemAdded = (item) => ({
+  type: "CART_ITEM_ADDED",
+  item,
 });
 
-export const receiveAccessTokenError = () => ({
-  type: "RECEIVE_ACCESS_TOKEN_ERROR",
+export const cartAddItemError = () => ({
+  type: "CART_ADD_ITEM_ERROR",
 });
 
-export const requestArtistData = () => ({
-  type: "REQUEST_ARTIST_DATA",
+//ITEMS
+
+export const requestItems = () => ({
+  type: "REQUEST_ITEMS",
 });
 
-export const receiveArtistData = (artist) => ({
-  type: "RECEIVE_ARTIST_DATA",
-  artist,
+export const receiveItems = (items) => ({
+  type: "RECEIVE_ITEMS",
+  items,
 });
 
-export const receiveArtistDataError = () => ({
-  type: "RECEIVE_ARTIST_DATA_ERROR",
+export const receiveItemsError = () => ({
+  type: "RECEIVE_ITEMS_ERROR",
 });
