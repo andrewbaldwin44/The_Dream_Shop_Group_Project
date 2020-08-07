@@ -1,34 +1,43 @@
 const items = require("../data/items.json");
+const brands = require("../data/companies.json");
 const { findItem } = require("../utils/utils");
 
 function handleBacon(req, res) {
   res.status(200).json("🥓");
 }
 
-//Lucas created these Friday
-function handleBrands(req, res) {
-  res.status(200).json("Brands Go Here");
-}
 function handleProducts(req, res) {
   const maxItems = items.slice(0, 10);
 
   res.status(200).json({ status: 200, items: maxItems });
 }
+
+function handleBrands(req, res) {
+  const brandsList = brands.reduce((brandsList, brand) => {
+    if (!brandsList.includes(brand)) brandsList.push(brand);
+
+    return brandsList;
+  }, []);
+
+  res.status(200).json({ status: 200, brands: brandsList });
+}
+
 function handleCategories(req, res) {
   res.status(200).json(" Categories Go Here");
 }
+
 function handleProductCategoriesID(req, res) {
   res.status(200).json(" indicidual Categories Go Here");
 }
-function handleSpecificBrands(req, res) {
+
+function handleSpecificBrand(req, res) {
   res.status(200).json("individual brands Go Here");
 }
-function handleSpecificBrands(req, res) {
-  res.status(200).json("individual brands Go Here");
-}
+
 function handleSpecificProduct(req, res) {
   res.status(200).json("individual products Go Here");
 }
+
 function modifyInventory(req, res) {
   const { id } = req.body;
   const item = findItem(items, id);
@@ -52,7 +61,7 @@ module.exports = {
   handleProducts,
   handleCategories,
   handleProductCategoriesID,
-  handleSpecificBrands,
+  handleSpecificBrand,
   handleSpecificProduct,
   modifyInventory,
 };

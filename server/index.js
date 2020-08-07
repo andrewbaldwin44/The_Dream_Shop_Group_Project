@@ -9,7 +9,7 @@ const {
   handleBrands,
   handleProducts,
   handleProductCategoriesID,
-  handleSpecificBrands,
+  handleSpecificBrand,
   handleCategories,
   handleSpecificProduct,
   modifyInventory,
@@ -42,12 +42,12 @@ app
 
   .get("/bacon", handleBacon)
   .put("/inventory", modifyInventory)
-  //Lucas Created this Friday
-  .get("/products/brands", handleBrands)
-  .get("/products/", handleProducts)
+
+  .get("/brands", handleBrands)
+  .get("/products", handleProducts)
   .get("/products/product/:id", handleSpecificProduct)
-  .get("/products/categories/", handleCategories)
+  .get("/products/categories", handleCategories)
 
   .get("/products/categories/:category", handleProductCategoriesID)
-  .get("/products/brands/:brandId", handleSpecificBrands)
+  .get("/brands/:brand", handleSpecificBrand)
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
