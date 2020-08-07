@@ -1,4 +1,10 @@
 {
+  "name": "dream_shop",
+  "version": "0.0.1",
+  "description": "Where Dreams are Bought",
+  "private": "true",
+  "author": "Andrew Baldwin, Lucas D'Alessandro, Matthew Cote, Stephanos Criticos",
+  "license": "UNLICENSED",
   "dependencies": {
     "morgan": "^1.10.0",
     "styled-components": "^5.1.1"
