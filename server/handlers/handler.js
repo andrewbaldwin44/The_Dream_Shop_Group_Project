@@ -52,7 +52,12 @@ function handleSpecificBrand(req, res) {
 }
 
 function handleSpecificProduct(req, res) {
-  res.status(200).json("individual products Go Here");
+  let productId = req.params.id;
+  console.log("productID", productId);
+
+  let product = findItem(items, productId);
+  console.log(product);
+  res.status(200).json({ status: 200, items: product });
 }
 
 function modifyInventory(req, res) {
