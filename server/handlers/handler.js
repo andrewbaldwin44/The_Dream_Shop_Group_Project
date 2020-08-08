@@ -35,8 +35,17 @@ function handleCategories(req, res) {
 }
 
 function handleProductCategoriesID(req, res) {
-  res.status(200).json(" indicidual Categories Go Here");
-}
+  let categoryId = req.params.category;
+  let productCatArray = [];
+  console.log(req.params.category);
+  items.forEach((item) => {
+    if (item.category === categoryId) {
+      productCatArray.push(item);
+    }
+  });
+
+  res.status(200).json({ status: 200, items: productCatArray });
+} //there may be a catch error or 404 needed here in case someone messes up spelling
 
 function handleSpecificBrand(req, res) {
   res.status(200).json("individual brands Go Here");

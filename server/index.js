@@ -48,6 +48,6 @@ app
   .get("/products/product/:id", handleSpecificProduct)
   .get("/products/categories", handleCategories)
 
-  .get("/products/categories/:category", handleProductCategoriesID)
+  .get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
   .get("/brands/:brand", handleSpecificBrand)
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
