@@ -49,5 +49,5 @@ app
   .get("/products/categories", handleCategories)
 
   .get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
-  .get("/brands/:brand", handleSpecificBrand)
+  .get("/brands/:brand", handleSpecificBrand) //returns all products by brand
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
