@@ -2,10 +2,6 @@ const items = require("../data/items.json");
 const brands = require("../data/companies.json");
 const { findItem } = require("../utils/utils");
 
-function handleBacon(req, res) {
-  res.status(200).json("🥓");
-}
-
 function handleProducts(req, res) {
   const maxItems = items.slice(0, 10);
 
@@ -74,7 +70,6 @@ function modifyInventory(req, res) {
 
 module.exports = {
   handleBrands,
-  handleBacon,
   handleProducts,
   handleCategories,
   handleProductCategoriesID,
