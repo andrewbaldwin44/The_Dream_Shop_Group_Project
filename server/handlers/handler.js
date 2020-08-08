@@ -1,11 +1,21 @@
 const items = require("../data/items.json");
 const brands = require("../data/companies.json");
-const { findItem } = require("../utils/utils");
+const {
+  findItem,
+  paginateModel,
+  getQueryValue,
+} = require("../utils/utils");
+
+const defaultStartPage = 1;
+const defaultPageLimit = 10;
 
 function handleProducts(req, res) {
-  const maxItems = items.slice(0, 10);
+  const page = getQueryValue(req.query.page, defaultStartPage);
+  const limit = getQueryValue(req.query.limit, defaultPageLimit);
 
-  res.status(200).json({ status: 200, items: maxItems });
+  paginatedProducts = paginateModel(page, limit, items);
+
+  res.status(200).json({ status: 200, products: paginatedProducts });
 }
 
 function handleBrands(req, res) {
