@@ -57,7 +57,27 @@ function handleProductCategoriesID(req, res) {
 } //there may be a catch error or 404 needed here in case someone messes up spelling
 
 function handleSpecificBrand(req, res) {
-  res.status(200).json("individual brands Go Here");
+  let urlBrand = req.params.brand.toLowerCase();
+  let companyId = '';
+  let companyProducts = [];
+
+  let searchId = brandsData.forEach((brand) => {
+    const brandName = brand.name.toLowerCase();
+
+    if (brandName === urlBrand) {
+      companyId = brand.id;
+    }
+  });
+
+  productsData.forEach((product) => {
+    if (product.companyId === companyId) {
+      console.log(product.companyId);
+      companyProducts.push(product);
+    }
+  });
+  console.log("company search", companyId);
+
+  res.status(200).json({ status: 200, products: companyProducts });
 }
 
 function handleSpecificProduct(req, res) {
