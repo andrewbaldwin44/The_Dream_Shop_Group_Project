@@ -1,5 +1,5 @@
-const items = require("../data/items.json");
-const brands = require("../data/companies.json");
+const productsData = require("../data/items.json");
+const brandsData = require("../data/companies.json");
 const {
   findItem,
   paginateModel,
@@ -13,13 +13,13 @@ function handleProducts(req, res) {
   const page = getQueryValue(req.query.page, defaultStartPage);
   const limit = getQueryValue(req.query.limit, defaultPageLimit);
 
-  paginatedProducts = paginateModel(page, limit, items);
+  paginatedProducts = paginateModel(page, limit, productsData);
 
   res.status(200).json({ status: 200, products: paginatedProducts });
 }
 
 function handleBrands(req, res) {
-  const brandsList = brands.reduce((brandsList, brand) => {
+  const brandsList = brandsData.reduce((brandsList, brand) => {
     if (!brandsList.includes(brand)) brandsList.push(brand);
 
     return brandsList;
@@ -31,26 +31,26 @@ function handleBrands(req, res) {
 function handleCategories(req, res) {
   let itemsArray = [];
 
-  items.forEach((item) => {
-    if (!itemsArray.includes(item.category)) {
-      itemsArray.push(item.category);
+  productsData.forEach((product) => {
+    if (!itemsArray.includes(product.category)) {
+      itemsArray.push(product.category);
     }
   });
 
-  res.status(200).json({ status: 200, items: itemsArray });
+  res.status(200).json({ status: 200, categories: itemsArray });
 }
 
 function handleProductCategoriesID(req, res) {
   let categoryId = req.params.category;
   let productCatArray = [];
   console.log(req.params.category);
-  items.forEach((item) => {
+  productsData.forEach((item) => {
     if (item.category === categoryId) {
       productCatArray.push(item);
     }
   });
 
-  res.status(200).json({ status: 200, items: productCatArray });
+  res.status(200).json({ status: 200, productsData: productCatArray });
 } //there may be a catch error or 404 needed here in case someone messes up spelling
 
 function handleSpecificBrand(req, res) {
@@ -63,7 +63,7 @@ function handleSpecificProduct(req, res) {
 
 function modifyInventory(req, res) {
   const { id } = req.body;
-  const item = findItem(items, id);
+  const item = findItem(productsData, id);
 
   if (item) {
     if (item.numInStock > 0) {
