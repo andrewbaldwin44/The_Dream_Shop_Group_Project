@@ -41,12 +41,15 @@ function handleCategories(req, res) {
 }
 
 function handleProductCategoriesID(req, res) {
-  let categoryId = req.params.category;
+  let categoryId = req.params.id.toLowerCase();
   let productCatArray = [];
+
   console.log(req.params.category);
-  productsData.forEach((item) => {
-    if (item.category === categoryId) {
-      productCatArray.push(item);
+  productsData.forEach((product) => {
+    const category = product.category.toLowerCase();
+
+    if (category === categoryId) {
+      productCatArray.push(product);
     }
   });
 
