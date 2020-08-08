@@ -23,7 +23,15 @@ function handleBrands(req, res) {
 }
 
 function handleCategories(req, res) {
-  res.status(200).json(" Categories Go Here");
+  let itemsArray = [];
+
+  items.forEach((item) => {
+    if (!itemsArray.includes(item.category)) {
+      itemsArray.push(item.category);
+    }
+  });
+
+  res.status(200).json({ status: 200, items: itemsArray });
 }
 
 function handleProductCategoriesID(req, res) {
