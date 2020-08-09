@@ -11,8 +11,6 @@ function App() {
       <GlobalStyles />
       <Header />
       <Switch>
-        <Route exact={true} path="/"></Route>
-        <Route path="/products/:categoryId"></Route>
         <Route exact={true} path="/">
           <Homepage />
         </Route>

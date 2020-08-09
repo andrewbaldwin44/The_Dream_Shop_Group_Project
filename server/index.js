@@ -5,8 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
 const {
-  handleBacon,
-  handleBrands,
+  handleBrands,git 
   handleProducts,
   handleProductCategoriesID,
   handleSpecificBrand,
@@ -51,3 +50,33 @@ app
   .get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
   .get("/brands/:brand", handleSpecificBrand) //returns all products by brand
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
+.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, HEAD, GET, PUT, POST, DELETE"
+  );
+
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+
+  next();
+})
+
+.use(morgan("tiny"))
+.use(express.static("./server/assets"))
+.use(bodyParser.json())
+.use(express.urlencoded({ extended: false }))
+.use("/", express.static(__dirname + "/"))
+
+.put("/inventory", modifyInventory)
+
+.get("/brands", handleBrands)
+.get("/products", handleProducts)
+.get("/products/product/:id", handleSpecificProduct)
+.get("/products/categories", handleCategories)
+
+.get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
+.get("/brands/:brand", handleSpecificBrand)
+.listen(PORT, () => console.info(`Listening on port ${PORT}`));
