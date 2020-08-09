@@ -11,7 +11,10 @@ function App() {
       <GlobalStyles />
       <Header />
       <Switch>
+<<<<<<< HEAD
         <Route path="/products/:categoryId"></Route>
+=======
+>>>>>>> bfe7f190411eaa74b096bf00edaad89d4cdd4878
         <Route exact={true} path="/">
           <Homepage />
         </Route>
