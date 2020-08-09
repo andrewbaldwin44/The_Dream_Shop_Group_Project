@@ -6,13 +6,9 @@
 /node_modules
 /.pnp
 .pnp.js
-<<<<<<< HEAD
 /node_modules
 /yarn.lock
 
-=======
-yarn.lock
->>>>>>> 96dca7a449b2e978f502d30feec44fd544955631
 
 # testing
 /client/coverage
