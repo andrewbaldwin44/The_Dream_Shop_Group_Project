@@ -1,10 +1,6 @@
 const productsData = require("../data/items.json");
 const brandsData = require("../data/companies.json");
-const {
-  findItem,
-  paginateModel,
-  getQueryValue,
-} = require("../utils/utils");
+const { findItem, paginateModel, getQueryValue } = require("../utils/utils");
 
 const defaultStartPage = 1;
 const defaultPageLimit = 10;
@@ -48,41 +44,43 @@ function handleCategories(req, res) {
 }
 
 function handleProductCategoriesID(req, res) {
-  let categoryId = req.params.category;
+  let categoryId = req.params.id.toLowerCase();
   let productCatArray = [];
+
   console.log(req.params.category);
-  items.forEach((item) => {
-  productsData.forEach((item) => {
-    if (item.category === categoryId) {
-      productCatArray.push(item);
+  productsData.forEach((product) => {
+    const category = product.category.toLowerCase();
+
+    if (category === categoryId) {
+      productCatArray.push(product);
     }
   });
 
-  res.status(200).json({ status: 200, items: productCatArray });
   res.status(200).json({ status: 200, productsData: productCatArray });
 } //there may be a catch error or 404 needed here in case someone messes up spelling
 
 function handleSpecificBrand(req, res) {
-  let urlBrand = req.params.brand;
+  let urlBrand = req.params.brand.toLowerCase();
   let companyId = "";
   let companyProducts = [];
 
-  let searchId = brands.forEach((item) => {
-    if (item.name === urlBrand) {
-      console.log(item.name);
-      companyId = item.id;
+  let searchId = brandsData.forEach((brand) => {
+    const brandName = brand.name.toLowerCase();
+
+    if (brandName === urlBrand) {
+      companyId = brand.id;
     }
   });
 
-  items.forEach((item) => {
-    if (item.companyId === companyId) {
-      console.log(item.companyId);
-      companyProducts.push(item);
+  productsData.forEach((product) => {
+    if (product.companyId === companyId) {
+      console.log(product.companyId);
+      companyProducts.push(product);
     }
   });
   console.log("company search", companyId);
 
-  res.status(200).json({ status: 200, items: companyProducts });
+  res.status(200).json({ status: 200, products: companyProducts });
 }
 
 function handleSpecificProduct(req, res) {
