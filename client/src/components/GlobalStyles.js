@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
   :root {
     --navbar-height: 70px;
-    
+
   }
 
   body {
@@ -38,6 +38,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'Quicksand', sans-serif;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
