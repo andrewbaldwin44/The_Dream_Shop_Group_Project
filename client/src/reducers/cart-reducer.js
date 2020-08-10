@@ -12,10 +12,12 @@ export default function cartReducer(state = initialState, action) {
       };
     }
     case "CART_ITEM_ADDED": {
+      let item = action.item;
+      item.quantity = 1;
       return {
         ...state,
         status: "idle",
-        cart: state.cart.push[action.item],
+        cart: [...state.cart, item],
       };
     }
     case "CART_ADD_ITEM_ERROR": {
