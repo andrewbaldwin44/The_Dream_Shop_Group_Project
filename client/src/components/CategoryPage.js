@@ -6,6 +6,7 @@ import {
   receiveItemsError,
   resetItems,
 } from "../actions";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 //import StoreItem from "./StoreItem";
@@ -29,11 +30,15 @@ const CategoryPage = () => {
     return (
       <div>
         {items.map((item) => {
-          return item;
+          console.log(item);
+          return <Categorylink>{item}</Categorylink>;
         })}
       </div>
     );
   }
 };
-
+const Categorylink = styled(Link)`
+  display: flex;
+  justify-content: space-between;
+`;
 export default CategoryPage;
