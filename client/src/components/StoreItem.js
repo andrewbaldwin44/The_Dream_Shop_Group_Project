@@ -1,32 +1,77 @@
 import React from "react";
 import styled from "styled-components";
+import { MdAddShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { cartAddItem, cartItemAdded, cartAddItemError } from "../actions";
 
 const StoreItem = ({ item }) => {
+  const dispatch = useDispatch();
   return (
-    <Wrapper>
+    <Wrapper to={`/product/${item.id}`}>
       <Image src={item.imageSrc} alt={item.name} />
+      <Name>
+        {item.name.length > 50
+          ? item.name.substr(0, item.name.substr(0, 55).lastIndexOf(" ")) +
+            " ..."
+          : item.name}
+      </Name>
       <Price>{item.price}</Price>
-      <Name>{item.name}</Name>
-      <Button>CART</Button>
+      <Button
+        onClick={(event) => {
+          event.preventDefault();
+          dispatch(cartItemAdded(item));
+        }}
+      >
+        <MdAddShoppingCart size={25} />
+      </Button>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  width: 400px;
-  height: 400px;
+const Wrapper = styled(Link)`
+  margin: 20px 12px;
+  padding: 15px;
+  width: 350px;
+  height: 350px;
   border-radius: 8px;
-  border: 1px solid lightgrey;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
-const Price = styled.p``;
+const Price = styled.p`
+  font-weight: bold;
+  font-size: large;
+  color: black;
+`;
 
-const Image = styled.img``;
+const Image = styled.img`
+  height: 180px;
 
-const Button = styled.button``;
+  align-self: center;
+`;
 
-const Name = styled.p``;
+const Button = styled.button`
+  display: inline-block;
+  width: 50px;
+  height: 40px;
+  border-radius: 8px;
+  margin-left: auto;
+  border: 0.5px solid #5f6368;
+  &:hover {
+    cursor: pointer;
+    background-color: #5f6368;
+  }
+`;
+
+const Name = styled.p`
+  margin: 10px 0;
+  color: #5f6368;
+`;
 
 export default StoreItem;
