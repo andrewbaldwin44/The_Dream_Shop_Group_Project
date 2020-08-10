@@ -17,6 +17,7 @@ import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 import Sidebar from "./Sidebar";
+import styled from "styled-components";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,33 +26,29 @@ function App() {
   useEffect(() => {
     dispatch(requestAllItemInformation());
 
-    const products =
-      fetch(`/products`)
-        .then(response => response.json())
-        .then(data => data.products)
-        .then(products => dispatch(receiveProducts(products)))
-        .catch(error => dispatch(receiveAllItemInformationError()));
+    const products = fetch(`/products`)
+      .then((response) => response.json())
+      .then((data) => data.products)
+      .then((products) => dispatch(receiveProducts(products)))
+      .catch((error) => dispatch(receiveAllItemInformationError()));
 
-    const categories =
-      fetch(`/products/categories`)
-        .then(response => response.json())
-        .then(data => data.categories)
-        .then(categories => dispatch(receiveCategories(categories)))
-        .catch(error => dispatch(receiveAllItemInformationError()));
+    const categories = fetch(`/products/categories`)
+      .then((response) => response.json())
+      .then((data) => data.categories)
+      .then((categories) => dispatch(receiveCategories(categories)))
+      .catch((error) => dispatch(receiveAllItemInformationError()));
 
-    const brands =
-      fetch(`/brands`)
-        .then(response => response.json())
-        .then(data => data.brands)
-        .then(brands => dispatch(receiveBrands(brands)))
-        .catch(error => dispatch(receiveAllItemInformationError()));
+    const brands = fetch(`/brands`)
+      .then((response) => response.json())
+      .then((data) => data.brands)
+      .then((brands) => dispatch(receiveBrands(brands)))
+      .catch((error) => dispatch(receiveAllItemInformationError()));
 
-    const bodyLocation =
-      fetch(`/bodylocation`)
-        .then(response => response.json())
-        .then(data => data.bodyLocation)
-        .then(bodyLocation => dispatch(receiveBodyLocation(bodyLocation)))
-        .catch(error => dispatch(receiveAllItemInformationError()));
+    const bodyLocation = fetch(`/bodylocation`)
+      .then((response) => response.json())
+      .then((data) => data.bodyLocation)
+      .then((bodyLocation) => dispatch(receiveBodyLocation(bodyLocation)))
+      .catch((error) => dispatch(receiveAllItemInformationError()));
 
     Promise.all([products, categories, brands, bodyLocation])
       .then(() => dispatch(receiveAllItemInformation()))
@@ -59,29 +56,30 @@ function App() {
   }, []);
 
   if (status === "loading") {
-    return (
-      <div>
-          loading...
-      </div>
-    )
-  }
-  else {
+    return <div>loading...</div>;
+  } else {
     return (
       <Router>
         <GlobalStyles />
         <Header />
-        <Sidebar />
-        <Switch>
-          <Route exact={true} path="/">
-            <Homepage />
-          </Route>
-          <Route path="/products/:categoryId">
-            <CategoryPage />
-          </Route>
-        </Switch>
+        <Wrapper>
+          {" "}
+          <Sidebar />
+          <Switch>
+            <Route exact={true} path="/">
+              <Homepage />
+            </Route>
+            <Route path="/products/:categoryId">
+              <CategoryPage />
+            </Route>
+          </Switch>
+        </Wrapper>
       </Router>
     );
   }
 }
 
+const Wrapper = styled.div`
+  display: flex;
+`;
 export default App;
