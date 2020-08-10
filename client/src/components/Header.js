@@ -8,7 +8,7 @@ const Logo = styled.h1`
 `;
 const Navbar = styled.div`
   background-color: white;
-  min-height: 70px;
+  height: var(--navbar-height);
   margin-top: 15px;
   border-radius: 20px;
   border: 1px solid black;

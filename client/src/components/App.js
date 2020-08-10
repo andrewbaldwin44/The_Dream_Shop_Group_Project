@@ -4,12 +4,14 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
+import Sidebar from "./Sidebar";
 
 function App() {
   return (
     <Router>
       <GlobalStyles />
       <Header />
+      <Sidebar />
       <Switch>
         <Route exact={true} path="/">
           <Homepage />
