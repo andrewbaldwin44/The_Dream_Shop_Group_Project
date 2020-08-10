@@ -6,11 +6,10 @@ import { useSelector } from "react-redux";
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import AddIcon from '@material-ui/icons/Add';
 
 import SearchBar from "./SearchBar";
+import FilterList from "./FilterList";
 
 const Sidebar = () => {
   const brands = useSelector(state => state.items.brands);
@@ -28,20 +27,10 @@ const Sidebar = () => {
         <AccordionDetails>
           <List>
             <SearchBar />
-            {brands.map(brand => {
-              return (
-                <li key={brand.id}>
-                  <FormControlLabel
-                    control={
-                        <Checkbox
-                          inputProps={{ 'aria-label': 'brand checkbox' }}
-                        />
-                      }
-                      label={brand.name}
-                  />
-                </li>
-              )
-            })}
+            <FilterList
+              list={brands}
+              accessor="name"
+            />
           </List>
         </AccordionDetails>
       </Accordion>
@@ -54,20 +43,10 @@ const Sidebar = () => {
         </AccordionSummary>
         <AccordionDetails>
           <List>
-            {bodyLocation.map((location, index) => {
-              return (
-                <li key={`location${index}`}>
-                  <FormControlLabel
-                    control={
-                        <Checkbox
-                          inputProps={{ 'aria-label': 'filter checkbox' }}
-                        />
-                      }
-                      label={location}
-                  />
-                </li>
-              )
-            })}
+            <FilterList
+              list={bodyLocation}
+              id="location"
+            />
           </List>
         </AccordionDetails>
       </Accordion>
