@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   requestItems,
   receiveItems,
@@ -7,6 +8,7 @@ import {
   resetItems,
 } from "../actions";
 import { useParams } from "react-router-dom";
+
 import styled from "styled-components";
 //import StoreItem from "./StoreItem";
 
@@ -26,13 +28,18 @@ const CategoryPage = () => {
     return <div>loading...</div>;
   } else {
     return (
-      <div>
+      <Branddiv>
         {items.map((item) => {
-          return item.name;
+          return <Brandlink>{item.name}</Brandlink>;
         })}
-      </div>
+      </Branddiv>
     );
   }
 };
-
+const Brandlink = styled(Link)`
+  display: flex;
+`;
+const Branddiv = styled.div`
+  max-height: 300px;
+`;
 export default CategoryPage;
