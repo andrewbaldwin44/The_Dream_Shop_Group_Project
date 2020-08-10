@@ -9,36 +9,40 @@ import {
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-//import StoreItem from "./StoreItem";
+import StoreItem from "./StoreItem";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
-
+  const categoryId = useParams().categoryId;
   React.useEffect(() => {
     dispatch(requestItems());
-    fetch("/products/categories")
+    fetch(`/products/categories/${categoryId}`)
       .then((res) => res.json())
-      .then((data) => dispatch(receiveItems(data.categories)))
+      .then((data) => data.productsData)
+      .then((items) => dispatch(receiveItems(items)))
       .catch((err) => dispatch(receiveItemsError()));
     // eslint-disable-next-line
     return () => dispatch(resetItems());
   }, []);
-  if (items === null) {
-    return <div>loading...</div>;
-  } else {
-    return (
-      <div>
-        {items.map((item) => {
-          console.log(item);
-          return <Categorylink>{item}</Categorylink>;
-        })}
-      </div>
-    );
-  }
+  return (
+    <Wrapper>
+      {items === null ? (
+        <div>loading...</div>
+      ) : (
+        <>
+          {items.map((item) => {
+            return <StoreItem item={item} key={item.id} />;
+          })}
+        </>
+      )}
+    </Wrapper>
+  );
 };
-const Categorylink = styled(Link)`
+
+const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 `;
+
 export default CategoryPage;

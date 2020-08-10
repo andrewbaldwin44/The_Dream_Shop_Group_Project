@@ -14,7 +14,7 @@ function App() {
         <Route exact={true} path="/">
           <Homepage />
         </Route>
-        <Route path="/products/category">
+        <Route path="/products/:categoryId">
           <CategoryPage />
         </Route>
         <Route path="/brands">
