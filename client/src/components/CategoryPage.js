@@ -27,7 +27,6 @@ const CategoryPage = () => {
     // eslint-disable-next-line
     return () => dispatch(resetItems());
   }, []);
-
   return (
     <Wrapper>
       {categoryData === null ? (
