@@ -16,6 +16,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
+<<<<<<< HEAD
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import ProductPage from "./ProductPage";
@@ -81,6 +82,27 @@ function App() {
       </Router>
     );
   }
+=======
+import Brands from "./Brands";
+function App() {
+  return (
+    <Router>
+      <GlobalStyles />
+      <Header />
+      <Switch>
+        <Route exact={true} path="/">
+          <Homepage />
+        </Route>
+        <Route path="/products/category">
+          <CategoryPage />
+        </Route>
+        <Route path="/brands">
+          <Brands />
+        </Route>
+      </Switch>
+    </Router>
+  );
+>>>>>>> rendering categories
 }
 
 const Wrapper = styled.div`

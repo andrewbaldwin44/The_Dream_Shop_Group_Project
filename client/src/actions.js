@@ -66,3 +66,7 @@ export const receiveCategory = category => ({
 export const receiveCategoryError = () => ({
   type: "RECEIVE_CATEGORY_ERROR",
 });
+
+export const resetItems = () => ({
+  type: "RESET_ITEM",
+});

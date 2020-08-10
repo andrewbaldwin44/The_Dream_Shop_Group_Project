@@ -26,9 +26,15 @@ const Header = () => {
     <>
       <Logo>ESHOP</Logo>
       <Navbar>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/Categories">Categories</NavLink>
-        <NavLink to="/Companies">Company</NavLink>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
+        <NavLink exact to="/products/category">
+          Categories
+        </NavLink>
+        <NavLink exact to="/brands">
+          brands
+        </NavLink>
       </Navbar>
     </>
   );
