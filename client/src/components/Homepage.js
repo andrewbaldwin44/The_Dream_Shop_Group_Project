@@ -13,14 +13,16 @@ const Homepage = () => {
 const Wrapper = styled.div``;
 const Banner = styled.img`
   height: 500px;
-  width: 120vw;
+  width: 100vw;
   object-fit: cover;
   overflow: hidden;
 `;
 const Text = styled.p`
   position: relative;
-  bottom: 300px;
+  bottom: 400px;
+  left: 30px;
   color: white;
-  font-size: x-large;
+  font-size: 40px;
+  font-weight: bold;
 `;
 export default Homepage;
