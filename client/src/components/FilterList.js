@@ -3,19 +3,19 @@ import React from "react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function FilterList({ list, id, accessor }) {
+function FilterList({ list, id }) {
   return (
     <>
       {list.map((item, index) => {
         return (
-          <li key={id ? `${id}${index}` : item.id}>
+          <li key={`${id}${index}`}>
             <FormControlLabel
               control={
                   <Checkbox
                     inputProps={{ 'aria-label': `${item} checkbox` }}
                   />
                 }
-                label={accessor ? item[accessor] : item}
+                label={item}
             />
           </li>
         )

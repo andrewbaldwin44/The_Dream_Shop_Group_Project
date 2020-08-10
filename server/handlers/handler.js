@@ -1,5 +1,6 @@
 const productsData = require("../data/items.json");
 const brandsData = require("../data/companies.json");
+
 const {
   findItem,
   paginateModel,

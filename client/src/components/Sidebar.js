@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useSelector } from "react-redux";
@@ -11,9 +11,40 @@ import AddIcon from '@material-ui/icons/Add';
 import SearchBar from "./SearchBar";
 import FilterList from "./FilterList";
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
+function highlightMatches(input, match) {
+  const highlightSubstring = new RegExp(`(.*)(${match})(.*)`, 'i');
+  const matches = input.match(highlightSubstring);
+
+  matches.splice(0, 1);
+
+  return matches;
+}
+
 const Sidebar = () => {
+  const [search, setSearch] = useState('');
+
   const brands = useSelector(state => state.items.brands);
   const bodyLocation = useSelector(state => state.items.bodyLocation);
+
+  const searchedBrands = brands.reduce((searchedBrands, brandInfo) => {
+    const normalizedBrandName = brandInfo.name.toLowerCase();
+
+    if (search === '') {
+      searchedBrands.push(brandInfo);
+    }
+    else if (normalizedBrandName.includes(search)) {
+      const brandName = brandInfo.name;
+      const brandNameMatches = highlightMatches(brandName, search);
+      const searchedBrand = { ...brandInfo, name: brandNameMatches }
+
+      searchedBrands.push(searchedBrand);
+    }
+
+    return searchedBrands;
+  }, []);
 
   return (
     <Wrapper>
@@ -26,11 +57,31 @@ const Sidebar = () => {
         </AccordionSummary>
         <AccordionDetails>
           <List>
-            <SearchBar />
-            <FilterList
-              list={brands}
-              accessor="name"
-            />
+            <SearchBar setSearch={setSearch} />
+            {searchedBrands.map((brand, index) => {
+              const brandName = brand.name
+
+              return (
+                <li key={brand.id}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        inputProps={{ 'aria-label': `${brandName} checkbox` }}
+                        />
+                    }
+                    label={
+                      typeof brandName === "string"
+                        ? brandName
+                        : <span>
+                            {brandName[0]}
+                            <Bold>{brandName[1]}</Bold>
+                            {brandName[2]}
+                          </span>
+                    }
+                    />
+                </li>
+              )
+            })}
           </List>
         </AccordionDetails>
       </Accordion>
@@ -80,6 +131,10 @@ const List = styled.ul`
   li {
     padding-left: 10px;
   }
+`;
+
+const Bold = styled.span`
+  font-weight: bold;
 `;
 
 export default Sidebar;
