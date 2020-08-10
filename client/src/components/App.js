@@ -18,11 +18,14 @@ import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 
 import Sidebar from "./Sidebar";
+<<<<<<< HEAD
 import styled from "styled-components";
 <<<<<<< HEAD
 import ProductPage from "./ProductPage";
 =======
 >>>>>>> update
+=======
+>>>>>>> fixed sidebar
 
 function App() {
   const dispatch = useDispatch();
@@ -67,9 +70,6 @@ function App() {
       <Router>
         <GlobalStyles />
         <Header />
-        <Wrapper>
-          {" "}
-          <Sidebar />
           <Switch>
             <Route exact={true} path="/">
               <Homepage />
@@ -81,13 +81,9 @@ function App() {
               <ProductPage />
             </Route>
           </Switch>
-        </Wrapper>
       </Router>
     );
   }
 }
 
-const Wrapper = styled.div`
-  display: flex;
-`;
 export default App;

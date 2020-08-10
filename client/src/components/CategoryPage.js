@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
+import Sidebar from "./Sidebar";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -27,23 +28,29 @@ const CategoryPage = () => {
       .catch((err) => dispatch(receiveCategoryError()));
   }, []);
   return (
-    <Wrapper>
-      {categoryData === null ? (
-        <div>loading...</div>
-      ) : (
-        <>
-          {categoryData.map((data) => {
-            return <StoreItem item={data} key={data.id} />;
-          })}
-        </>
-      )}
-    </Wrapper>
+    <Div>
+      <Sidebar />
+      <Wrapper>
+        {categoryData === null ? (
+          <div>loading...</div>
+        ) : (
+          <>
+            {categoryData.map((data) => {
+              return <StoreItem item={data} key={data.id} />;
+            })}
+          </>
+        )}
+      </Wrapper>
+    </Div>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+const Div = styled.div`
+  display: flex;
 `;
 
 export default CategoryPage;
