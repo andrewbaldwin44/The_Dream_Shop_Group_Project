@@ -52,3 +52,17 @@ export const receiveAllItemInformationError = () => ({
 export const receiveAllItemInformation = () => ({
   type: "RECEIVE_ALL_ITEM_INFORMATION"
 });
+
+// SPECIFIC CATEGORY
+export const requestCategory = () => ({
+  type: "REQUEST_CATEGORY",
+});
+
+export const receiveCategory = category => ({
+  type: "RECEIVE_CATEGORY",
+  category
+});
+
+export const receiveCategoryError = () => ({
+  type: "RECEIVE_CATEGORY_ERROR",
+});

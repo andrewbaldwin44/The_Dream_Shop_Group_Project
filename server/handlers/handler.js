@@ -53,7 +53,7 @@ function handleProductCategoriesID(req, res) {
     }
   });
 
-  res.status(200).json({ status: 200, productsData: productCatArray });
+  res.status(200).json({ status: 200, category: productCatArray });
 } //there may be a catch error or 404 needed here in case someone messes up spelling
 
 function handleSpecificBrand(req, res) {
