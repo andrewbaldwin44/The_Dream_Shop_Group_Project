@@ -26,7 +26,6 @@ const CategoryPage = () => {
       .then((category) => dispatch(receiveCategory(category)))
       .catch((err) => dispatch(receiveCategoryError()));
   }, []);
-
   return (
     <Wrapper>
       {categoryData === null ? (

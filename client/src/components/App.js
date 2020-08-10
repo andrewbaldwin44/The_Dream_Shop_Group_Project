@@ -19,7 +19,10 @@ import CategoryPage from "./CategoryPage";
 
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
+<<<<<<< HEAD
 import ProductPage from "./ProductPage";
+=======
+>>>>>>> update
 
 function App() {
   const dispatch = useDispatch();
