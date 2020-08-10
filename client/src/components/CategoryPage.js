@@ -11,9 +11,9 @@ const CategoryPage = () => {
   const categoryId = useParams().categoryId;
   React.useEffect(() => {
     dispatch(requestItems());
-    fetch(`/products`)
+    fetch(`/products/categories/${categoryId}`)
       .then((res) => res.json())
-      .then((data) => data.items)
+      .then((data) => data.productsData)
       .then((items) => dispatch(receiveItems(items)))
       .catch((err) => dispatch(receiveItemsError()));
     // eslint-disable-next-line
