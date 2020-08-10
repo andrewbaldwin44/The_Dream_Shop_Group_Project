@@ -4,6 +4,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
+import ProductPage from "./ProductPage";
 
 function App() {
   return (
@@ -14,8 +15,11 @@ function App() {
         <Route exact={true} path="/">
           <Homepage />
         </Route>
-        <Route path="/products/:categoryId">
+        <Route exact path="/products/:categoryId">
           <CategoryPage />
+        </Route>
+        <Route exact path="/products/product/:id">
+          <ProductPage />
         </Route>
       </Switch>
     </Router>

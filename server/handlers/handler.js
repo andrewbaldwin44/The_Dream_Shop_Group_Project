@@ -87,7 +87,7 @@ function handleSpecificProduct(req, res) {
   let productId = req.params.id;
   console.log("productID", productId);
 
-  let product = findItem(items, productId);
+  let product = findItem(productsData, productId);
   console.log(product);
   res.status(200).json({ status: 200, items: product });
 }

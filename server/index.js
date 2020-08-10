@@ -39,7 +39,7 @@ app
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-  .get("/bacon", handleBacon)
+  // .get("/bacon", handleBacon)
   .put("/inventory", modifyInventory)
 
   .get("/brands", handleBrands)
