@@ -18,14 +18,10 @@ import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 
 import Sidebar from "./Sidebar";
-<<<<<<< HEAD
 import styled from "styled-components";
-<<<<<<< HEAD
 import ProductPage from "./ProductPage";
-=======
->>>>>>> update
-=======
->>>>>>> fixed sidebar
+
+import Cart from "./Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +75,9 @@ function App() {
             </Route>
             <Route exact path="/products/product/:id">
               <ProductPage />
+            </Route>
+            <Route path="/cart">
+              <Cart />
             </Route>
           </Switch>
       </Router>
