@@ -1,24 +1,24 @@
 const initialState = {
   status: "idle",
-  items: null,
+  products: null,
 };
 
 export default function itemsReducer(state = initialState, action) {
   switch (action.type) {
-    case "REQUEST_ITEMS": {
+    case "REQUEST_PRODUCTS": {
       return {
         ...state,
         status: "loading",
       };
     }
-    case "RECEIVE_ITEMS": {
+    case "RECEIVE_PRODUCTS": {
       return {
         ...state,
         status: "idle",
-        items: action.items,
+        products: action.products,
       };
     }
-    case "RECEIVE_ITEMS_ERROR": {
+    case "RECEIVE_PRODUCTS_ERROR": {
       return {
         ...state,
         status: "error",

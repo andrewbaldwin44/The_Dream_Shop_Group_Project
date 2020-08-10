@@ -57,19 +57,8 @@ const Wrapper = styled.nav`
   border-right: 2px solid lightgrey;
 `;
 
-const Nav = styled.ul`
-  padding: 10px 5px;
-
-  li {
-    cursor: pointer;
-  }
-`;
-
 const ListHeader = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 10px;
+  font-weight: bold;
 `;
 
 export default Sidebar;

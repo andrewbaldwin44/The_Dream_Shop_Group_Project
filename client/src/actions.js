@@ -13,16 +13,34 @@ export const cartAddItemError = () => ({
 });
 
 //ITEMS
-
-export const requestItems = () => ({
-  type: "REQUEST_ITEMS",
+export const requestAllItemInformation = () => ({
+  type: "REQUEST_ALL_ITEM_INFORMATION"
 });
 
-export const receiveItems = (items) => ({
-  type: "RECEIVE_ITEMS",
-  items,
+export const receiveProducts = products => ({
+  type: "RECEIVE_PRODUCTS",
+  products,
 });
 
-export const receiveItemsError = () => ({
-  type: "RECEIVE_ITEMS_ERROR",
+export const receiveCategories = categories => ({
+  type: "RECEIVE_CATEGORIES",
+  categories,
+});
+
+export const receiveBrands = brands => ({
+  type: "RECEIVE_BRANDS",
+  brands,
+});
+
+export const receiveBodyLocation = bodyLocation => ({
+  type: "RECEIVE_BODY_LOCATION",
+  location,
+});
+
+export const receiveAllItemInformationError = () => ({
+  type: "RECEIVE_ALL_ITEM_INFORMATION_ERROR",
+});
+
+export const receiveAllItemInformation = () => ({
+  type: "RECEIVE_ALL_ITEM_INFORMATION"
 });
