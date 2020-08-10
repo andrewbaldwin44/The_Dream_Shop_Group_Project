@@ -1,48 +1,52 @@
 import React from "react";
 import styled from "styled-components";
-import { AiOutlinePlus } from "react-icons/ai";
+
+import { useSelector } from "react-redux";
+
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
+import AddIcon from '@material-ui/icons/Add';
 
 const Sidebar = () => {
+  const brands = useSelector(state => state.items.brands);
+  const bodyLocation = useSelector(state => state.items.bodyLocation);
+
+  console.log(brands)
+
   return (
     <Wrapper>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AiOutlinePlus />}
+          expandIcon={<AddIcon />}
           aria-controls="panel1a-content"
         >
           <ListHeader>Brands</ListHeader>
         </AccordionSummary>
         <AccordionDetails>
           <ul>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
+            {brands.map(brand => {
+              return (
+                <li key={brand.id}>{brand.name}</li>
+              )
+            })}
           </ul>
         </AccordionDetails>
       </Accordion>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AiOutlinePlus />}
+          expandIcon={<AddIcon />}
           aria-controls="panel1a-content"
         >
-          <ListHeader>Category Shirts</ListHeader>
+          <ListHeader>Filters</ListHeader>
         </AccordionSummary>
         <AccordionDetails>
           <ul>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
-            <li>Placeholder</li>
+            {bodyLocation.map((location, index) => {
+              return (
+                <li key={`location${index}`}>{location}</li>
+              )
+            })}
           </ul>
         </AccordionDetails>
       </Accordion>

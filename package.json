@@ -6,6 +6,7 @@
   "author": "Andrew Baldwin, Lucas D'Alessandro, Matthew Cote, Stephanos Criticos",
   "license": "UNLICENSED",
   "dependencies": {
+    "@material-ui/icons": "^4.9.1",
     "morgan": "^1.10.0",
     "styled-components": "^5.1.1"
   }
