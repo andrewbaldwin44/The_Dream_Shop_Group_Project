@@ -84,7 +84,7 @@ function handleSpecificProduct(req, res) {
   let productId = req.params.id;
   console.log("productID", productId);
 
-  let product = findItem(items, productId);
+  let product = findItem(productsData, productId);
   console.log(product);
   res.status(200).json({ status: 200, items: product });
 }
@@ -106,6 +106,17 @@ function modifyInventory(req, res) {
   }
 }
 
+function handleBodyLocation(req, res) {
+  const bodyLocation = productsData.reduce((bodyLocation, product) => {
+    const location = product.body_location;
+
+    if (!bodyLocation.includes(location)) bodyLocation.push(location);
+    return bodyLocation;
+  }, []);
+
+  res.status(200).json({ status: 200, bodyLocation });
+}
+
 module.exports = {
   handleBrands,
   handleProducts,
@@ -114,4 +125,5 @@ module.exports = {
   handleSpecificBrand,
   handleSpecificProduct,
   modifyInventory,
+  handleBodyLocation,
 };

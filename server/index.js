@@ -12,6 +12,7 @@ const {
   handleCategories,
   handleSpecificProduct,
   modifyInventory,
+  handleBodyLocation,
 } = require("./handlers/handler");
 
 const PORT = 4000;
@@ -48,4 +49,5 @@ app
 
 .get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
 .get("/brands/:brand", handleSpecificBrand)
+.get("/bodylocation", handleBodyLocation)
 .listen(PORT, () => console.info(`Listening on port ${PORT}`));
