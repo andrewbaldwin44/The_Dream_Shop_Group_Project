@@ -32,9 +32,17 @@ export const receiveBrands = brands => ({
   brands,
 });
 
+export const receiveBrandsError = () => ({
+  type: "RECEIVE_BRANDS_ERROR",
+});
+
+export const requestBodyLocation = () => ({
+  type: "REQUEST_BODY_LOCATION"
+});
+
 export const receiveBodyLocation = bodyLocation => ({
   type: "RECEIVE_BODY_LOCATION",
-  location,
+  bodyLocation,
 });
 
 export const receiveAllItemInformationError = () => ({
