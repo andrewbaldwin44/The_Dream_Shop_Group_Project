@@ -1,28 +1,60 @@
 const initialState = {
   status: "idle",
-  items: null,
+  products: null,
+  categories: null,
+  brands: null,
+  bodyLocation: null,
 };
 
 export default function itemsReducer(state = initialState, action) {
   switch (action.type) {
-    case "REQUEST_ITEMS": {
+    case "REQUEST_ALL_ITEM_INFORMATION": {
       return {
         ...state,
         status: "loading",
       };
     }
-    case "RECEIVE_ITEMS": {
+
+    case "RECEIVE_PRODUCTS": {
       return {
         ...state,
-        status: "idle",
-        items: action.items,
+        products: action.products,
       };
     }
-    case "RECEIVE_ITEMS_ERROR": {
+
+    case "RECEIVE_CATEGORIES": {
       return {
         ...state,
-        status: "error",
+        categories: action.categories,
       };
+    }
+
+    case "RECEIVE_BRANDS": {
+      return {
+        ...state,
+        brands: action.brands,
+      };
+    }
+
+    case "RECEIVE_BODY_LOCATION": {
+      return {
+        ...state,
+        bodyLocation: action.bodyLocation,
+      };
+    }
+
+    case "RECEIVE_ALL_ITEM_INFORMATION_ERROR": {
+      return {
+        ...state,
+        status: "error"
+      }
+    }
+
+    case "RECEIVE_ALL_ITEM_INFORMATION": {
+      return {
+        ...state,
+        status: 'idle',
+      }
     }
 
     default: {

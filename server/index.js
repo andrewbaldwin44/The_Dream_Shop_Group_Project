@@ -12,6 +12,7 @@ const {
   handleCategories,
   handleSpecificProduct,
   modifyInventory,
+  handleBodyLocation,
 } = require("./handlers/handler");
 
 const PORT = 4000;
@@ -39,7 +40,6 @@ app
   .use(express.urlencoded({ extended: false }))
   .use("/", express.static(__dirname + "/"))
 
-  // .get("/bacon", handleBacon)
   .put("/inventory", modifyInventory)
 
   .get("/brands", handleBrands)
@@ -48,5 +48,6 @@ app
   .get("/products/categories", handleCategories)
 
   .get("/products/categories/:id", handleProductCategoriesID) //all products in a given cat go here
-  .get("/brands/:brand", handleSpecificBrand) //returns all products by brand
+  .get("/brands/:brand", handleSpecificBrand)
+  .get("/bodylocation", handleBodyLocation)
   .listen(PORT, () => console.info(`Listening on port ${PORT}`));
