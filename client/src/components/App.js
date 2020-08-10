@@ -1,5 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  requestAllItemInformation,
+  receiveProducts,
+  receiveCategories,
+  receiveBrands,
+  receiveBodyLocation,
+  receiveAllItemInformationError,
+  receiveAllItemInformation,
+} from "../actions";
+
 import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";

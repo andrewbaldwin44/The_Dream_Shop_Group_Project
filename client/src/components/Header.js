@@ -28,6 +28,7 @@ const Header = () => {
     // eslint-disable-next-line
     return () => dispatch(resetItems());
   }, []);
+  console.log(items)
   return (
     <>
       <Logo>ESHOP</Logo>
@@ -59,7 +60,7 @@ const Logo = styled.h1`
 `;
 const Navbar = styled.div`
   background-color: white;
-  min-height: 70px;
+  height: var(--navbar-height);
   margin-top: 15px;
   border-radius: 20px;
   border: 1px solid black;
@@ -71,8 +72,25 @@ const Navbar = styled.div`
     color: black;
   }
 `;
+<<<<<<< HEAD
 const Cartimg = styled.img`
   width: 30px;
   height: 30px;
 `;
+=======
+//header component for everypage
+const Header = () => {
+  return (
+    <>
+      <Logo>ESHOP</Logo>
+      <Navbar>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/Categories">Categories</NavLink>
+        <NavLink to="/Companies">Company</NavLink>
+      </Navbar>
+    </>
+  );
+};
+
+>>>>>>> 22dfd473928acc39ac7b36ff8ae6c1713168b7da
 export default Header;

@@ -1,22 +1,24 @@
 import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
-  requestItems,
-  receiveItems,
-  receiveItemsError,
-  resetItems,
+  requestCategory,
+  receiveCategory,
+  receiveCategoryError,
 } from "../actions";
-import { Link } from "react-router-dom";
+
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.items.items);
+  const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
+
   React.useEffect(() => {
-    dispatch(requestItems());
+    dispatch(requestCategory());
+
     fetch(`/products/categories/${categoryId}`)
       .then((res) => res.json())
       .then((data) => data.productsData)
@@ -25,14 +27,15 @@ const CategoryPage = () => {
     // eslint-disable-next-line
     return () => dispatch(resetItems());
   }, []);
+
   return (
     <Wrapper>
-      {items === null ? (
+      {categoryData === null ? (
         <div>loading...</div>
       ) : (
         <>
-          {items.map((item) => {
-            return <StoreItem item={item} key={item.id} />;
+          {categoryData.map((data) => {
+            return <StoreItem item={data} key={data.id} />;
           })}
         </>
       )}
