@@ -18,6 +18,9 @@ export default function itemsReducer(state = initialState, action) {
         items: action.items,
       };
     }
+    case "RESET_ITEM": {
+      return initialState;
+    }
     case "RECEIVE_ITEMS_ERROR": {
       return {
         ...state,

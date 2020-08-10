@@ -26,3 +26,7 @@ export const receiveItems = (items) => ({
 export const receiveItemsError = () => ({
   type: "RECEIVE_ITEMS_ERROR",
 });
+
+export const resetItems = () => ({
+  type: "RESET_ITEM",
+});

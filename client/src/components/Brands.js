@@ -13,12 +13,11 @@ import styled from "styled-components";
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
-
   React.useEffect(() => {
     dispatch(requestItems());
-    fetch("/products/categories")
+    fetch("/brands")
       .then((res) => res.json())
-      .then((data) => dispatch(receiveItems(data.categories)))
+      .then((data) => dispatch(receiveItems(data.brands)))
       .catch((err) => dispatch(receiveItemsError()));
     // eslint-disable-next-line
     return () => dispatch(resetItems());
@@ -29,7 +28,7 @@ const CategoryPage = () => {
     return (
       <div>
         {items.map((item) => {
-          return item;
+          return item.name;
         })}
       </div>
     );

@@ -4,22 +4,21 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
-
+import Brands from "./Brands";
 function App() {
   return (
     <Router>
       <GlobalStyles />
       <Header />
       <Switch>
-<<<<<<< HEAD
-        <Route path="/products/:categoryId"></Route>
-=======
->>>>>>> bfe7f190411eaa74b096bf00edaad89d4cdd4878
         <Route exact={true} path="/">
           <Homepage />
         </Route>
-        <Route path="/products/:categoryId">
+        <Route path="/products/category">
           <CategoryPage />
+        </Route>
+        <Route path="/brands">
+          <Brands />
         </Route>
       </Switch>
     </Router>
