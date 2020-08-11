@@ -15,6 +15,7 @@ const ProductPage = () => {
     //   .then((category) => setIndProduct(data))
     //   .catch((err) => console.log("error"));
   }, []);
+
   if (indProduct) {
     const imgSrc = indProduct.imageSrc;
     return (
