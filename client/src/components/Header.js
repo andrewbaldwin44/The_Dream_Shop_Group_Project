@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 import Dropdown from "./Dropdown" ;
 
 import styled from "styled-components";
-import StoreItem from "./StoreItem";
 import { GrCart } from "react-icons/gr"
 
 const Header = () => {

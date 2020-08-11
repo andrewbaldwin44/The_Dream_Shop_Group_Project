@@ -7,9 +7,9 @@ import CheckoutForm from "./CheckoutForm";
 const CheckoutPage = () => {
   const cartData = useSelector((state) => state.cart.cart);
   let total = 0;
-  cartData.map((item) => {
-    total += parseFloat(item.price.replace("$", "")) * item.quantity;
-  });
+  cartData.map((item) => (
+    total += parseFloat(item.price.replace("$", "")) * item.quantity
+  ));
   return (
     <Wrapper>
       <Back>Return to Cart:</Back>

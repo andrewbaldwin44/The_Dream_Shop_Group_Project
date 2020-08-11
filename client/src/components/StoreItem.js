@@ -7,6 +7,7 @@ import { cartAddItem, cartItemAdded, cartAddItemError } from "../actions";
 
 const StoreItem = ({ item }) => {
   const dispatch = useDispatch();
+
   return (
     <Wrapper to={`/products/product/${item.id}`}>
       <Image src={item.imageSrc} alt={item.name} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   requestAllItemInformation,
   receiveProducts,
@@ -17,8 +17,6 @@ import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 import CheckoutPage from "./CheckoutPage";
-import Sidebar from "./Sidebar";
-import styled from "styled-components";
 import ProductPage from "./ProductPage";
 
 import Cart from "./Cart";
