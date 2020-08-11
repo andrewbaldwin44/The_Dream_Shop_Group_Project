@@ -16,7 +16,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
-
+import CheckoutPage from "./CheckoutPage";
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import ProductPage from "./ProductPage";
@@ -76,8 +76,11 @@ function App() {
             <Route exact path="/products/product/:id">
               <ProductPage />
             </Route>
-            <Route path="/cart">
+            <Route exact path="/cart">
               <Cart />
+            </Route>
+            <Route exact path="/checkout">
+              <CheckoutPage />
             </Route>
           </Switch>
       </Router>

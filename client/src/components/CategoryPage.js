@@ -18,6 +18,7 @@ const CategoryPage = () => {
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
+
   React.useEffect(() => {
     dispatch(requestCategory());
 
@@ -26,7 +27,8 @@ const CategoryPage = () => {
       .then((data) => data.category)
       .then((category) => dispatch(receiveCategory(category)))
       .catch((err) => dispatch(receiveCategoryError()));
-  }, []);
+  }, [categoryId]);
+
   return (
     <Div>
       <Sidebar />
