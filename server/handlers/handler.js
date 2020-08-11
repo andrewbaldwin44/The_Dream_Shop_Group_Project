@@ -46,7 +46,6 @@ function handleProductCategoriesID(req, res) {
   let categoryId = req.params.id.toLowerCase();
   let productCatArray = [];
 
-  console.log(req.params.category);
   productsData.forEach((product) => {
     const category = product.category.toLowerCase();
 
@@ -56,7 +55,7 @@ function handleProductCategoriesID(req, res) {
   });
 
   res.status(200).json({ status: 200, category: productCatArray });
-} //there may be a catch error or 404 needed here in case someone messes up spelling
+}
 
 function handleSpecificBrand(req, res) {
   let urlBrand = req.params.brand.toLowerCase();
@@ -73,21 +72,17 @@ function handleSpecificBrand(req, res) {
 
   productsData.forEach((product) => {
     if (product.companyId === companyId) {
-      console.log(product.companyId);
       companyProducts.push(product);
     }
   });
-  console.log("company search", companyId);
 
   res.status(200).json({ status: 200, products: companyProducts });
 }
 
 function handleSpecificProduct(req, res) {
   let productId = req.params.id;
-  console.log("productID", productId);
-
   let product = findItem(productsData, productId);
-  console.log(product);
+
   res.status(200).json({ status: 200, items: product });
 }
 
