@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,7 +17,10 @@ const CategoryPage = () => {
   const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
 
-  React.useEffect(() => {
+  const [bodyLocationFilters, setBodyLocationFilters] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState(categoryData);
+
+  useEffect(() => {
     dispatch(requestCategory());
 
     fetch(`/products/categories/${categoryId}`)
@@ -27,16 +30,33 @@ const CategoryPage = () => {
       .catch((err) => dispatch(receiveCategoryError()));
   }, [categoryId]);
 
+  useEffect(() => {
+    if (categoryData) {
+      if (bodyLocationFilters.length > 0) {
+        const newFilteredCategories =
+          categoryData.filter(data => bodyLocationFilters.includes(data.body_location));
+
+        setFilteredCategories(newFilteredCategories);
+      }
+      else {
+        setFilteredCategories(categoryData);
+      }
+    }
+  }, [bodyLocationFilters, categoryData]);
+
   return (
     <Div>
-      <Sidebar />
+      <Sidebar
+        setBodyLocationFilters={setBodyLocationFilters}
+        bodyLocationFilters={bodyLocationFilters}
+      />
       <Wrapper>
-        {categoryData === null ? (
+        {filteredCategories == null ? (
           <div>loading...</div>
         ) : (
           <>
-            {categoryData.map((data) => {
-              return <StoreItem item={data} key={data.id} />;
+            {filteredCategories.map((category) => {
+              return <StoreItem item={category} key={category.id} />;
             })}
           </>
         )}

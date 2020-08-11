@@ -23,7 +23,7 @@ function highlightMatches(input, match) {
   return matches;
 }
 
-const Sidebar = () => {
+const Sidebar = ({ bodyLocationFilters, setBodyLocationFilters }) => {
   const [search, setSearch] = useState('');
 
   const brands = useSelector(state => state.items.brands);
@@ -45,6 +45,21 @@ const Sidebar = () => {
 
     return searchedBrands;
   }, []);
+
+  const toggleBodyLocationFilter = event => {
+    const { checked, name } = event.target;
+
+    if (checked) {
+      setBodyLocationFilters([...bodyLocationFilters, name]);
+    }
+    else {
+      const index = bodyLocationFilters.indexOf(name);
+      const newBodyLocationFilters = [...bodyLocationFilters]
+      newBodyLocationFilters.splice(index, 1);
+
+      setBodyLocationFilters(newBodyLocationFilters)
+    }
+  }
 
   return (
     <Wrapper>
@@ -96,6 +111,7 @@ const Sidebar = () => {
           <List>
             <FilterList
               list={bodyLocation}
+              clickCallback={toggleBodyLocationFilter}
               id="location"
             />
           </List>
