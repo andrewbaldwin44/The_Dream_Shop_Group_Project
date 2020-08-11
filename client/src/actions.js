@@ -11,23 +11,28 @@ export const cartItemAdded = (item) => ({
 export const cartAddItemError = () => ({
   type: "CART_ADD_ITEM_ERROR",
 });
+export const cartChangeQuantity = (index, quantity) => ({
+  type: "CART_CHANGE_QUANTITY",
+  index,
+  quantity,
+});
 
 //ITEMS
 export const requestAllItemInformation = () => ({
-  type: "REQUEST_ALL_ITEM_INFORMATION"
+  type: "REQUEST_ALL_ITEM_INFORMATION",
 });
 
-export const receiveProducts = products => ({
+export const receiveProducts = (products) => ({
   type: "RECEIVE_PRODUCTS",
   products,
 });
 
-export const receiveCategories = categories => ({
+export const receiveCategories = (categories) => ({
   type: "RECEIVE_CATEGORIES",
   categories,
 });
 
-export const receiveBrands = brands => ({
+export const receiveBrands = (brands) => ({
   type: "RECEIVE_BRANDS",
   brands,
 });
@@ -37,10 +42,10 @@ export const receiveBrandsError = () => ({
 });
 
 export const requestBodyLocation = () => ({
-  type: "REQUEST_BODY_LOCATION"
+  type: "REQUEST_BODY_LOCATION",
 });
 
-export const receiveBodyLocation = bodyLocation => ({
+export const receiveBodyLocation = (bodyLocation) => ({
   type: "RECEIVE_BODY_LOCATION",
   bodyLocation,
 });
@@ -50,7 +55,7 @@ export const receiveAllItemInformationError = () => ({
 });
 
 export const receiveAllItemInformation = () => ({
-  type: "RECEIVE_ALL_ITEM_INFORMATION"
+  type: "RECEIVE_ALL_ITEM_INFORMATION",
 });
 
 // SPECIFIC CATEGORY
@@ -58,9 +63,9 @@ export const requestCategory = () => ({
   type: "REQUEST_CATEGORY",
 });
 
-export const receiveCategory = category => ({
+export const receiveCategory = (category) => ({
   type: "RECEIVE_CATEGORY",
-  category
+  category,
 });
 
 export const receiveCategoryError = () => ({
