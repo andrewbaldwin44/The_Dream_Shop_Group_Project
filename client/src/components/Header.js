@@ -7,7 +7,7 @@ import Dropdown from "./Dropdown" ;
 
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
-import cart from "../assets/cart.png";
+import { GrCart } from "react-icons/gr"
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
@@ -21,16 +21,18 @@ const Header = () => {
     <>
       <Logo>ESHOP</Logo>
       <Navbar>
-        <NavLink style={{ marginLeft: "300px" }} exact to="/">
-          Home
-        </NavLink>
-        <Dropdown
-          items={categories}
-          clickCallback={navigateTocategory}
-          id={'category'}
-        />
+        <RightNavigation>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <Dropdown
+            items={categories}
+            clickCallback={navigateTocategory}
+            id={'category'}
+          />
+        </RightNavigation>
         <NavLink exact to="/cart">
-          <Carting src={cart} />
+          <CartIcon />
         </NavLink>
       </Navbar>
     </>
@@ -38,30 +40,37 @@ const Header = () => {
 };
 
 const Navbar = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: white;
   height: var(--navbar-height);
-  margin-top: 15px;
+  width: 100%;
   border: 1px solid black;
   border-right: none;
   border-left: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-right: 130px;
+  padding-left: 300px;
+`;
+
+const RightNavigation = styled.div`
   display: flex;
   align-items: center;
-  font-weight: bold;
-
-  a {
-    margin: 40px;
-  }
+  justify-content: space-between;
+  width: 25%;
 `;
 
 const Logo = styled.h1`
+  margin: 15px 10px;
   color: black;
   font-size: 50px;
 `;
 
-const Carting = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-left: 600px;
+const CartIcon = styled(GrCart)`
+  font-size: 40px;
 `;
 
 export default Header;

@@ -27,7 +27,7 @@ const DropdownContainer = styled.div`
   justify-content: center;
   font-family: "Quicksand", sans-serif;
   font-weight: bold;
-  height: 100%;
+  height: var(--navbar-height);
   width: 100px;
 
   &:hover .dropdown-menu {
