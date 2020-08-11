@@ -17,6 +17,9 @@ import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> NavBar and Dropdown bar fixed
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import ProductPage from "./ProductPage";
@@ -82,6 +85,7 @@ function App() {
       </Router>
     );
   }
+<<<<<<< HEAD
 =======
 import Brands from "./Brands";
 function App() {
@@ -103,6 +107,8 @@ function App() {
     </Router>
   );
 >>>>>>> rendering categories
+=======
+>>>>>>> NavBar and Dropdown bar fixed
 }
 
 const Wrapper = styled.div`

@@ -19,7 +19,6 @@ const CategoryPage = () => {
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
-
   React.useEffect(() => {
     dispatch(requestCategory());
 
