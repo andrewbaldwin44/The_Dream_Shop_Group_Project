@@ -6,11 +6,9 @@ import {
   receiveCategory,
   receiveCategoryError,
 } from "../actions";
-<<<<<<< HEAD
 
-=======
 import { Link } from "react-router-dom";
->>>>>>> some changes
+
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
@@ -28,7 +26,7 @@ const CategoryPage = () => {
       .then((category) => dispatch(receiveCategory(category)))
       .catch((err) => dispatch(receiveCategoryError()));
   }, []);
-<<<<<<< HEAD
+
   return (
     <Wrapper>
       {categoryData === null ? (
@@ -49,23 +47,4 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-=======
-  if (items === null) {
-    return <div>loading...</div>;
-  } else {
-    return (
-      <div>
-        {items.map((item) => {
-          console.log(item);
-          return <Categorylink>{item}</Categorylink>;
-        })}
-      </div>
-    );
-  }
-};
-const Categorylink = styled(Link)`
-  display: flex;
-  justify-content: space-between;
-`;
->>>>>>> some changes
 export default CategoryPage;
