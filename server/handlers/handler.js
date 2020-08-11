@@ -5,6 +5,7 @@ const {
   findItem,
   paginateModel,
   getQueryValue,
+  reduceStock,
 } = require("../utils/utils");
 
 const defaultStartPage = 1;
@@ -90,20 +91,20 @@ function handleSpecificProduct(req, res) {
   res.status(200).json({ status: 200, items: product });
 }
 
-function modifyInventory(req, res) {
-  const { id } = req.body;
-  const item = findItem(productsData, id);
+function handlePurchase(req, res) {
+  const { purchasedItems, user } = req.body;
 
-  if (item) {
-    if (item.numInStock > 0) {
-      item.numInStock--;
+  try {
+    purchasedItems.forEach(productID => {
+      const product = findItem(productsData, productID);
 
-      res.status(201).json({ status: 201, item: item });
-    } else {
-      res.status(401).json({ status: 401, message: "Item is out of stock" });
-    }
-  } else {
-    res.status(401).json({ status: 401, message: "Item could not be found" });
+      reduceStock(product, productID);
+    });
+
+    res.status(201).json({ status: 201, purchasedItems: purchasedItems });
+  }
+  catch (error) {
+    res.status(401).json({ status: 401, message: error.message });
   }
 }
 
@@ -125,6 +126,6 @@ module.exports = {
   handleProductCategoriesID,
   handleSpecificBrand,
   handleSpecificProduct,
-  modifyInventory,
+  handlePurchase,
   handleBodyLocation,
 };
