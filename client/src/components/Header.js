@@ -21,7 +21,7 @@ const Header = () => {
           {categories.map((data) => {
             return (
               <Dropelements>
-                <Dropdown.Item href={`/products/${data.toLowerCase()}`}>
+                <Dropdown.Item to={`/products/${data.toLowerCase()}`}>
                   {data}
                 </Dropdown.Item>
               </Dropelements>
@@ -31,7 +31,6 @@ const Header = () => {
 
         <DropdownButton id="dropdown-basic-button" title="Brands">
           {brands.map((data) => {
-            console.log(data.name);
             return (
               <Dropelements>
                 <Dropdown.Item href={`/products/${data.name.toLowerCase()}`}>
@@ -57,6 +56,7 @@ const Dropelements = styled.div`
   color: black;
   padding: 10px;
   font-weight: normal;
+
   &:hover {
     background-color: #dcdcdc;
   }
