@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import CheckoutItem from "./CheckoutItem";
+import CheckoutForm from "./CheckoutForm";
 
 const CheckoutPage = () => {
   const cartData = useSelector((state) => state.cart.cart);
@@ -11,15 +12,15 @@ const CheckoutPage = () => {
   });
   return (
     <Wrapper>
-      <div>Your Cart:</div>
+      <Back>Return to Cart:</Back>
+      <div>Your Current Order:</div>
       <ItemsBox>
         {cartData.map((data) => (
           <CheckoutItem item={data} key={data.id} />
         ))}
         <div>TOTAL : ${total}</div>
       </ItemsBox>
-
-      <div>Form Goes Here</div>
+      <CheckoutForm></CheckoutForm>
     </Wrapper>
   );
 };
@@ -29,6 +30,11 @@ const ItemsBox = styled.div`
   border: 2px yellow solid;
   width: 70vw;
   padding: 10px;
+`;
+
+const Back = styled.div`
+  font-size: large;
+  margin-bottom: 5vh;
 `;
 const Text = styled.p`
   position: relative;
