@@ -21,6 +21,8 @@ import Sidebar from "./Sidebar";
 import styled from "styled-components";
 import ProductPage from "./ProductPage";
 
+import Cart from "./Cart";
+
 function App() {
   const dispatch = useDispatch();
   const [status, setStatus] = useState("loading");
@@ -64,9 +66,6 @@ function App() {
       <Router>
         <GlobalStyles />
         <Header />
-        <Wrapper>
-          {" "}
-          <Sidebar />
           <Switch>
             <Route exact={true} path="/">
               <Homepage />
@@ -77,14 +76,13 @@ function App() {
             <Route exact path="/products/product/:id">
               <ProductPage />
             </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
           </Switch>
-        </Wrapper>
       </Router>
     );
   }
 }
 
-const Wrapper = styled.div`
-  display: flex;
-`;
 export default App;
