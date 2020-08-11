@@ -15,17 +15,14 @@ const CategoryPage = () => {
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
-
   React.useEffect(() => {
     dispatch(requestCategory());
 
     fetch(`/products/categories/${categoryId}`)
       .then((res) => res.json())
-      .then((data) => data.productsData)
-      .then((items) => dispatch(receiveItems(items)))
-      .catch((err) => dispatch(receiveItemsError()));
-    // eslint-disable-next-line
-    return () => dispatch(resetItems());
+      .then((data) => data.category)
+      .then((category) => dispatch(receiveCategory(category)))
+      .catch((err) => dispatch(receiveCategoryError()));
   }, []);
   return (
     <Wrapper>

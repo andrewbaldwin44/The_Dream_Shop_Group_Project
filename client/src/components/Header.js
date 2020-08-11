@@ -1,59 +1,71 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  requestItems,
-  receiveItems,
-  receiveItemsError,
-  resetItems,
-} from "../actions";
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
-
-const Dropdown = styled(NavLink)``;
+import cart from "../assets/cart.png";
 //header component for everypage
 const Header = () => {
-  const dispatch = useDispatch();
-  const items = useSelector((state) => state.items.items);
-  const categoryId = useParams().categoryId;
-  React.useEffect(() => {
-    dispatch(requestItems());
-    fetch(`/products/categories`)
-      .then((res) => res.json())
-      .then((data) => data.productsData)
-      .then((items) => dispatch(receiveItems(items)))
-
-      .catch((err) => dispatch(receiveItemsError()));
-    // eslint-disable-next-line
-    return () => dispatch(resetItems());
-  }, []);
-  console.log(items)
+  const categories = useSelector((state) => state.items.categories);
+  const brands = useSelector((state) => state.items.brands);
   return (
     <>
       <Logo>ESHOP</Logo>
       <Navbar>
-        <NavLink exact to="/">
+        <NavLink style={{ marginLeft: "300px" }} exact to="/">
           Home
         </NavLink>
-        <div>
-          Categories
-          <Dropdown exact to="/products/category">
-            <ul></ul>
-          </Dropdown>
-        </div>
+        <DropdownButton id="dropdown-basic-button" title="Categories">
+          {categories.map((data) => {
+            return (
+              <Dropelements>
+                <Dropdown.Item href={`/products/${data.toLowerCase()}`}>
+                  {data}
+                </Dropdown.Item>
+              </Dropelements>
+            );
+          })}
+        </DropdownButton>
 
-        <NavLink exact to="/brands">
-          brands
-        </NavLink>
-        <NavLink exact to="/">
-          <Cartimg src="server\assets\cart.png" />
+        <DropdownButton id="dropdown-basic-button" title="Brands">
+          {brands.map((data) => {
+            console.log(data.name);
+            return (
+              <Dropelements>
+                <Dropdown.Item href={`/products/${data.name.toLowerCase()}`}>
+                  {data.name}
+                </Dropdown.Item>
+              </Dropelements>
+            );
+          })}
+        </DropdownButton>
+        <NavLink exact to="/cart">
+          <Carting src={cart} />
         </NavLink>
       </Navbar>
     </>
   );
 };
 //styling the header
+
+const Dropelements = styled.div`
+  z-index: 5;
+  background-color: #fff;
+  border: 0.5px solid black;
+  color: black;
+  padding: 10px;
+  font-weight: normal;
+  &:hover {
+    background-color: #dcdcdc;
+  }
+`;
+const Carting = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-left: 600px;
+`;
 const Logo = styled.h1`
   color: black;
   font-size: 50px;
@@ -62,35 +74,28 @@ const Navbar = styled.div`
   background-color: white;
   height: var(--navbar-height);
   margin-top: 15px;
-  border-radius: 20px;
   border: 1px solid black;
+  border-right: none;
+  border-left: none;
   display: flex;
   align-items: center;
+  font-weight: bold;
   a {
     text-decoration: none;
-    margin: 20px;
+    margin: 40px;
     color: black;
   }
+  #dropdown-basic-button {
+    border: none;
+    background-color: #fff;
+    margin: 40px;
+    font-size: 100%;
+    vertical-align: baseline;
+    font-family: "Quicksand", sans-serif;
+    font-weight: bold;
+  }
+  &#dropdown:hover {
+    background-color: blue;
+  }
 `;
-<<<<<<< HEAD
-const Cartimg = styled.img`
-  width: 30px;
-  height: 30px;
-`;
-=======
-//header component for everypage
-const Header = () => {
-  return (
-    <>
-      <Logo>ESHOP</Logo>
-      <Navbar>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/Categories">Categories</NavLink>
-        <NavLink to="/Companies">Company</NavLink>
-      </Navbar>
-    </>
-  );
-};
-
->>>>>>> 22dfd473928acc39ac7b36ff8ae6c1713168b7da
 export default Header;

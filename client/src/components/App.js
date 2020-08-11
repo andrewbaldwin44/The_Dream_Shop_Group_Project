@@ -16,27 +16,6 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
-<<<<<<< HEAD
-import Brands from "./Brands";
-function App() {
-  return (
-    <Router>
-      <GlobalStyles />
-      <Header />
-      <Switch>
-        <Route exact={true} path="/">
-          <Homepage />
-        </Route>
-        <Route path="/products/:categoryId">
-          <CategoryPage />
-        </Route>
-        <Route path="/brands">
-          <Brands />
-        </Route>
-      </Switch>
-    </Router>
-  );
-=======
 import Sidebar from "./Sidebar";
 import styled from "styled-components";
 
@@ -98,7 +77,6 @@ function App() {
       </Router>
     );
   }
->>>>>>> 41759baf0c97a43870bda8ab3a2c1433b64f35e3
 }
 
 const Wrapper = styled.div`
