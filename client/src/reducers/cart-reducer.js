@@ -52,6 +52,16 @@ export default function cartReducer(state = initialState, action) {
         status: "error",
       };
     }
+    case "CART_CHANGE_QUANTITY": {
+      let newCart = [...state.cart];
+      newCart[action.index].quantity =
+        newCart[action.index].quantity + action.quantity;
+      return {
+        ...state,
+        status: "idle",
+        cart: newCart,
+      };
+    }
 
     default: {
       return state;
