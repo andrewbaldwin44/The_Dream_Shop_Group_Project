@@ -33,4 +33,5 @@ async function getUser(email, db) {
 
 module.exports = {
   getUser,
+  queryDatabase,
 }

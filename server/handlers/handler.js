@@ -8,6 +8,8 @@ const {
   reduceStock,
 } = require("../utils/utils");
 
+const { updateUser } = require('./handleAuthentication');
+
 const defaultStartPage = 1;
 const defaultPageLimit = 10;
 

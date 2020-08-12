@@ -2,7 +2,8 @@
 
 const admin = require('firebase-admin');
 const {
-  getUser
+  getUser,
+  queryDatabase,
 } = require('../utils/authUtils');
 
 require('dotenv').config({path: '../.env'});
@@ -47,6 +48,16 @@ const createUser = async (req, res) => {
   }
 };
 
+async function updateUser(data) {
+  console.log('hi')
+  const { email } = data;
+  const user = (await getUser(email, db));
+  const appUsersRef = db.ref('appUsers');
+
+  appUsersRef.child(user.userID).update(data);
+}
+
 module.exports = {
   createUser,
+  updateUser,
 };
