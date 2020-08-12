@@ -62,6 +62,7 @@ const CategoryPage = () => {
         setBodyLocationFilters={setBodyLocationFilters}
         brandFilters={brandFilters}
         setBrandFilters={setBrandFilters}
+        category={categoryId}
       />
       <Wrapper>
         {filteredCategories == null ? (

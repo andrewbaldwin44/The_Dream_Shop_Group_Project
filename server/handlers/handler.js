@@ -90,10 +90,12 @@ function handlePurchase(req, res) {
   const { purchasedItems, user } = req.body;
 
   try {
-    purchasedItems.forEach(productID => {
-      const product = findItem(productsData, productID);
+    purchasedItems.forEach(purchasedItem => {
+      const { productId, quantity } = purchasedItem;
 
-      reduceStock(product, productID);
+      const product = findItem(productsData, productId);
+
+      reduceStock(product, productId, quantity);
     });
 
     res.status(201).json({ status: 201, purchasedItems: purchasedItems });
