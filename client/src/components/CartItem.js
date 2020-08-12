@@ -41,7 +41,8 @@ const CartItem = ({ item, index }) => {
       </Quantity>
       <Price>
         <span>
-          ${Number(item.price.substring(1, item.price.length)) * item.quantity}
+          {console.log("-----------", item.price, item.quantity)}$
+          {Number(item.price.substring(1, item.price.length)) * item.quantity}
         </span>
       </Price>
     </Wrapper>
