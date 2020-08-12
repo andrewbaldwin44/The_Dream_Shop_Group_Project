@@ -59,7 +59,7 @@ function handleProductCategoriesID(req, res) {
 
 function handleSpecificBrand(req, res) {
   let urlBrand = req.params.brand.toLowerCase();
-  let companyId = '';
+  let companyId = "";
   let companyProducts = [];
 
   let searchId = brandsData.forEach((brand) => {
@@ -88,9 +88,9 @@ function handleSpecificProduct(req, res) {
 
 function handlePurchase(req, res) {
   const { purchasedItems, user } = req.body;
-
+  console.log(user);
   try {
-    purchasedItems.forEach(purchasedItem => {
+    purchasedItems.forEach((purchasedItem) => {
       const { productId, quantity } = purchasedItem;
 
       const product = findItem(productsData, productId);
@@ -99,8 +99,7 @@ function handlePurchase(req, res) {
     });
 
     res.status(201).json({ status: 201, purchasedItems: purchasedItems });
-  }
-  catch (error) {
+  } catch (error) {
     res.status(401).json({ status: 401, message: error.message });
   }
 }

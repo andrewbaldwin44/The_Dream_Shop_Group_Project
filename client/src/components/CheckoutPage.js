@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import CheckoutItem from "./CheckoutItem";
 import CheckoutForm from "./CheckoutForm";
+import { Link } from "react-router-dom";
+import { GrFormPreviousLink } from "react-icons/gr";
 
 const CheckoutPage = () => {
   const cartData = useSelector((state) => state.cart.cart);
@@ -12,7 +14,13 @@ const CheckoutPage = () => {
   );
   return (
     <Wrapper>
-      <Back>Return to Cart:</Back>
+      <Back>
+        <Link to="/cart">
+          {" "}
+          <BackIcon></BackIcon>
+          <div>Return to Cart</div>
+        </Link>
+      </Back>
       <div>Your Current Order:</div>
       <ItemsBox>
         {cartData.map((data) => (
@@ -34,6 +42,10 @@ const ItemsBox = styled.div`
 const Back = styled.div`
   font-size: large;
   margin-bottom: 5vh;
+  display: flex;
 `;
 
+const BackIcon = styled(GrFormPreviousLink)`
+  font-size: 40px;
+`;
 export default CheckoutPage;
