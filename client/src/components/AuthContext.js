@@ -19,6 +19,10 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
 function createUserWithEmail(email, password) {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
@@ -27,7 +31,7 @@ function signInWithEmail(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-const AuthProvider = ({ children, signOut, user }) => {
+const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
   const [appUser, setAppUser] = useState({});
   const [message, setMessage] = useState('');
 
@@ -38,6 +42,7 @@ const AuthProvider = ({ children, signOut, user }) => {
 
   useEffect(() => {
     if (user) {
+      console.log(user)
       fetch('/users', {
         method: 'post',
         headers: {
@@ -62,6 +67,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         appUser,
         createUserWithEmail,
         signInWithEmail,
+        signInWithGoogle,
         handleSignOut,
         message,
       }}
@@ -72,5 +78,6 @@ const AuthProvider = ({ children, signOut, user }) => {
 };
 
 export default withFirebaseAuth({
+  providers,
   firebaseAppAuth,
 })(AuthProvider);

@@ -9,6 +9,7 @@ function Login({ accountCreated }) {
     appUser,
     createUserWithEmail,
     signInWithEmail,
+    signInWithGoogle,
     handleSignOut,
   } = useContext(AuthContext);
 
@@ -32,8 +33,14 @@ function Login({ accountCreated }) {
     }
   }
 
+  const googleLogin = async () => {
+    await signInWithGoogle()
+    history.push('/');
+  }
+
   return (
     <Wrapper>
+      <button onClick={googleLogin}>Login With Google</button>
       <StyledForm onSubmit={submitForm}>
         <input type="email" ref={emailInput} required />
         <input type="password" ref={passwordInput} required />
