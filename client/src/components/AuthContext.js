@@ -19,10 +19,6 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
-
 function createUserWithEmail(email, password) {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
@@ -31,13 +27,20 @@ function signInWithEmail(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
+const AuthProvider = ({ children, signOut, user }) => {
   const [appUser, setAppUser] = useState({});
   const [message, setMessage] = useState('');
 
   const handleSignOut = () => {
     signOut();
     setAppUser({});
+  }
+
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+
+  const signInWithGoogle = () => {
+    return firebase.auth().signInWithPopup(googleProvider);
   }
 
   useEffect(() => {
@@ -77,6 +80,5 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 };
 
 export default withFirebaseAuth({
-  providers,
   firebaseAppAuth,
 })(AuthProvider);

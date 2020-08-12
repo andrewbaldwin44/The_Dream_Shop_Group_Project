@@ -49,7 +49,6 @@ const createUser = async (req, res) => {
 };
 
 async function updateUser(data) {
-  console.log('hi')
   const { email } = data;
   const user = (await getUser(email, db));
   const appUsersRef = db.ref('appUsers');

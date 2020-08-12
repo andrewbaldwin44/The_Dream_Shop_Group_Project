@@ -1,4 +1,4 @@
-import React, { useContext, createRef } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,31 +14,33 @@ function Login({ accountCreated }) {
     signInWithEmail,
     signInWithGoogle,
     handleSignOut,
+    redirectLogout,
   } = useContext(AuthContext);
 
-  const history = useHistory();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const emailInput = createRef();
-  const passwordInput = createRef();
+  const history = useHistory();
 
   const submitForm = async event => {
     event.preventDefault();
 
     if (accountCreated) {
-      signInWithEmail(emailInput.current.value, passwordInput.current.value)
-        .then(() => history.push('/'))
+      signInWithEmail(email, password)
+        .then(data => history.push('/'))
         .catch(error => console.log(error));
     }
     else {
-      createUserWithEmail(emailInput.current.value, passwordInput.current.value)
-        .then(() => history.push('/login'))
+      createUserWithEmail(email, password)
+        .then(() => history.push('/'))
         .catch(error => console.log(error));
     }
   }
 
   const googleLogin = async () => {
-    await signInWithGoogle()
-    history.push('/');
+    signInWithGoogle()
+      .then(data => history.push('/'))
+      .catch(error => console.log(error));
   }
 
   return (
@@ -53,14 +55,14 @@ function Login({ accountCreated }) {
         <TextField
           type="email"
           label="Email"
-          ref={emailInput}
+          onChange={event => setEmail(event.target.value)}
           variant="outlined"
           required
         />
         <TextField
           type="password"
           label="Password"
-          ref={passwordInput}
+          onChange={event => setPassword(event.target.value)}
           variant="outlined"
           required
         />
