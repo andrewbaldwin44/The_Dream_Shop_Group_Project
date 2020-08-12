@@ -36,9 +36,9 @@ const Header = () => {
     <>
       <TopItems>
         <Logo>ESHOP</Logo>
-        <button onClick={handleLoginAction}>
+        <StyledButton onClick={handleLoginAction}>
           {appUser.email ? 'Sign Out' :  'Sign In'}
-        </button>
+        </StyledButton>
       </TopItems>
       <Navbar>
         <RightNavigation>
@@ -63,7 +63,18 @@ const TopItems = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  padding-right: 95px;
+`;
+
+const StyledButton = styled.button`
+  width: 110px;
+  height: 40px;
+  transition: 0.2s ease;
+  font-size: 1.1em;
+
+  &:hover {
+    color: #4285F4;
+  }
 `;
 
 const Navbar = styled.div`

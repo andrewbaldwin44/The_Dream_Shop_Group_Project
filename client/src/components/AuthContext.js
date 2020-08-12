@@ -42,7 +42,6 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 
   useEffect(() => {
     if (user) {
-      console.log(user)
       fetch('/users', {
         method: 'post',
         headers: {
