@@ -58,6 +58,7 @@ function App() {
     Promise.all([products, categories, brands, bodyLocation])
       .then(() => dispatch(receiveAllItemInformation()))
       .then(() => setStatus("idle"));
+    // eslint-disable-next-line
   }, []);
 
   if (status === "loading") {

@@ -35,7 +35,7 @@ const CategoryPage = () => {
       .then((data) => data.category)
       .then((category) => dispatch(receiveCategory(category)))
       .catch((err) => dispatch(receiveCategoryError()));
-  }, [categoryId]);
+  }, [categoryId, dispatch]);
 
   useEffect(() => {
     if (categoryData) {
@@ -55,8 +55,7 @@ const CategoryPage = () => {
           });
 
         setFilteredCategories(newFilteredCategories);
-      }
-      else {
+      } else {
         setFilteredCategories(categoryData);
       }
     }
