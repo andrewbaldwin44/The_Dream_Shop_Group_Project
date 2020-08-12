@@ -3,9 +3,10 @@ export const cartAddItem = () => ({
   type: "CART_ADD_ITEM",
 });
 
-export const cartItemAdded = (item) => ({
+export const cartItemAdded = (item, quantity) => ({
   type: "CART_ITEM_ADDED",
   item,
+  quantity,
 });
 
 export const cartAddItemError = () => ({

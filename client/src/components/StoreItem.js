@@ -9,7 +9,15 @@ const StoreItem = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
-    <Wrapper to={`/products/product/${item.id}`}>
+    <Wrapper
+      to={`/products/product/${item.id}`}
+      className={item.numInStock < 1 && "outOfStock"}
+      onClick={(event) => {
+        if (item.numInStock < 1) {
+          event.preventDefault();
+        }
+      }}
+    >
       <Image src={item.imageSrc} alt={item.name} />
       <Name>
         {item.name.length > 50
@@ -23,6 +31,8 @@ const StoreItem = ({ item }) => {
           event.preventDefault();
           dispatch(cartItemAdded(item));
         }}
+        className={item.numInStock < 1 && "outOfStock"}
+        disabled={item.numInStock < 1 && true}
       >
         <MdAddShoppingCart size={25} />
       </Button>
@@ -31,6 +41,7 @@ const StoreItem = ({ item }) => {
 };
 
 const Wrapper = styled(Link)`
+  position: relative;
   margin: 20px 12px;
   padding: 15px;
   width: 350px;
@@ -43,6 +54,26 @@ const Wrapper = styled(Link)`
   text-decoration: none;
   &:hover {
     cursor: pointer;
+  }
+  &&.outOfStock {
+    opacity: 0.5;
+    &&:hover {
+      cursor: default;
+    }
+    &&::before {
+      content: "OUT OF STOCK";
+      position: absolute;
+      color: white;
+      background-color: #47d688;
+      opacity: 2;
+      font-size: 1.5em;
+      padding: 10px;
+      left: 20px;
+      top: 60px;
+      width: 310px;
+      text-align: center;
+      font-weight: bold;
+    }
   }
 `;
 const Price = styled.p`
@@ -67,6 +98,12 @@ const Button = styled.button`
   &:hover {
     cursor: pointer;
     background-color: #5f6368;
+  }
+  &&.outOfStock {
+    &:hover {
+      cursor: not-allowed;
+      background-color: white;
+    }
   }
 `;
 

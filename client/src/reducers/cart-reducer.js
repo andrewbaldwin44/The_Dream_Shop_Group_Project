@@ -38,12 +38,24 @@ export default function cartReducer(state = initialState, action) {
       };
     }
     case "CART_ITEM_ADDED": {
+      let newCart = [...state.cart];
       let item = action.item;
-      item.quantity = 1;
+      let quantity = 1;
+      if (action.quantity !== undefined) {
+        quantity = action.quantity;
+      }
+      item.quantity = quantity;
+      if (newCart.findIndex((obj) => obj.id === item.id) === -1) {
+        newCart.push(item);
+      } else {
+        newCart[newCart.findIndex((obj) => obj.id === item.id)].quantity =
+          newCart[newCart.findIndex((obj) => obj.id === item.id)].quantity +
+          quantity;
+      }
       return {
         ...state,
         status: "idle",
-        cart: [...state.cart, item],
+        cart: newCart,
       };
     }
     case "CART_ADD_ITEM_ERROR": {
