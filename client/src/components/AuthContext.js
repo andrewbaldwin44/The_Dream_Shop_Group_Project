@@ -20,17 +20,11 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firebaseAppAuth = firebaseApp.auth();
 
 function createUserWithEmail(email, password) {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .catch(error => {
-      console.log(error.message);
-  });
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
 
 function signInWithEmail(email, password) {
-  firebase.auth().signInWithEmailAndPassword(email, password)
-    .catch(error => {
-      console.log(error.message);
-  });
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
 const AuthProvider = ({ children, signOut, user }) => {
@@ -44,7 +38,6 @@ const AuthProvider = ({ children, signOut, user }) => {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
       fetch('/users', {
         method: 'post',
         headers: {

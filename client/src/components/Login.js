@@ -1,5 +1,5 @@
 import React, { useContext, createRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { AuthContext } from './AuthContext';
@@ -12,17 +12,23 @@ function Login({ accountCreated }) {
     handleSignOut,
   } = useContext(AuthContext);
 
+  const history = useHistory();
+
   const emailInput = createRef();
   const passwordInput = createRef();
 
-  const submitForm = event => {
+  const submitForm = async event => {
     event.preventDefault();
 
     if (accountCreated) {
-      signInWithEmail(emailInput.current.value, passwordInput.current.value);
+      signInWithEmail(emailInput.current.value, passwordInput.current.value)
+        .then(() => history.push('/'))
+        .catch(error => console.log(error));
     }
     else {
-      createUserWithEmail(emailInput.current.value, passwordInput.current.value);
+      createUserWithEmail(emailInput.current.value, passwordInput.current.value)
+        .then(() => history.push('/login'))
+        .catch(error => console.log(error));
     }
   }
 

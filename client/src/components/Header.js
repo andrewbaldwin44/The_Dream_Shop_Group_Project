@@ -25,6 +25,7 @@ const Header = () => {
   const handleLoginAction = () => {
     if (appUser.email) {
       handleSignOut();
+      history.push('/');
     }
     else {
       history.push('/login');
