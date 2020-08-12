@@ -35,10 +35,17 @@ const CategoryPage = () => {
     if (categoryData) {
       if (bodyLocationFilters.length > 0 || brandFilters > 0) {
         const newFilteredCategories =
-          categoryData.filter(data => (
-            bodyLocationFilters.includes(data.body_location) &&
-            brandFilters.includes(String(data.companyId))
-          ));
+          categoryData.filter(data => {
+            if (bodyLocationFilters.length === 0 ) {
+              return brandFilters.includes(String(data.companyId));
+            }
+            else if (brandFilters.length === 0) {
+              return bodyLocationFilters.includes(data.body_location);
+            }
+            else {
+              return brandFilters.includes(String(data.companyId)) && bodyLocationFilters.includes(data.body_location);
+            }
+          });
 
         setFilteredCategories(newFilteredCategories);
       }
