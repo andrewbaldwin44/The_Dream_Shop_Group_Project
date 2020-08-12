@@ -15,6 +15,8 @@ const {
   handleBodyLocation,
 } = require("./handlers/handler");
 
+const { createUser } = require("./handlers/handleAuthentication");
+
 const PORT = 4000;
 
 const app = express();
@@ -41,6 +43,7 @@ app
 .use("/", express.static(__dirname + "/"))
 
 .post('/purchase', handlePurchase)
+.post('/users', createUser)
 
 .get("/brands", handleBrands)
 .get("/products", handleProducts)
