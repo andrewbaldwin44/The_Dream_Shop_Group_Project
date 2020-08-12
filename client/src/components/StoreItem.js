@@ -85,6 +85,26 @@ const Wrapper = styled(Link)`
       font-weight: bold;
     }
   }
+  &&.outOfStock {
+    opacity: 0.5;
+    &&:hover {
+      cursor: default;
+    }
+    &&::before {
+      content: "OUT OF STOCK";
+      position: absolute;
+      color: white;
+      background-color: #47d688;
+      opacity: 2;
+      font-size: 1.5em;
+      padding: 10px;
+      left: 20px;
+      top: 60px;
+      width: 310px;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
 `;
 const Price = styled.p`
   font-weight: bold;
@@ -145,6 +165,12 @@ const Button = styled.button`
   }
   &&.animation svg {
     animation: ${addCart} 2000ms forwards;
+  }
+  &&.outOfStock {
+    &:hover {
+      cursor: not-allowed;
+      background-color: white;
+    }
   }
   &&.outOfStock {
     &:hover {
