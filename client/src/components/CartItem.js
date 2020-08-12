@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { cartChangeQuantity } from "../actions";
 
+export const roundNumber = (num) => {
+  return Math.round(num * 100) / 100;
+};
+
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
   const [newQuantity, setNewQuantity] = React.useState(item.quantity);
@@ -41,7 +45,10 @@ const CartItem = ({ item, index }) => {
       </Quantity>
       <Price>
         <span>
-          ${Number(item.price.substring(1, item.price.length)) * item.quantity}
+          $
+          {roundNumber(
+            Number(item.price.substring(1, item.price.length)) * item.quantity
+          )}
         </span>
       </Price>
     </Wrapper>
