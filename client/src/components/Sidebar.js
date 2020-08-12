@@ -23,7 +23,10 @@ function highlightMatches(input, match) {
   return matches;
 }
 
-const Sidebar = () => {
+const Sidebar = ({
+  bodyLocationFilters, setBodyLocationFilters,
+  brandFilters, setBrandFilters
+}) => {
   const [search, setSearch] = useState('');
 
   const brands = useSelector(state => state.items.brands);
@@ -46,6 +49,26 @@ const Sidebar = () => {
     return searchedBrands;
   }, []);
 
+  const addFilter = (state, setter, name) => {
+    console.log(setter)
+    setter([...state, name])
+  }
+
+  const removeFilter = (state, setter, name) => {
+    const index = state.indexOf(name);
+    const newState = [...state];
+    newState.splice(index, 1);
+
+    setter(newState);
+  }
+
+  const toggleChecked = (event, state, setter) => {
+    const { checked, name } = event.target;
+
+    if (checked) addFilter(state, setter, name);
+    else removeFilter(state, setter, name);
+  }
+
   return (
     <Wrapper>
       <Accordion>
@@ -67,7 +90,15 @@ const Sidebar = () => {
                     control={
                       <Checkbox
                         inputProps={{ 'aria-label': `${brandName} checkbox` }}
-                        />
+                        name={String(brand.id)}
+                        onClick={
+                          event => toggleChecked(
+                            event,
+                            brandFilters,
+                            setBrandFilters
+                          )
+                        }
+                      />
                     }
                     label={
                       typeof brandName === "string"
@@ -96,6 +127,9 @@ const Sidebar = () => {
           <List>
             <FilterList
               list={bodyLocation}
+              clickCallback={toggleChecked}
+              checkCallback={bodyLocationFilters}
+              uncheckCallback={setBodyLocationFilters}
               id="location"
             />
           </List>

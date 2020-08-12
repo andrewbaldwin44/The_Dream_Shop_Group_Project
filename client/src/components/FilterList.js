@@ -3,7 +3,7 @@ import React from "react";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function FilterList({ list, id }) {
+function FilterList({ list, id, clickCallback, checkCallback, uncheckCallback }) {
   return (
     <>
       {list.map((item, index) => {
@@ -13,6 +13,14 @@ function FilterList({ list, id }) {
               control={
                   <Checkbox
                     inputProps={{ 'aria-label': `${item} checkbox` }}
+                    name={item}
+                    onChange={
+                      event => clickCallback(
+                        event,
+                        checkCallback,
+                        uncheckCallback
+                      )
+                    }
                   />
                 }
                 label={item}

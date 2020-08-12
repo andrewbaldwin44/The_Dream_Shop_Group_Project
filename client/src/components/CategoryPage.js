@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,7 +17,11 @@ const CategoryPage = () => {
   const categoryData = useSelector((state) => state.category.category);
   const categoryId = useParams().categoryId;
 
-  React.useEffect(() => {
+  const [bodyLocationFilters, setBodyLocationFilters] = useState([]);
+  const [brandFilters, setBrandFilters] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState(categoryData);
+
+  useEffect(() => {
     dispatch(requestCategory());
 
     fetch(`/products/categories/${categoryId}`)
@@ -27,16 +31,45 @@ const CategoryPage = () => {
       .catch((err) => dispatch(receiveCategoryError()));
   }, [categoryId]);
 
+  useEffect(() => {
+    if (categoryData) {
+      if (bodyLocationFilters.length > 0 || brandFilters > 0) {
+        const newFilteredCategories =
+          categoryData.filter(data => {
+            if (bodyLocationFilters.length === 0 ) {
+              return brandFilters.includes(String(data.companyId));
+            }
+            else if (brandFilters.length === 0) {
+              return bodyLocationFilters.includes(data.body_location);
+            }
+            else {
+              return brandFilters.includes(String(data.companyId)) && bodyLocationFilters.includes(data.body_location);
+            }
+          });
+
+        setFilteredCategories(newFilteredCategories);
+      }
+      else {
+        setFilteredCategories(categoryData);
+      }
+    }
+  }, [bodyLocationFilters, brandFilters, categoryData]);
+
   return (
     <Div>
-      <Sidebar />
+      <Sidebar
+        bodyLocationFilters={bodyLocationFilters}
+        setBodyLocationFilters={setBodyLocationFilters}
+        brandFilters={brandFilters}
+        setBrandFilters={setBrandFilters}
+      />
       <Wrapper>
-        {categoryData === null ? (
+        {filteredCategories == null ? (
           <div>loading...</div>
         ) : (
           <>
-            {categoryData.map((data) => {
-              return <StoreItem item={data} key={data.id} />;
+            {filteredCategories.map((category) => {
+              return <StoreItem item={category} key={category.id} />;
             })}
           </>
         )}
