@@ -15,7 +15,6 @@ const Cart = () => {
       <CartWrapper>
         <CartHeader />
         {cart.map((item, index) => {
-          console.log("HEELOOOOOOOOOOOOOOOOO");
           return <CartItem item={item} index={index} key={item.id} />;
         })}
         <CartFooter />
