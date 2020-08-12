@@ -68,10 +68,15 @@ export default function cartReducer(state = initialState, action) {
       let newCart = [...state.cart];
       newCart[action.index].quantity =
         newCart[action.index].quantity + action.quantity;
+
+      let newCart2 = newCart.filter((item) => {
+        return item.quantity > 0;
+      });
+
       return {
         ...state,
         status: "idle",
-        cart: newCart,
+        cart: newCart2,
       };
     }
 
