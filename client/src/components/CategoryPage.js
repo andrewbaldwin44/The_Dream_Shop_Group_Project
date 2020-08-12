@@ -36,7 +36,7 @@ const CategoryPage = () => {
       if (bodyLocationFilters.length > 0 || brandFilters > 0) {
         const newFilteredCategories =
           categoryData.filter(data => (
-            bodyLocationFilters.includes(data.body_location) ||
+            bodyLocationFilters.includes(data.body_location) &&
             brandFilters.includes(String(data.companyId))
           ));
 
