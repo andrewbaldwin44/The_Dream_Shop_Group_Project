@@ -25,12 +25,17 @@ function highlightMatches(input, match) {
 
 const Sidebar = ({
   bodyLocationFilters, setBodyLocationFilters,
-  brandFilters, setBrandFilters
+  brandFilters, setBrandFilters,
+  category
 }) => {
   const [search, setSearch] = useState('');
 
   const brands = useSelector(state => state.items.brands);
   const bodyLocation = useSelector(state => state.items.bodyLocation);
+  console.log(brands)
+
+  // const relevantBrands = brands.filter(brand => brand.category === category)
+  // console.log(relevantBrands)
 
   const searchedBrands = brands.reduce((searchedBrands, brandInfo) => {
     const normalizedBrandName = brandInfo.name.toLowerCase();
@@ -50,8 +55,7 @@ const Sidebar = ({
   }, []);
 
   const addFilter = (state, setter, name) => {
-    console.log(setter)
-    setter([...state, name])
+    setter([...state, name]);
   }
 
   const removeFilter = (state, setter, name) => {
@@ -73,7 +77,7 @@ const Sidebar = ({
     <Wrapper>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AddIcon />}
+          expandIcon={<AddIcon color="secondary" />}
           aria-controls="panel1a-content"
         >
           <ListHeader>Brands</ListHeader>
@@ -118,7 +122,7 @@ const Sidebar = ({
       </Accordion>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AddIcon />}
+          expandIcon={<AddIcon color="secondary" />}
           aria-controls="panel1a-content"
         >
           <ListHeader>Filters</ListHeader>
@@ -144,8 +148,9 @@ const Wrapper = styled.nav`
   top: 0;
   height: 100%;
   height: 100vh;
-  min-width: 250px;
-  margin-right: 10px;
+  min-width: 280px;
+  width: 280px;
+  margin-right: 20px;
   padding-top: 10px;
   border-right: 2px solid lightgrey;
   overflow-y: scroll;
