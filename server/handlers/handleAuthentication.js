@@ -1,6 +1,9 @@
 'use strict';
 
 const admin = require('firebase-admin');
+const {
+  getUser
+} = require('../utils/authUtils');
 
 require('dotenv').config({path: '../.env'});
 
@@ -22,34 +25,9 @@ admin.initializeApp({
 
 const db = admin.database();
 
-const queryDatabase = async (key) => {
-  const ref = db.ref(key);
-  let data;
-  await ref.once(
-    'value',
-    (snapshot) => {
-      data = snapshot.val();
-    },
-    (err) => {
-      console.log(err);
-    }
-  );
-
-  return data;
-};
-
-// this function will return either the user object or false.
-const getUser = async (email) => {
-  const data = (await queryDatabase(`appUsers`)) || {};
-  const dataValue = Object.keys(data)
-    .map((item) => data[item])
-    .find((obj) => obj.email === email);
-
-  return dataValue || false;
-};
-
 const createUser = async (req, res) => {
-  const returningUser = (await getUser(req.body.email));
+  const returningUser = (await getUser(req.body.email, db));
+  const appUsersRef = db.ref('appUsers');
 
   if (returningUser) {
     res.status(200).json({
@@ -57,10 +35,8 @@ const createUser = async (req, res) => {
       data: req.body,
       message: 'returning user',
     });
-    return;
   }
   else {
-    const appUsersRef = db.ref('appUsers');
     appUsersRef.push(req.body).then(() => {
       res.status(200).json({
         status: 200,
