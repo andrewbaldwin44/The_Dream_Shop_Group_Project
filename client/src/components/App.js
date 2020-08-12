@@ -19,9 +19,9 @@ import CategoryPage from "./CategoryPage";
 import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 import Cart from "./Cart";
+import Login from "./Login";
 
 import AllCategories from "./AllCategories";
-import Login from "./Login";
 
 function App() {
   const dispatch = useDispatch();
