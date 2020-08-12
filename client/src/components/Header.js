@@ -2,51 +2,23 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
-import Dropdown from "./Dropdown" ;
+import Dropdown from "./Dropdown";
 
 import styled from "styled-components";
-import { GrCart } from "react-icons/gr"
+import { GrCart } from "react-icons/gr";
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
 
-  const navigateTocategory = category => {
+  const navigateTocategory = (category) => {
     history.push(`/products/${category.toLowerCase()}`);
-  }
+  };
 
   return (
     <>
       <Logo>ESHOP</Logo>
       <Navbar>
-<<<<<<< HEAD
-        <NavLink style={{ marginLeft: "300px" }} exact to="/">
-          Home
-        </NavLink>
-        <DropdownButton id="dropdown-basic-button" title="Categories">
-          {categories.map((data) => {
-            return (
-              <Dropelements>
-                <Dropdown.Item to={`/products/${data.toLowerCase()}`}>
-                  {data}
-                </Dropdown.Item>
-              </Dropelements>
-            );
-          })}
-        </DropdownButton>
-
-        <DropdownButton id="dropdown-basic-button" title="Brands">
-          {brands.map((data) => {
-            return (
-              <Dropelements>
-                <Dropdown.Item href={`/products/${data.name.toLowerCase()}`}>
-                  {data.name}
-                </Dropdown.Item>
-              </Dropelements>
-            );
-          })}
-        </DropdownButton>
-=======
         <RightNavigation>
           <NavLink exact to="/">
             Home
@@ -54,10 +26,9 @@ const Header = () => {
           <Dropdown
             items={categories}
             clickCallback={navigateTocategory}
-            id={'category'}
+            id={"category"}
           />
         </RightNavigation>
->>>>>>> 10b48be10049815c432a77519781408d262dfed8
         <NavLink exact to="/cart">
           <CartIcon />
         </NavLink>
@@ -66,30 +37,6 @@ const Header = () => {
   );
 };
 
-<<<<<<< HEAD
-const Dropelements = styled.div`
-  z-index: 5;
-  background-color: #fff;
-  border: 0.5px solid black;
-  color: black;
-  padding: 10px;
-  font-weight: normal;
-
-  &:hover {
-    background-color: #dcdcdc;
-  }
-`;
-const Carting = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-left: 600px;
-`;
-const Logo = styled.h1`
-  color: black;
-  font-size: 50px;
-`;
-=======
->>>>>>> 10b48be10049815c432a77519781408d262dfed8
 const Navbar = styled.div`
   position: relative;
   display: flex;
