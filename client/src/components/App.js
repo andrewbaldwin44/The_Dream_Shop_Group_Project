@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   requestAllItemInformation,
   receiveProducts,
@@ -16,9 +16,7 @@ import Homepage from "./Homepage";
 import Header from "./Header";
 import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
-
-import Sidebar from "./Sidebar";
-import styled from "styled-components";
+import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 
 import Cart from "./Cart";
@@ -76,8 +74,11 @@ function App() {
             <Route exact path="/products/product/:id">
               <ProductPage />
             </Route>
-            <Route path="/cart">
+            <Route exact path="/cart">
               <Cart />
+            </Route>
+            <Route exact path="/checkout">
+              <CheckoutPage />
             </Route>
           </Switch>
       </Router>

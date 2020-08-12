@@ -5,6 +5,7 @@ const {
   findItem,
   paginateModel,
   getQueryValue,
+  reduceStock,
 } = require("../utils/utils");
 
 const defaultStartPage = 1;
@@ -45,7 +46,6 @@ function handleProductCategoriesID(req, res) {
   let categoryId = req.params.id.toLowerCase();
   let productCatArray = [];
 
-  console.log(req.params.category);
   productsData.forEach((product) => {
     const category = product.category.toLowerCase();
 
@@ -55,7 +55,7 @@ function handleProductCategoriesID(req, res) {
   });
 
   res.status(200).json({ status: 200, category: productCatArray });
-} //there may be a catch error or 404 needed here in case someone messes up spelling
+}
 
 function handleSpecificBrand(req, res) {
   let urlBrand = req.params.brand.toLowerCase();
@@ -72,38 +72,36 @@ function handleSpecificBrand(req, res) {
 
   productsData.forEach((product) => {
     if (product.companyId === companyId) {
-      console.log(product.companyId);
       companyProducts.push(product);
     }
   });
-  console.log("company search", companyId);
 
   res.status(200).json({ status: 200, products: companyProducts });
 }
 
 function handleSpecificProduct(req, res) {
   let productId = req.params.id;
-  console.log("productID", productId);
-
   let product = findItem(productsData, productId);
-  console.log(product);
+
   res.status(200).json({ status: 200, items: product });
 }
 
-function modifyInventory(req, res) {
-  const { id } = req.body;
-  const item = findItem(productsData, id);
+function handlePurchase(req, res) {
+  const { purchasedItems, user } = req.body;
 
-  if (item) {
-    if (item.numInStock > 0) {
-      item.numInStock--;
+  try {
+    purchasedItems.forEach(purchasedItem => {
+      const { productId, quantity } = purchasedItem;
 
-      res.status(201).json({ status: 201, item: item });
-    } else {
-      res.status(401).json({ status: 401, message: "Item is out of stock" });
-    }
-  } else {
-    res.status(401).json({ status: 401, message: "Item could not be found" });
+      const product = findItem(productsData, productId);
+
+      reduceStock(product, productId, quantity);
+    });
+
+    res.status(201).json({ status: 201, purchasedItems: purchasedItems });
+  }
+  catch (error) {
+    res.status(401).json({ status: 401, message: error.message });
   }
 }
 
@@ -125,6 +123,6 @@ module.exports = {
   handleProductCategoriesID,
   handleSpecificBrand,
   handleSpecificProduct,
-  modifyInventory,
+  handlePurchase,
   handleBodyLocation,
 };

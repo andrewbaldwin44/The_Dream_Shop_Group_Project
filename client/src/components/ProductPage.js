@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import StoreItem from "./StoreItem";
 
 const ProductPage = () => {
   let productNumber = useParams().id;
@@ -15,8 +13,10 @@ const ProductPage = () => {
     //   .then((category) => setIndProduct(data))
     //   .catch((err) => console.log("error"));
   }, []);
+
   if (indProduct) {
     const imgSrc = indProduct.imageSrc;
+
     return (
       <Wrapper>
         <ProductData>
@@ -27,7 +27,7 @@ const ProductPage = () => {
             </ProductInfo>
           </Info>
           <Picture>
-            <img src={indProduct.imageSrc}></img>
+            <img src={imgSrc} alt="Product"></img>
             <div>{indProduct.price}</div>
             <div>Qty</div>
             <input type="text" value="1"></input>

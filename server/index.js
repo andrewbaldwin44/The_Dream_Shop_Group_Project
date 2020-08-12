@@ -11,7 +11,7 @@ const {
   handleSpecificBrand,
   handleCategories,
   handleSpecificProduct,
-  modifyInventory,
+  handlePurchase,
   handleBodyLocation,
 } = require("./handlers/handler");
 
@@ -40,7 +40,7 @@ app
 .use(express.urlencoded({ extended: false }))
 .use("/", express.static(__dirname + "/"))
 
-.put("/inventory", modifyInventory)
+.post('/purchase', handlePurchase)
 
 .get("/brands", handleBrands)
 .get("/products", handleProducts)

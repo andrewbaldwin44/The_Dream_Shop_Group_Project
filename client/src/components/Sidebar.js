@@ -23,11 +23,19 @@ function highlightMatches(input, match) {
   return matches;
 }
 
-const Sidebar = () => {
+const Sidebar = ({
+  bodyLocationFilters, setBodyLocationFilters,
+  brandFilters, setBrandFilters,
+  category
+}) => {
   const [search, setSearch] = useState('');
 
   const brands = useSelector(state => state.items.brands);
   const bodyLocation = useSelector(state => state.items.bodyLocation);
+  console.log(brands)
+
+  // const relevantBrands = brands.filter(brand => brand.category === category)
+  // console.log(relevantBrands)
 
   const searchedBrands = brands.reduce((searchedBrands, brandInfo) => {
     const normalizedBrandName = brandInfo.name.toLowerCase();
@@ -46,11 +54,30 @@ const Sidebar = () => {
     return searchedBrands;
   }, []);
 
+  const addFilter = (state, setter, name) => {
+    setter([...state, name]);
+  }
+
+  const removeFilter = (state, setter, name) => {
+    const index = state.indexOf(name);
+    const newState = [...state];
+    newState.splice(index, 1);
+
+    setter(newState);
+  }
+
+  const toggleChecked = (event, state, setter) => {
+    const { checked, name } = event.target;
+
+    if (checked) addFilter(state, setter, name);
+    else removeFilter(state, setter, name);
+  }
+
   return (
     <Wrapper>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AddIcon />}
+          expandIcon={<AddIcon color="secondary" />}
           aria-controls="panel1a-content"
         >
           <ListHeader>Brands</ListHeader>
@@ -67,7 +94,15 @@ const Sidebar = () => {
                     control={
                       <Checkbox
                         inputProps={{ 'aria-label': `${brandName} checkbox` }}
-                        />
+                        name={String(brand.id)}
+                        onClick={
+                          event => toggleChecked(
+                            event,
+                            brandFilters,
+                            setBrandFilters
+                          )
+                        }
+                      />
                     }
                     label={
                       typeof brandName === "string"
@@ -87,7 +122,7 @@ const Sidebar = () => {
       </Accordion>
       <Accordion>
         <AccordionSummary
-          expandIcon={<AddIcon />}
+          expandIcon={<AddIcon color="secondary" />}
           aria-controls="panel1a-content"
         >
           <ListHeader>Filters</ListHeader>
@@ -96,6 +131,9 @@ const Sidebar = () => {
           <List>
             <FilterList
               list={bodyLocation}
+              clickCallback={toggleChecked}
+              checkCallback={bodyLocationFilters}
+              uncheckCallback={setBodyLocationFilters}
               id="location"
             />
           </List>
@@ -110,8 +148,9 @@ const Wrapper = styled.nav`
   top: 0;
   height: 100%;
   height: 100vh;
-  min-width: 250px;
-  margin-right: 10px;
+  min-width: 280px;
+  width: 280px;
+  margin-right: 20px;
   padding-top: 10px;
   border-right: 2px solid lightgrey;
   overflow-y: scroll;

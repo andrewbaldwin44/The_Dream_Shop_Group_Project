@@ -13,8 +13,21 @@ function getQueryValue(queryValue, defaultValue) {
   return queryValue !== undefined ? Number(queryValue) : defaultValue;
 }
 
+function reduceStock(product, productID, quantity = 1) {
+  if (typeof product !== 'undefined') {
+    if (product.numInStock > 0) {
+      product.numInStock -= quantity;
+    } else {
+      throw new Error(`${product.name} is out of stock!`);
+    }
+  } else {
+    throw new Error(`The product ${productID} could not be found!`);
+  }
+}
+
 module.exports = {
   findItem,
   paginateModel,
   getQueryValue,
+  reduceStock,
 }

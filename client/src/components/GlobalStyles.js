@@ -59,6 +59,24 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+button {
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
 `;
 
 export default GlobalStyles;

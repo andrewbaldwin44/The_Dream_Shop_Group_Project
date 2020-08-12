@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import React from "react";
+import { useSelector } from "react-redux";
+import { NavLink, useHistory } from "react-router-dom";
+
+import Dropdown from "./Dropdown" ;
+
 import styled from "styled-components";
-import StoreItem from "./StoreItem";
-import cart from "../assets/cart.png";
-//header component for everypage
+import { GrCart } from "react-icons/gr"
+
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
-  const brands = useSelector((state) => state.items.brands);
+  const history = useHistory();
+
+  const navigateTocategory = category => {
+    history.push(`/products/${category.toLowerCase()}`);
+  }
+
   return (
     <>
       <Logo>ESHOP</Logo>
       <Navbar>
+<<<<<<< HEAD
         <NavLink style={{ marginLeft: "300px" }} exact to="/">
           Home
         </NavLink>
@@ -40,15 +46,27 @@ const Header = () => {
             );
           })}
         </DropdownButton>
+=======
+        <RightNavigation>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <Dropdown
+            items={categories}
+            clickCallback={navigateTocategory}
+            id={'category'}
+          />
+        </RightNavigation>
+>>>>>>> 10b48be10049815c432a77519781408d262dfed8
         <NavLink exact to="/cart">
-          <Carting src={cart} />
+          <CartIcon />
         </NavLink>
       </Navbar>
     </>
   );
 };
-//styling the header
 
+<<<<<<< HEAD
 const Dropelements = styled.div`
   z-index: 5;
   background-color: #fff;
@@ -70,32 +88,40 @@ const Logo = styled.h1`
   color: black;
   font-size: 50px;
 `;
+=======
+>>>>>>> 10b48be10049815c432a77519781408d262dfed8
 const Navbar = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: white;
   height: var(--navbar-height);
-  margin-top: 15px;
+  width: 100%;
   border: 1px solid black;
   border-right: none;
   border-left: none;
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-right: 130px;
+  padding-left: 300px;
+`;
+
+const RightNavigation = styled.div`
   display: flex;
   align-items: center;
-  font-weight: bold;
-  a {
-    text-decoration: none;
-    margin: 40px;
-    color: black;
-  }
-  #dropdown-basic-button {
-    border: none;
-    background-color: #fff;
-    margin: 40px;
-    font-size: 100%;
-    vertical-align: baseline;
-    font-family: "Quicksand", sans-serif;
-    font-weight: bold;
-  }
-  &#dropdown:hover {
-    background-color: blue;
-  }
+  justify-content: space-between;
+  width: 25%;
 `;
+
+const Logo = styled.h1`
+  margin: 15px 10px;
+  color: black;
+  font-size: 50px;
+`;
+
+const CartIcon = styled(GrCart)`
+  font-size: 40px;
+`;
+
 export default Header;
