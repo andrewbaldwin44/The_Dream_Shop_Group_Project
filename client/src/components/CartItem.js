@@ -8,10 +8,6 @@ export const roundNumber = (num) => {
   return Math.round(num * 100) / 100;
 };
 
-export const roundNumber = (num) => {
-  return Math.round(num * 100) / 100;
-};
-
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
   const [newQuantity, setNewQuantity] = React.useState(item.quantity);

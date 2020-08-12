@@ -89,6 +89,7 @@ const Wrapper = styled(Link)`
     opacity: 0.5;
     &&:hover {
       cursor: default;
+      transform: scale(1);
     }
     &&::before {
       content: "OUT OF STOCK";
