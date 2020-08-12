@@ -84,8 +84,11 @@ const Item = styled.div`
     height: 40px;
     width: 40px;
     font-size: 2em;
-    color: red;
     outline: none;
+    transition: all ease 0.4s;
+    &:hover {
+      color: red;
+    }
   }
 `;
 const Quantity = styled.div`
@@ -102,7 +105,7 @@ const Quantity = styled.div`
     height: 35px;
     border: 0.5px solid #eee;
     font-size: 1.6em;
-    &&:hover {
+    &:hover {
       cursor: pointer;
     }
   }
