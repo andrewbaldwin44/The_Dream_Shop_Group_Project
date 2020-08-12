@@ -18,7 +18,13 @@ const Cart = () => {
           return <CartItem item={item} index={index} key={item.id} />;
         })}
         <CartFooter />
-        <Button onClick={() => history.push("/checkout")}>CHECKOUT</Button>
+        <Button
+          onClick={() => history.push("/checkout")}
+          className={cart.length === 0 && "disable"}
+          disabled={cart.length === 0 && true}
+        >
+          CHECKOUT
+        </Button>
       </CartWrapper>
     </Wrapper>
   );
@@ -57,6 +63,16 @@ const Button = styled.button`
     color: #47d688;
     border: 2px solid #47d688;
     cursor: pointer;
+  }
+  &&.disable {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      opacity: 0.3;
+      background-color: red;
+      color: white;
+      border: none;
+    }
   }
 `;
 export default Cart;
