@@ -20,6 +20,7 @@ import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 import Cart from "./Cart";
 import Login from "./Login";
+import Admin from "./Admin";
 
 import AllCategories from "./AllCategories";
 
@@ -90,6 +91,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <Login accountCreated={false} />
+          </Route>
+          <Route exact path="/admin">
+            <Admin />
           </Route>
         </Switch>
       </Router>

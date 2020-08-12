@@ -45,6 +45,7 @@ const AuthProvider = ({ children, signOut, user }) => {
 
   useEffect(() => {
     if (user) {
+      console.log(user.uid)
       fetch('/users', {
         method: 'post',
         headers: {
