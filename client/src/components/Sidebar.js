@@ -3,19 +3,19 @@ import styled from "styled-components";
 
 import { useSelector } from "react-redux";
 
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AddIcon from '@material-ui/icons/Add';
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import AddIcon from "@material-ui/icons/Add";
 
 import SearchBar from "./SearchBar";
 import FilterList from "./FilterList";
 
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 function highlightMatches(input, match) {
-  const highlightSubstring = new RegExp(`(.*)(${match})(.*)`, 'i');
+  const highlightSubstring = new RegExp(`(.*)(${match})(.*)`, "i");
   const matches = input.match(highlightSubstring);
 
   matches.splice(0, 1);
@@ -24,15 +24,16 @@ function highlightMatches(input, match) {
 }
 
 const Sidebar = ({
-  bodyLocationFilters, setBodyLocationFilters,
-  brandFilters, setBrandFilters,
-  category
+  bodyLocationFilters,
+  setBodyLocationFilters,
+  brandFilters,
+  setBrandFilters,
+  category,
 }) => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-  const brands = useSelector(state => state.items.brands);
-  const bodyLocation = useSelector(state => state.items.bodyLocation);
-  console.log(brands)
+  const brands = useSelector((state) => state.items.brands);
+  const bodyLocation = useSelector((state) => state.items.bodyLocation);
 
   // const relevantBrands = brands.filter(brand => brand.category === category)
   // console.log(relevantBrands)
@@ -40,13 +41,12 @@ const Sidebar = ({
   const searchedBrands = brands.reduce((searchedBrands, brandInfo) => {
     const normalizedBrandName = brandInfo.name.toLowerCase();
 
-    if (search === '') {
+    if (search === "") {
       searchedBrands.push(brandInfo);
-    }
-    else if (normalizedBrandName.includes(search)) {
+    } else if (normalizedBrandName.includes(search)) {
       const brandName = brandInfo.name;
       const brandNameMatches = highlightMatches(brandName, search);
-      const searchedBrand = { ...brandInfo, name: brandNameMatches }
+      const searchedBrand = { ...brandInfo, name: brandNameMatches };
 
       searchedBrands.push(searchedBrand);
     }
@@ -56,7 +56,7 @@ const Sidebar = ({
 
   const addFilter = (state, setter, name) => {
     setter([...state, name]);
-  }
+  };
 
   const removeFilter = (state, setter, name) => {
     const index = state.indexOf(name);
@@ -64,14 +64,14 @@ const Sidebar = ({
     newState.splice(index, 1);
 
     setter(newState);
-  }
+  };
 
   const toggleChecked = (event, state, setter) => {
     const { checked, name } = event.target;
 
     if (checked) addFilter(state, setter, name);
     else removeFilter(state, setter, name);
-  }
+  };
 
   return (
     <Wrapper>
@@ -86,36 +86,34 @@ const Sidebar = ({
           <List>
             <SearchBar setSearch={setSearch} />
             {searchedBrands.map((brand, index) => {
-              const brandName = brand.name
+              const brandName = brand.name;
 
               return (
                 <li key={brand.id}>
                   <FormControlLabel
                     control={
                       <Checkbox
-                        inputProps={{ 'aria-label': `${brandName} checkbox` }}
+                        inputProps={{ "aria-label": `${brandName} checkbox` }}
                         name={String(brand.id)}
-                        onClick={
-                          event => toggleChecked(
-                            event,
-                            brandFilters,
-                            setBrandFilters
-                          )
+                        onClick={(event) =>
+                          toggleChecked(event, brandFilters, setBrandFilters)
                         }
                       />
                     }
                     label={
-                      typeof brandName === "string"
-                        ? brandName
-                        : <span>
-                            {brandName[0]}
-                            <Bold>{brandName[1]}</Bold>
-                            {brandName[2]}
-                          </span>
+                      typeof brandName === "string" ? (
+                        brandName
+                      ) : (
+                        <span>
+                          {brandName[0]}
+                          <Bold>{brandName[1]}</Bold>
+                          {brandName[2]}
+                        </span>
+                      )
                     }
-                    />
+                  />
                 </li>
-              )
+              );
             })}
           </List>
         </AccordionDetails>
@@ -140,8 +138,8 @@ const Sidebar = ({
         </AccordionDetails>
       </Accordion>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.nav`
   position: sticky;

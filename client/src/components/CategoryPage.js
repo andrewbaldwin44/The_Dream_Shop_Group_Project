@@ -29,27 +29,26 @@ const CategoryPage = () => {
       .then((data) => data.category)
       .then((category) => dispatch(receiveCategory(category)))
       .catch((err) => dispatch(receiveCategoryError()));
-  }, [categoryId]);
+  }, [categoryId, dispatch]);
 
   useEffect(() => {
     if (categoryData) {
       if (bodyLocationFilters.length > 0 || brandFilters > 0) {
-        const newFilteredCategories =
-          categoryData.filter(data => {
-            if (bodyLocationFilters.length === 0 ) {
-              return brandFilters.includes(String(data.companyId));
-            }
-            else if (brandFilters.length === 0) {
-              return bodyLocationFilters.includes(data.body_location);
-            }
-            else {
-              return brandFilters.includes(String(data.companyId)) && bodyLocationFilters.includes(data.body_location);
-            }
-          });
+        const newFilteredCategories = categoryData.filter((data) => {
+          if (bodyLocationFilters.length === 0) {
+            return brandFilters.includes(String(data.companyId));
+          } else if (brandFilters.length === 0) {
+            return bodyLocationFilters.includes(data.body_location);
+          } else {
+            return (
+              brandFilters.includes(String(data.companyId)) &&
+              bodyLocationFilters.includes(data.body_location)
+            );
+          }
+        });
 
         setFilteredCategories(newFilteredCategories);
-      }
-      else {
+      } else {
         setFilteredCategories(categoryData);
       }
     }

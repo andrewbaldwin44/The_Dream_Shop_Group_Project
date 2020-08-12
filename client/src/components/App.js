@@ -55,6 +55,7 @@ function App() {
     Promise.all([products, categories, brands, bodyLocation])
       .then(() => dispatch(receiveAllItemInformation()))
       .then(() => setStatus("idle"));
+    // eslint-disable-next-line
   }, []);
 
   if (status === "loading") {
@@ -64,23 +65,23 @@ function App() {
       <Router>
         <GlobalStyles />
         <Header />
-          <Switch>
-            <Route exact={true} path="/">
-              <Homepage />
-            </Route>
-            <Route exact path="/products/:categoryId">
-              <CategoryPage />
-            </Route>
-            <Route exact path="/products/product/:id">
-              <ProductPage />
-            </Route>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
-            <Route exact path="/checkout">
-              <CheckoutPage />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route exact={true} path="/">
+            <Homepage />
+          </Route>
+          <Route exact path="/products/:categoryId">
+            <CategoryPage />
+          </Route>
+          <Route exact path="/products/product/:id">
+            <ProductPage />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          <Route exact path="/checkout">
+            <CheckoutPage />
+          </Route>
+        </Switch>
       </Router>
     );
   }

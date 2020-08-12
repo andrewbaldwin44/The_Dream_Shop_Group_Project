@@ -10,7 +10,6 @@ export const roundNumber = (num) => {
 
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
-  const [newQuantity, setNewQuantity] = React.useState(item.quantity);
   return (
     <Wrapper>
       <Item>

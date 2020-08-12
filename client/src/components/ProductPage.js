@@ -12,6 +12,7 @@ const ProductPage = () => {
       .then((res) => setIndProduct(res.items));
     //   .then((category) => setIndProduct(data))
     //   .catch((err) => console.log("error"));
+    // eslint-disable-next-line
   }, []);
 
   if (indProduct) {
