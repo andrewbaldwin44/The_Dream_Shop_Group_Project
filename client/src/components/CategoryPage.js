@@ -18,6 +18,7 @@ const CategoryPage = () => {
   const categoryId = useParams().categoryId;
 
   const [bodyLocationFilters, setBodyLocationFilters] = useState([]);
+  const [brandFilters, setBrandFilters] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState(categoryData);
 
   useEffect(() => {
@@ -32,9 +33,12 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (categoryData) {
-      if (bodyLocationFilters.length > 0) {
+      if (bodyLocationFilters.length > 0 || brandFilters > 0) {
         const newFilteredCategories =
-          categoryData.filter(data => bodyLocationFilters.includes(data.body_location));
+          categoryData.filter(data => (
+            bodyLocationFilters.includes(data.body_location) ||
+            brandFilters.includes(String(data.companyId))
+          ));
 
         setFilteredCategories(newFilteredCategories);
       }
@@ -42,13 +46,15 @@ const CategoryPage = () => {
         setFilteredCategories(categoryData);
       }
     }
-  }, [bodyLocationFilters, categoryData]);
+  }, [bodyLocationFilters, brandFilters, categoryData]);
 
   return (
     <Div>
       <Sidebar
-        setBodyLocationFilters={setBodyLocationFilters}
         bodyLocationFilters={bodyLocationFilters}
+        setBodyLocationFilters={setBodyLocationFilters}
+        brandFilters={brandFilters}
+        setBrandFilters={setBrandFilters}
       />
       <Wrapper>
         {filteredCategories == null ? (
