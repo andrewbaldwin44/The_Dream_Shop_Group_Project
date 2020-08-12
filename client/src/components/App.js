@@ -18,9 +18,10 @@ import GlobalStyles from "./GlobalStyles";
 import CategoryPage from "./CategoryPage";
 import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
-
 import Cart from "./Cart";
+
 import AllCategories from "./AllCategories";
+import Login from "./Login";
 
 function App() {
   const dispatch = useDispatch();
@@ -83,6 +84,12 @@ function App() {
           </Route>
           <Route exact path="/categories">
             <AllCategories />
+          </Route>
+          <Route exact path="/login">
+            <Login accountCreated={true} />
+          </Route>
+          <Route exact path="/signup">
+            <Login accountCreated={false} />
           </Route>
         </Switch>
       </Router>

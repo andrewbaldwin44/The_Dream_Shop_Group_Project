@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, Link } from "react-router-dom";
 
 import Dropdown from "./Dropdown";
 
@@ -17,7 +17,10 @@ const Header = () => {
 
   return (
     <>
-      <Logo>ESHOP</Logo>
+      <TopItems>
+        <Logo>ESHOP</Logo>
+        <Link to='/login'>Sign In</Link>
+      </TopItems>
       <Navbar>
         <RightNavigation>
           <NavLink exact to="/">
@@ -36,6 +39,13 @@ const Header = () => {
     </>
   );
 };
+
+const TopItems = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+`;
 
 const Navbar = styled.div`
   position: relative;
