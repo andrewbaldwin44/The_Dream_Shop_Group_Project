@@ -38,6 +38,9 @@ export default function cartReducer(state = initialState, action) {
         status: "error",
       };
     }
+    case "CART_RESET": {
+      return initialState;
+    }
 
     case "CART_CHANGE_QUANTITY": {
       let newCart = [...state.cart];

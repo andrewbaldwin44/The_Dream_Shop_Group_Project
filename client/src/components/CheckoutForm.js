@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { orderAddedItem, orderAddItem } from "../actions";
+import { orderAddedItem, orderAddItem, cartReset } from "../actions";
 
 import { AuthContext } from "./AuthContext";
 
@@ -85,7 +85,7 @@ const CheckoutForm = () => {
         if (data.status === 401) {
           window.alert(data.message);
         } else {
-          console.log(data);
+          dispatch(cartReset());
           dispatch(
             orderAddedItem({
               itemsPurchased: data.purchasedItems,
