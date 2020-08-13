@@ -9,6 +9,8 @@ import { GrCart } from "react-icons/gr";
 
 import { AuthContext } from './AuthContext';
 
+import Cloud from '../assets/cloud.png';
+
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
@@ -34,12 +36,11 @@ const Header = () => {
 
   return (
     <>
-      <TopItems>
-        <Logo>ESHOP</Logo>
-        <StyledButton onClick={handleLoginAction}>
-          {appUser.email ? 'Sign Out' :  'Sign In'}
-        </StyledButton>
-      </TopItems>
+      <Logo>
+        <BlueText>Dream</BlueText>
+        <h2>Shop</h2>
+        <LogoImage src={Cloud} />
+      </Logo>
       <Navbar>
         <RightNavigation>
           <NavLink exact to="/">
@@ -51,31 +52,18 @@ const Header = () => {
             id={"category"}
           />
         </RightNavigation>
-        <NavLink exact to="/cart">
-          <CartIcon />
-        </NavLink>
+        <LeftNavigation>
+          <NavLink exact to="/cart">
+            <CartIcon />
+          </NavLink>
+          <StyledButton onClick={handleLoginAction}>
+            {appUser.email ? 'Sign Out' :  'Sign In'}
+          </StyledButton>
+        </LeftNavigation>
       </Navbar>
     </>
   );
 };
-
-const TopItems = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-right: 95px;
-`;
-
-const StyledButton = styled.button`
-  width: 110px;
-  height: 40px;
-  transition: 0.2s ease;
-  font-size: 1.1em;
-
-  &:hover {
-    color: #4285F4;
-  }
-`;
 
 const Navbar = styled.div`
   position: relative;
@@ -101,10 +89,47 @@ const RightNavigation = styled.div`
   width: 25%;
 `;
 
-const Logo = styled.h1`
-  margin: 15px 10px;
-  color: black;
-  font-size: 50px;
+const LeftNavigation = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 15%;
+`;
+
+const StyledButton = styled.button`
+  width: 110px;
+  height: 40px;
+  transition: 0.2s ease;
+  font-size: 1.1em;
+
+  &:hover {
+    color: #4285F4;
+  }
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 3em;
+  font-family: inherit;
+  font-weight: bold;
+  margin: 20px 0;
+
+  h1, h2 {
+    margin-top: 20px;
+  }
+`;
+
+const BlueText = styled.h1`
+  color: #00A3E3;
+  margin-right: 15px;
+  margin-left: 30px;
+`;
+
+const LogoImage = styled.img`
+  margin-left: -160px;
+  height: 150px;
+  width: auto;
 `;
 
 const CartIcon = styled(GrCart)`
