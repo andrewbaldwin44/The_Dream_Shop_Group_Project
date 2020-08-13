@@ -17,6 +17,9 @@ export const cartChangeQuantity = (index, quantity) => ({
   index,
   quantity,
 });
+export const cartReset = () => ({
+  type: "CART_RESET",
+});
 
 //ITEMS
 export const requestAllItemInformation = () => ({
