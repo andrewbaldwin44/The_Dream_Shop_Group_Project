@@ -1,12 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-import { MdAddShoppingCart } from "react-icons/md";
+import styled, { keyframes } from "styled-components";
+import { GrCart } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cartAddItem, cartItemAdded, cartAddItemError } from "../actions";
 
 const StoreItem = ({ item }) => {
   const dispatch = useDispatch();
+  const [isClicked, setIsClicked] = React.useState(false);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    dispatch(cartItemAdded(item));
+    setIsClicked(!isClicked);
+  };
 
   return (
     <Wrapper
@@ -27,14 +34,14 @@ const StoreItem = ({ item }) => {
       </Name>
       <Price>{item.price}</Price>
       <Button
-        onClick={(event) => {
-          event.preventDefault();
-          dispatch(cartItemAdded(item));
-        }}
-        className={item.numInStock < 1 && "outOfStock"}
+        onClick={handleClick}
+        className={`${isClicked && "animation"} ${
+          item.numInStock < 1 && "outOfStock"
+        }`}
         disabled={item.numInStock < 1 && true}
       >
-        <MdAddShoppingCart size={25} />
+        <span>Add to Cart </span>
+        <GrCart size={25} />
       </Button>
     </Wrapper>
   );
@@ -52,13 +59,16 @@ const Wrapper = styled(Link)`
   justify-content: space-between;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   text-decoration: none;
+  transition: transform ease 0.3s;
   &:hover {
     cursor: pointer;
+    transform: scale(1.035);
   }
   &&.outOfStock {
     opacity: 0.5;
     &&:hover {
       cursor: default;
+      transform: scale(1);
     }
     &&::before {
       content: "OUT OF STOCK";
@@ -88,16 +98,53 @@ const Image = styled.img`
   align-self: center;
 `;
 
+const addCart = keyframes`
+0%{
+  transform: translateX(0px);
+}
+10%{
+  transform: translateX(-3px);
+}
+50%{
+  transform: translateX(100px);
+}
+51%{
+  transform: translateX(0px);
+  opacity: 0;
+}
+100%{
+  opacity: 1;
+}
+`;
+
 const Button = styled.button`
-  display: inline-block;
-  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
   height: 40px;
   border-radius: 8px;
   margin-left: auto;
   border: 0.5px solid #5f6368;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+
+  svg {
+    position: absolute;
+    right: 15px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
   &:hover {
     cursor: pointer;
-    background-color: #5f6368;
+    background-color: #47d688;
+    svg {
+      opacity: 1;
+    }
+  }
+  &&.animation svg {
+    animation: ${addCart} 2000ms forwards;
   }
   &&.outOfStock {
     &:hover {

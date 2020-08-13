@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { cartItemAdded } from "../actions";
 
 const ProductPage = () => {
+  const dispatch = useDispatch();
+
   let productNumber = useParams().id;
   let [indProduct, setIndProduct] = useState();
+  let [qty, setQty] = useState();
 
+  function handleQtyChange(ev) {
+    setQty(Number(ev));
+  }
+  console.log("THIS IS QTY-----", qty);
   React.useEffect(() => {
     fetch(`/products/product/${productNumber}`)
       .then((res) => res.json())
@@ -29,9 +38,15 @@ const ProductPage = () => {
           <Picture>
             <img src={imgSrc} alt="Product"></img>
             <div>{indProduct.price}</div>
-            <div>Qty</div>
-            <input type="text" value="1"></input>
-            <button>add to cart</button>
+            <div>Quantity:</div>
+            <input
+              type="number"
+              onChange={(event) => handleQtyChange(event.target.value)}
+              placeholder="1"
+            ></input>
+            <button onClick={dispatch(cartItemAdded(indProduct, qty))}>
+              Add to cart
+            </button>
           </Picture>
         </ProductData>
         <Content>

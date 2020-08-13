@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { roundNumber } from "./CartItem";
 
 const CartFooter = () => {
   let total = 0;
@@ -13,7 +14,9 @@ const CartFooter = () => {
     <Wrapper>
       <p style={{ marginLeft: "25px" }}></p>
       <p style={{ marginLeft: "870px", fontWeight: "bold" }}>Total:</p>
-      <p style={{ marginLeft: "70px", fontSize: "1.1em" }}>$ {total}</p>
+      <p style={{ marginLeft: "70px", fontSize: "1.1em" }}>
+        $ {roundNumber(total)}
+      </p>
     </Wrapper>
   );
 };

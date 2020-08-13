@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { cartChangeQuantity } from "../actions";
+import { FiTrash2 } from "react-icons/fi";
+
+export const roundNumber = (num) => {
+  return Math.round(num * 100) / 100;
+};
 
 const CartItem = ({ item, index }) => {
   const dispatch = useDispatch();
@@ -14,6 +19,11 @@ const CartItem = ({ item, index }) => {
           <h4>{item.name}</h4>
           <p>{item.price}</p>
         </Info>
+        <button
+          onClick={() => dispatch(cartChangeQuantity(index, -item.quantity))}
+        >
+          <FiTrash2 />
+        </button>
       </Item>
       <Quantity>
         <div>
@@ -24,12 +34,7 @@ const CartItem = ({ item, index }) => {
               dispatch(cartChangeQuantity(index, -1));
             }}
           />
-          <input
-            type="number"
-            disabled
-            value={item.quantity}
-            onChange={() => console.log(newQuantity)}
-          />
+          <input type="number" disabled value={item.quantity} />
           <input
             type="button"
             value="+"
@@ -41,7 +46,10 @@ const CartItem = ({ item, index }) => {
       </Quantity>
       <Price>
         <span>
-          ${Number(item.price.substring(1, item.price.length)) * item.quantity}
+          $
+          {roundNumber(
+            Number(item.price.substring(1, item.price.length)) * item.quantity
+          )}
         </span>
       </Price>
     </Wrapper>
@@ -65,8 +73,22 @@ const Item = styled.div`
   border: 1px solid #eee;
   display: flex;
   padding: 12px;
+  position: relative;
   img {
     object-fit: contain;
+  }
+  button {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    height: 40px;
+    width: 40px;
+    font-size: 2em;
+    outline: none;
+    transition: all ease 0.4s;
+    &:hover {
+      color: red;
+    }
   }
 `;
 const Quantity = styled.div`
@@ -83,7 +105,7 @@ const Quantity = styled.div`
     height: 35px;
     border: 0.5px solid #eee;
     font-size: 1.6em;
-    &&:hover {
+    &:hover {
       cursor: pointer;
     }
   }
