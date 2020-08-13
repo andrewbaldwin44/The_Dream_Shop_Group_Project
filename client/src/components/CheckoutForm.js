@@ -96,7 +96,6 @@ const CheckoutForm = () => {
           <ShippingInfo>
             <SectionHeader>Shipping Information:</SectionHeader>
             <div>
-              <label id="text">Name</label>
               <input
                 type="text"
                 id="fullname"
@@ -106,7 +105,6 @@ const CheckoutForm = () => {
               ></input>
             </div>
             <div>
-              <label id="text">Address</label>
               <input
                 type="address"
                 id="address"
@@ -114,17 +112,16 @@ const CheckoutForm = () => {
                 ref={addressInput}
                 required
               ></input>
-              <label id="text">City</label>
+
               <input
                 type="text"
                 id="city"
-                placeholder="ville"
+                placeholder="City"
                 ref={cityInput}
                 required
               ></input>
             </div>
             <div>
-              <label id="text">Province</label>
               <input
                 type="text"
                 id="PostCode"
@@ -132,7 +129,7 @@ const CheckoutForm = () => {
                 ref={provinceInput}
                 required
               ></input>
-              <label id="text">Postal Code</label>
+
               <input
                 type="text"
                 id="PostCode"
@@ -146,7 +143,6 @@ const CheckoutForm = () => {
             {" "}
             <SectionHeader>Billing Information:</SectionHeader>
             <div>
-              <label id="text">Name</label>
               <input
                 type="text"
                 id="fullname"
@@ -156,7 +152,6 @@ const CheckoutForm = () => {
               ></input>
             </div>
             <div>
-              <label id="text">Address</label>
               <input
                 type="address"
                 id="address"
@@ -164,7 +159,7 @@ const CheckoutForm = () => {
                 ref={billingAddressInput}
                 required
               ></input>
-              <label id="text">City</label>
+
               <input
                 type="text"
                 id="city"
@@ -174,7 +169,6 @@ const CheckoutForm = () => {
               ></input>
             </div>
             <div>
-              <label id="text">Province</label>
               <input
                 type="text"
                 id="PostCode"
@@ -182,7 +176,7 @@ const CheckoutForm = () => {
                 ref={billingProvinceInput}
                 required
               ></input>
-              <label id="text">Postal Code</label>
+
               <input
                 type="text"
                 id="PostCode"
@@ -231,17 +225,32 @@ const CheckoutForm = () => {
   );
 };
 const BillingInfo = styled.div`
-  margin-right: 10vh;
-  padding: 3px;
+  input {
+    width: 300px;
+    padding: 12px;
+    margin: 6px 0;
+    border: 1px solid #eee;
+    outline: none;
+  }
 `;
-const ShippingInfo = styled.div``;
+const ShippingInfo = styled.div`
+  input {
+    width: 300px;
+    padding: 12px;
+    margin: 6px 0;
+    border: 1px solid #eee;
+    outline: none;
+  }
+`;
 const OrderInfo = styled.div`
   display: flex;
-  padding: 5px;
+  justify-content: center;
+  padding: 12px;
 `;
 
 const SectionHeader = styled.div`
   margin-bottom: 4px;
+  font-weight: bold;
 `;
 
 const CreditCardinfo = styled.div`

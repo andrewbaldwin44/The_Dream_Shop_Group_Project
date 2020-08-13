@@ -45,7 +45,7 @@ const ProductPage = () => {
               onChange={(event) => handleQtyChange(event.target.value)}
               placeholder="1"
             ></input>
-            <button onClick={dispatch(cartItemAdded(indProduct, qty))}>
+            <button onClick={() => dispatch(cartItemAdded(indProduct, qty))}>
               Add to cart
             </button>
           </Picture>
