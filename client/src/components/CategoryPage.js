@@ -19,6 +19,7 @@ const CategoryPage = () => {
 
   const [bodyLocationFilters, setBodyLocationFilters] = useState([]);
   const [brandFilters, setBrandFilters] = useState([]);
+  const [stockFilter, setStockFilter] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState(categoryData);
 
   useEffect(() => {
@@ -43,7 +44,8 @@ const CategoryPage = () => {
               return bodyLocationFilters.includes(data.body_location);
             }
             else {
-              return brandFilters.includes(String(data.companyId)) && bodyLocationFilters.includes(data.body_location);
+              return brandFilters.includes(String(data.companyId)) &&
+                     bodyLocationFilters.includes(data.body_location);
             }
           });
 
@@ -53,7 +55,7 @@ const CategoryPage = () => {
         setFilteredCategories(categoryData);
       }
     }
-  }, [bodyLocationFilters, brandFilters, categoryData]);
+  }, [bodyLocationFilters, brandFilters, stockFilter, categoryData]);
 
   return (
     <Div>
@@ -62,6 +64,8 @@ const CategoryPage = () => {
         setBodyLocationFilters={setBodyLocationFilters}
         brandFilters={brandFilters}
         setBrandFilters={setBrandFilters}
+        stockFilter={stockFilter}
+        setStockFilter={setStockFilter}
         category={categoryId}
       />
       <Wrapper>
@@ -70,6 +74,7 @@ const CategoryPage = () => {
         ) : (
           <>
             {filteredCategories.map((category) => {
+              if (stockFilter && category.numInStock === 0) return;
               return <StoreItem item={category} key={category.id} />;
             })}
           </>

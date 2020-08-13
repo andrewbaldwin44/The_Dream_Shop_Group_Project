@@ -28,6 +28,8 @@ const Sidebar = ({
   setBodyLocationFilters,
   brandFilters,
   setBrandFilters,
+  stockFilter,
+  setStockFilter,
   category,
 }) => {
   const [search, setSearch] = useState("");
@@ -35,9 +37,6 @@ const Sidebar = ({
   const brands = useSelector((state) => state.items.brands);
   const products = useSelector((state) => state.category.category);
   const bodyLocation = useSelector((state) => state.items.bodyLocation);
-
-  // const relevantBrands = brands.filter(brand => brand.category === category)
-  // console.log(relevantBrands)
 
   const searchedBrands = brands.reduce((searchedBrands, brandInfo) => {
     const normalizedBrandName = brandInfo.name.toLowerCase();
@@ -80,6 +79,30 @@ const Sidebar = ({
 
   return (
     <Wrapper>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<AddIcon color="secondary" />}
+          aria-controls="panel1a-content"
+        >
+          <ListHeader>Hot Offers</ListHeader>
+        </AccordionSummary>
+        <AccordionDetails>
+          <List>
+            <li key='instock'>
+              <FormControlLabel
+                control={
+                    <Checkbox
+                      inputProps={{ 'aria-label': `In Stock checkbox` }}
+                      name='In Stock'
+                      onChange={() => setStockFilter(!stockFilter)}
+                    />
+                  }
+                  label='In Stock'
+              />
+            </li>
+          </List>
+        </AccordionDetails>
+      </Accordion>
       <Accordion>
         <AccordionSummary
           expandIcon={<AddIcon color="secondary" />}
