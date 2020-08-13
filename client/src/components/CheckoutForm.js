@@ -3,15 +3,13 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { AuthContext } from './AuthContext';
+import { AuthContext } from "./AuthContext";
 
 const CheckoutForm = () => {
   const cartData = useSelector((state) => state.cart.cart);
   const history = useHistory();
 
-  const {
-    appUser,
-  } = useContext(AuthContext);
+  const { appUser } = useContext(AuthContext);
 
   const nameInput = createRef();
   const addressInput = createRef();
@@ -192,7 +190,7 @@ const CheckoutForm = () => {
             {" "}
             <label id="card number"> Credit Card: </label>
             <input
-              type="number"
+              type="text"
               id="number"
               placeholder="Credit Card Number"
               ref={cardNumberInput}
@@ -200,7 +198,7 @@ const CheckoutForm = () => {
             ></input>{" "}
           </div>
           <div>
-            <label id="card expiry"> Credit Card: </label>
+            <label id="card expiry"> Expiration: </label>
             <input
               type="text"
               id="expiry"
@@ -208,9 +206,11 @@ const CheckoutForm = () => {
               ref={expiryInput}
               required
             ></input>{" "}
+          </div>
+          <div>
             <label id="CVC #"> CVC: </label>
             <input
-              type="number"
+              type="text"
               id="CVC"
               placeholder="123"
               ref={cvcInput}
@@ -219,12 +219,13 @@ const CheckoutForm = () => {
           </div>
         </CreditCardinfo>
 
-        <Button type="submit">Submit Order</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Wrapper>
   );
 };
 const BillingInfo = styled.div`
+  margin-left: 10px;
   input {
     width: 300px;
     padding: 12px;
@@ -254,24 +255,36 @@ const SectionHeader = styled.div`
 `;
 
 const CreditCardinfo = styled.div`
-  border: 1px grey solid;
-  margin-top: 2px;
+  border-top: 2px #eee solid;
+  padding: 10px;
+  margin: 0 6px;
+  input {
+    width: 300px;
+    padding: 12px;
+    margin: 6px 0;
+    border: 1px solid #eee;
+    outline: none;
+  }
 `;
 
 const Wrapper = styled.div`
   border: 2px black solid;
+  width: 700px;
 `;
 
 const Button = styled.button`
   display: inline-block;
-
+  width: 110px;
+  height: 36px;
   border-radius: 8px;
-  margin-top: 12px;
-  margin-left: auto;
+  margin: 8px 0 15px 430px;
+  font-size: larger;
+  font-weight: bold;
+
   border: 0.5px solid #5f6368;
   &:hover {
     cursor: pointer;
-    background-color: #5f6368;
+    background-color: #47d688;
   }
 `;
 

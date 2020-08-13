@@ -41,6 +41,8 @@ const Wrapper = styled.div`
 `;
 const ItemsBox = styled.div`
   padding: 10px;
+  width: 700px;
+  margin-left: 15px;
 `;
 const Back = styled.div`
   font-size: large;
