@@ -15,6 +15,11 @@ const {
   handleBodyLocation,
 } = require("./handlers/handler");
 
+const {
+  createUser,
+  authenticateAdmin,
+} = require("./handlers/handleAuthentication");
+
 const PORT = 4000;
 
 const app = express();
@@ -41,6 +46,8 @@ app
 .use("/", express.static(__dirname + "/"))
 
 .post('/purchase', handlePurchase)
+.post('/users', createUser)
+.post('/admin', authenticateAdmin)
 
 .get("/brands", handleBrands)
 .get("/products", handleProducts)

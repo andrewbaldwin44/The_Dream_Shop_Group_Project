@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, Link } from "react-router-dom";
 
 import Dropdown from "./Dropdown";
 
 import styled from "styled-components";
 import { GrCart } from "react-icons/gr";
 
+import { AuthContext } from './AuthContext';
+
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
 
-  const navigateTocategory = (category) => {
+  const {
+    appUser,
+    handleSignOut,
+  } = useContext(AuthContext);
+
+  const navigateTocategory = category => {
     history.push(`/products/${category.toLowerCase()}`);
   };
 
+  const handleLoginAction = () => {
+    if (appUser.email) {
+      handleSignOut();
+      history.push('/');
+    }
+    else {
+      history.push('/login');
+    }
+  }
+
   return (
     <>
-      <Logo>ESHOP</Logo>
+      <TopItems>
+        <Logo>ESHOP</Logo>
+        <StyledButton onClick={handleLoginAction}>
+          {appUser.email ? 'Sign Out' :  'Sign In'}
+        </StyledButton>
+      </TopItems>
       <Navbar>
         <RightNavigation>
           <NavLink exact to="/">
@@ -36,6 +58,24 @@ const Header = () => {
     </>
   );
 };
+
+const TopItems = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 95px;
+`;
+
+const StyledButton = styled.button`
+  width: 110px;
+  height: 40px;
+  transition: 0.2s ease;
+  font-size: 1.1em;
+
+  &:hover {
+    color: #4285F4;
+  }
+`;
 
 const Navbar = styled.div`
   position: relative;

@@ -8,6 +8,8 @@ const {
   reduceStock,
 } = require("../utils/utils");
 
+const { updateUser } = require('./handleAuthentication');
+
 const defaultStartPage = 1;
 const defaultPageLimit = 10;
 
@@ -86,13 +88,13 @@ function handleSpecificProduct(req, res) {
   res.status(200).json({ status: 200, items: product });
 }
 
-function handlePurchase(req, res) {
+async function handlePurchase(req, res) {
   const { purchasedItems, user } = req.body;
+
   let orderNumber = 1000;
   function newOrder() {
     return (orderNumber += 1);
   }
-  console.log(user);
 
   try {
     purchasedItems.forEach((purchasedItem) => {
@@ -102,6 +104,12 @@ function handlePurchase(req, res) {
       newOrder();
       console.log(orderNumber);
     });
+
+    const {
+      personalinfo: { email }
+    } = user;
+
+    if (email) await updateUser(user, email);
 
     res.status(201).json({
       status: 201,

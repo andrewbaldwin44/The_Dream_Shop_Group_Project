@@ -1,11 +1,17 @@
-import React, { createRef } from "react";
+import React, { createRef, useContext } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { AuthContext } from './AuthContext';
+
 const CheckoutForm = () => {
   const cartData = useSelector((state) => state.cart.cart);
   const history = useHistory();
+
+  const {
+    appUser,
+  } = useContext(AuthContext);
 
   const nameInput = createRef();
   const addressInput = createRef();
@@ -29,8 +35,11 @@ const CheckoutForm = () => {
   });
 
   let userInfo = () => {
+    const { email } = appUser;
+
     return {
       personalinfo: {
+        email: email,
         name: nameInput.current.value,
         address: addressInput.current.value,
         postalcode: postalCodeInput.current.value,
