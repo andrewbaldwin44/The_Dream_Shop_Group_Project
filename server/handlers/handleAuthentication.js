@@ -48,6 +48,24 @@ const createUser = async (req, res) => {
   }
 };
 
+async function authenticateAdmin(req, res) {
+  const { idToken } = req.body;
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(idToken)
+
+    if (decodedToken.admin) {
+      res.status(201).json({ status: 201, decodedToken });
+    }
+    else {
+      res.status(401).json({ status: 401, message: 'Invalid User' });
+    }
+  }
+  catch (error) {
+    res.status(401).json({ status: 401, message: error });
+  }
+}
+
 async function updateUser(data) {
   const { email } = data;
   const user = (await getUser(email, db));
@@ -59,4 +77,5 @@ async function updateUser(data) {
 module.exports = {
   createUser,
   updateUser,
+  authenticateAdmin,
 };

@@ -15,7 +15,10 @@ const {
   handleBodyLocation,
 } = require("./handlers/handler");
 
-const { createUser } = require("./handlers/handleAuthentication");
+const {
+  createUser,
+  authenticateAdmin,
+} = require("./handlers/handleAuthentication");
 
 const PORT = 4000;
 
@@ -44,6 +47,7 @@ app
 
 .post('/purchase', handlePurchase)
 .post('/users', createUser)
+.post('/admin', authenticateAdmin)
 
 .get("/brands", handleBrands)
 .get("/products", handleProducts)

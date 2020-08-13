@@ -27,6 +27,16 @@ function signInWithEmail(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
+function retreiveClientID(callBack) {
+  firebase.auth().currentUser.getIdToken(true)
+    .then(idToken => callBack(idToken))
+    .catch(error => console.log(error));
+}
+
+function onAuthStateChange(callBack) {
+  firebase.auth().onAuthStateChanged(() => retreiveClientID(callBack));
+}
+
 const AuthProvider = ({ children, signOut, user }) => {
   const [appUser, setAppUser] = useState({});
   const [message, setMessage] = useState('');
@@ -45,7 +55,6 @@ const AuthProvider = ({ children, signOut, user }) => {
 
   useEffect(() => {
     if (user) {
-      console.log(user.uid)
       fetch('/users', {
         method: 'post',
         headers: {
@@ -53,7 +62,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         },
         body: JSON.stringify({
           email: user.email,
-          amountDue: '$15'
+          amountDue: '$15',
         }),
       })
       .then(response => response.json())
@@ -72,6 +81,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         signInWithEmail,
         signInWithGoogle,
         handleSignOut,
+        onAuthStateChange,
         message,
       }}
     >
