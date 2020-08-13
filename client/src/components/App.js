@@ -20,6 +20,7 @@ import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 
 import Cart from "./Cart";
+import AllCategories from "./AllCategories";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,23 +65,26 @@ function App() {
       <Router>
         <GlobalStyles />
         <Header />
-          <Switch>
-            <Route exact={true} path="/">
-              <Homepage />
-            </Route>
-            <Route exact path="/products/:categoryId">
-              <CategoryPage />
-            </Route>
-            <Route exact path="/products/product/:id">
-              <ProductPage />
-            </Route>
-            <Route exact path="/cart">
-              <Cart />
-            </Route>
-            <Route exact path="/checkout">
-              <CheckoutPage />
-            </Route>
-          </Switch>
+        <Switch>
+          <Route exact={true} path="/">
+            <Homepage />
+          </Route>
+          <Route exact path="/products/:categoryId">
+            <CategoryPage />
+          </Route>
+          <Route exact path="/products/product/:id">
+            <ProductPage />
+          </Route>
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+          <Route exact path="/checkout">
+            <CheckoutPage />
+          </Route>
+          <Route exact path="/categories">
+            <AllCategories />
+          </Route>
+        </Switch>
       </Router>
     );
   }

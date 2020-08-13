@@ -1,28 +1,45 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
 const Homepage = () => {
   return (
     <Wrapper>
-      <Banner src="../assets/fitness.jpg" />
-      <Text>Fitness</Text>
+      <Text>
+        Welcome to Dreamshop. Your place to experience dreams. Browse our
+        products to fulfill all your dreams
+      </Text>
+      <Shoplink to="/categories">Shop now</Shoplink>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
-const Banner = styled.img`
-  height: 500px;
-  width: 100vw;
-  object-fit: cover;
-  overflow: hidden;
+const Wrapper = styled.div`
+  border: 1px solid black;
+  height: 100vh;
+  width: 100%;
+  background-image: url("../assets/beach.jpg");
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Text = styled.p`
-  position: relative;
-  bottom: 400px;
-  left: 30px;
-  color: white;
-  font-size: 40px;
-  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  font-size: 20px;
+  font-style: italic;
+  text-shadow: 1px 1px black;
+
+  width: 30vw;
+`;
+const Shoplink = styled(NavLink)`
+  color: #1e90ff;
+  border-radius: 10px;
+  margin-top: 150px;
+  border: 1px solid #1e90ff;
+  padding: 5px;
+  height: 30px;
+  background-color: #f0ffff;
 `;
 export default Homepage;
