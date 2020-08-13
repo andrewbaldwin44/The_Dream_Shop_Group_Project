@@ -1,10 +1,12 @@
 import React, { createRef } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const CheckoutForm = () => {
   const cartData = useSelector((state) => state.cart.cart);
-  const [clientName, setClientName] = React.useState("");
+  const history = useHistory();
+
   const nameInput = createRef();
   const addressInput = createRef();
   const postalCodeInput = createRef();
@@ -68,9 +70,12 @@ const CheckoutForm = () => {
       })
       .then((data) => {
         console.log(data.status, data.message);
+        console.log("------------", data.orderNo);
 
         if (data.status === 401) {
           window.alert(data.message);
+        } else {
+          history.push("/");
         }
       })
       .catch((error) => console.log("this", error));

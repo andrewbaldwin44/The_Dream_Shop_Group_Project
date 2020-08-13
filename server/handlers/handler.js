@@ -88,17 +88,27 @@ function handleSpecificProduct(req, res) {
 
 function handlePurchase(req, res) {
   const { purchasedItems, user } = req.body;
+  let orderNumber = 1000;
+  function newOrder() {
+    return (orderNumber += 1);
+  }
   console.log(user);
+
   try {
     purchasedItems.forEach((purchasedItem) => {
       const { productId, quantity } = purchasedItem;
-
       const product = findItem(productsData, productId);
-
       reduceStock(product, productId, quantity);
+      newOrder();
+      console.log(orderNumber);
     });
 
-    res.status(201).json({ status: 201, purchasedItems: purchasedItems });
+    res.status(201).json({
+      status: 201,
+      purchasedItems: purchasedItems,
+      message: "order placed",
+      orderNo: orderNumber,
+    });
   } catch (error) {
     res.status(401).json({ status: 401, message: error.message });
   }
