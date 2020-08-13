@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { useHistory, Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 import { AuthContext } from './AuthContext';
@@ -11,6 +11,7 @@ function Admin() {
   } = useContext(AuthContext);
 
   const [idToken, setIdToken] = useState(null);
+  const [status, setStatus] = useState('loading');
 
   const history = useHistory();
 
@@ -26,28 +27,40 @@ function Admin() {
     })
   }
 
-  if (appUser.email){
-    onAuthStateChange(setIdToken);
+  useEffect(() => {
+    onAuthStateChange(setIdToken, setStatus);
+
+    if (idToken) {
+      sendIDToken(idToken)
+        .then(response => response.json())
+        .then(data => {
+          const { decodedToken } = data;
+
+          if (!decodedToken.admin) {
+            setStatus('unauthorized')
+          }
+          else {
+            setStatus('idle');
+          }
+        })
+        .catch(e => setStatus('unauthorized'));
+    }
+  }, [idToken, status]);
+
+  if (status === 'loading') {
+    return (
+      <div>loading...</div>
+    )
   }
-
-  if (idToken && appUser.email) {
-    sendIDToken(idToken)
-      .then(response => response.json())
-      .then(data => {
-        const { decodedToken } = data;
-
-        if (!decodedToken.admin) {
-          history.push('/');
-        }
-      })
-      .catch(e => console.log(e))
-
+  else if (status === 'idle') {
     return (
       <div>Admin</div>
     )
   }
   else {
-    return <div></div>
+    return (
+      <Redirect from='/admin' to="/" />
+    )
   }
 }
 

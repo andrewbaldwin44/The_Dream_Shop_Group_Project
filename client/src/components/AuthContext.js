@@ -27,14 +27,21 @@ function signInWithEmail(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-function retreiveClientID(callBack) {
-  firebase.auth().currentUser.getIdToken(true)
-    .then(idToken => callBack(idToken))
-    .catch(error => console.log(error));
+function retreiveClientID(successCallBack, failureCallBack) {
+  if (firebase.auth().currentUser) {
+    firebase.auth().currentUser.getIdToken(true)
+      .then(idToken => successCallBack(idToken))
+      .catch(error => failureCallBack('unauthorized'));
+  }
+  else {
+    failureCallBack('unauthorized');
+  }
 }
 
-function onAuthStateChange(callBack) {
-  firebase.auth().onAuthStateChanged(() => retreiveClientID(callBack));
+function onAuthStateChange(successCallBack, failureCallBack) {
+  firebase.auth().onAuthStateChanged(() => {
+    retreiveClientID(successCallBack, failureCallBack)
+  });
 }
 
 const AuthProvider = ({ children, signOut, user }) => {
