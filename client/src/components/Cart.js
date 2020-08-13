@@ -6,13 +6,13 @@ import { useSelector } from "react-redux";
 import CartFooter from "./CartFooter";
 import { useHistory } from "react-router-dom";
 
-import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+import useDocumentTitle from "../hooks/useDocumentTitle.hook";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const history = useHistory();
 
-  useDocumentTitle(`Dream Store - View Cart`, 'Dream Store');
+  useDocumentTitle(`Dream Store - View Cart`, "Dream Store");
 
   return (
     <Wrapper>
@@ -93,6 +93,6 @@ const Message = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: xx-large;
+  font-size: x-large;
 `;
 export default Cart;
