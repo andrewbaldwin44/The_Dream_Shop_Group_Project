@@ -20,6 +20,7 @@ import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 
 import Cart from "./Cart";
+import AllCategories from "./AllCategories";
 
 function App() {
   const dispatch = useDispatch();
@@ -80,6 +81,9 @@ function App() {
           </Route>
           <Route exact path="/checkout">
             <CheckoutPage />
+          </Route>
+          <Route exact path="/categories">
+            <AllCategories />
           </Route>
         </Switch>
       </Router>

@@ -89,6 +89,7 @@ const Wrapper = styled(Link)`
     opacity: 0.5;
     &&:hover {
       cursor: default;
+      transform: scale(1);
     }
     &&::before {
       content: "OUT OF STOCK";
@@ -165,12 +166,6 @@ const Button = styled.button`
   }
   &&.animation svg {
     animation: ${addCart} 2000ms forwards;
-  }
-  &&.outOfStock {
-    &:hover {
-      cursor: not-allowed;
-      background-color: white;
-    }
   }
   &&.outOfStock {
     &:hover {

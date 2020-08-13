@@ -2,18 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
-import Dropdown from "./Dropdown" ;
+import Dropdown from "./Dropdown";
 
 import styled from "styled-components";
-import { GrCart } from "react-icons/gr"
+import { GrCart } from "react-icons/gr";
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
 
-  const navigateTocategory = category => {
+  const navigateTocategory = (category) => {
     history.push(`/products/${category.toLowerCase()}`);
-  }
+  };
 
   return (
     <>
@@ -26,7 +26,7 @@ const Header = () => {
           <Dropdown
             items={categories}
             clickCallback={navigateTocategory}
-            id={'category'}
+            id={"category"}
           />
         </RightNavigation>
         <NavLink exact to="/cart">

@@ -33,6 +33,7 @@ const Sidebar = ({
   const [search, setSearch] = useState("");
 
   const brands = useSelector((state) => state.items.brands);
+  const products = useSelector((state) => state.category.category);
   const bodyLocation = useSelector((state) => state.items.bodyLocation);
 
   // const relevantBrands = brands.filter(brand => brand.category === category)
@@ -73,6 +74,10 @@ const Sidebar = ({
     else removeFilter(state, setter, name);
   };
 
+  const filterRelevant = (type, id) => {
+    return products && products.some((product) => product[type] === id);
+  };
+
   return (
     <Wrapper>
       <Accordion>
@@ -87,6 +92,13 @@ const Sidebar = ({
             <SearchBar setSearch={setSearch} />
             {searchedBrands.map((brand, index) => {
               const brandName = brand.name;
+
+              if (!filterRelevant) return;
+
+              if (products) {
+                if (!products.some((product) => product.companyId === brand.id))
+                  return;
+              }
 
               return (
                 <li key={brand.id}>
@@ -132,7 +144,8 @@ const Sidebar = ({
               clickCallback={toggleChecked}
               checkCallback={bodyLocationFilters}
               uncheckCallback={setBodyLocationFilters}
-              id="location"
+              conditionalCallback={filterRelevant}
+              id="body_location"
             />
           </List>
         </AccordionDetails>
