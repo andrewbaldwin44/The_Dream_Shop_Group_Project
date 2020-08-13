@@ -14,9 +14,15 @@ const Cart = () => {
       <h2>Shopping Cart</h2>
       <CartWrapper>
         <CartHeader />
-        {cart.map((item, index) => {
-          return <CartItem item={item} index={index} key={item.id} />;
-        })}
+        {cart.length > 0 ? (
+          cart.map((item, index) => {
+            return <CartItem item={item} index={index} key={item.id} />;
+          })
+        ) : (
+          <Message>
+            <span>Psst... You forgot to add something to your cart...</span>
+          </Message>
+        )}
         <CartFooter />
         <Button
           onClick={() => history.push("/checkout")}
@@ -74,5 +80,14 @@ const Button = styled.button`
       border: none;
     }
   }
+`;
+
+const Message = styled.div`
+  width: 1100px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
 `;
 export default Cart;
