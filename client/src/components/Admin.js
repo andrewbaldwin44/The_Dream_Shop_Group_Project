@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 
 import { AuthContext } from './AuthContext';
@@ -7,13 +7,10 @@ import { AuthContext } from './AuthContext';
 function Admin() {
   const {
     appUser,
-    onAuthStateChange,
+    idToken,
   } = useContext(AuthContext);
 
-  const [idToken, setIdToken] = useState(null);
   const [status, setStatus] = useState('loading');
-
-  const history = useHistory();
 
   const sendIDToken = idToken => {
     return fetch('/admin', {
@@ -28,8 +25,6 @@ function Admin() {
   }
 
   useEffect(() => {
-    onAuthStateChange(setIdToken, setStatus);
-
     if (idToken) {
       sendIDToken(idToken)
         .then(response => response.json())
@@ -37,7 +32,7 @@ function Admin() {
           const { decodedToken } = data;
 
           if (!decodedToken.admin) {
-            setStatus('unauthorized')
+            setStatus('unauthorized');
           }
           else {
             setStatus('idle');
@@ -45,7 +40,7 @@ function Admin() {
         })
         .catch(e => setStatus('unauthorized'));
     }
-  }, [idToken, status]);
+  }, [idToken]);
 
   if (status === 'loading') {
     return (

@@ -27,26 +27,9 @@ function signInWithEmail(email, password) {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-function retreiveClientID(successCallBack, failureCallBack) {
-  if (firebase.auth().currentUser) {
-    firebase.auth().currentUser.getIdToken(true)
-      .then(idToken => successCallBack(idToken))
-      .catch(error => failureCallBack('unauthorized'));
-  }
-  else {
-    failureCallBack('unauthorized');
-  }
-}
-
-function onAuthStateChange(successCallBack, failureCallBack) {
-  firebase.auth().onAuthStateChanged(() => {
-    console.log('**************')
-    retreiveClientID(successCallBack, failureCallBack)
-  });
-}
-
 const AuthProvider = ({ children, signOut, user }) => {
   const [appUser, setAppUser] = useState({});
+  const [idToken, setIdToken] = useState(null);
   const [message, setMessage] = useState('');
 
   const handleSignOut = () => {
@@ -56,10 +39,24 @@ const AuthProvider = ({ children, signOut, user }) => {
 
   const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-
   const signInWithGoogle = () => {
     return firebase.auth().signInWithPopup(googleProvider);
   }
+
+  const retrieveClientID = () => {
+    if (firebase.auth().currentUser) {
+      firebase.auth().currentUser.getIdToken(true)
+        .then(idToken => setIdToken(idToken))
+        .catch(error => console.log('unauthorized'));
+    }
+    else {
+      return;
+    }
+  }
+
+  firebase.auth().onAuthStateChanged(() => {
+    retrieveClientID();
+  });
 
   useEffect(() => {
     if (user) {
@@ -89,7 +86,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         signInWithEmail,
         signInWithGoogle,
         handleSignOut,
-        onAuthStateChange,
+        idToken,
         message,
       }}
     >
