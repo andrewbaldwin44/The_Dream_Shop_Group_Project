@@ -33,7 +33,7 @@ const CartItem = ({ item, index }) => {
               dispatch(cartChangeQuantity(index, -1));
             }}
           />
-          <input type="number" disabled value={item.quantity} />
+          <input type="text" disabled value={item.quantity} />
           <input
             type="button"
             value="+"
@@ -108,7 +108,7 @@ const Quantity = styled.div`
       cursor: pointer;
     }
   }
-  input[type="number"] {
+  input[type="text"] {
     width: 35px;
     height: 35px;
     border-top: 0.5px solid #eee;
@@ -119,7 +119,7 @@ const Quantity = styled.div`
     text-align: center;
     position: relative;
     bottom: 3px;
-    padding-left: 11px;
+    padding-left: 1px;
   }
 `;
 const Price = styled.div`
