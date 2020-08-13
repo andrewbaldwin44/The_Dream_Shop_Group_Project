@@ -76,3 +76,13 @@ export const receiveCategoryError = () => ({
 export const resetItems = () => ({
   type: "RESET_ITEM",
 });
+
+//Order
+
+export const orderAddItem = () => ({
+  type: "ADD_ORDER",
+});
+export const orderAddedItem = (order) => ({
+  type: "ADDED_ORDER",
+  order,
+});

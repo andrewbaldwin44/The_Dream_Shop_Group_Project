@@ -1,11 +1,15 @@
 import React, { createRef, useContext } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { orderAddedItem, orderAddItem } from "../actions";
 
 import { AuthContext } from "./AuthContext";
 
 const CheckoutForm = () => {
+  const dispatch = useDispatch();
+
   const cartData = useSelector((state) => state.cart.cart);
   const history = useHistory();
 
@@ -29,7 +33,7 @@ const CheckoutForm = () => {
   const cvcInput = createRef();
 
   let checkoutData = cartData.map((item) => {
-    return { productId: item.id, quantity: item.quantity };
+    return { productId: item.id, quantity: item.quantity, itemDetails: item };
   });
 
   let userInfo = () => {
@@ -78,11 +82,18 @@ const CheckoutForm = () => {
       .then((data) => {
         console.log(data.status, data.message);
         console.log("------------", data.orderNo);
-
         if (data.status === 401) {
           window.alert(data.message);
         } else {
-          history.push("/");
+          console.log(data);
+          dispatch(
+            orderAddedItem({
+              itemsPurchased: data.purchasedItems,
+              orderNo: data.orderNo,
+            })
+          );
+
+          history.push("/confirmation");
         }
       })
       .catch((error) => console.log("this", error));
