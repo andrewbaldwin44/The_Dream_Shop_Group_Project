@@ -29,30 +29,25 @@ const ProductPage = () => {
 
     return (
       <Wrapper>
-        <ProductData>
-          <Info>
-            <ProductInfo>
-              <div>{indProduct.name}</div>
-              <div>{indProduct.category}</div>
-            </ProductInfo>
-          </Info>
-          <Picture>
-            <img src={imgSrc} alt="Product"></img>
-            <div>{indProduct.price}</div>
-            <div>Quantity:</div>
-            <input
+        <Picture>
+          <Article src={imgSrc} alt="Product"></Article>
+        </Picture>
+        <Info>
+          <Title>{indProduct.name}</Title>
+          <Price>{indProduct.price}</Price>
+          <div>
+            Quantity:{" "}
+            <Quantity
               type="number"
               onChange={(event) => handleQtyChange(event.target.value)}
               placeholder="1"
-            ></input>
-            <button onClick={() => dispatch(cartItemAdded(indProduct, qty))}>
-              Add to cart
-            </button>
-          </Picture>
-        </ProductData>
-        <Content>
-          <p>Lorem ipsum.....</p>
-        </Content>
+            ></Quantity>
+          </div>
+
+          <Button onClick={() => dispatch(cartItemAdded(indProduct, qty))}>
+            Add to cart
+          </Button>
+        </Info>
       </Wrapper>
     );
   } else {
@@ -60,33 +55,56 @@ const ProductPage = () => {
   }
 };
 
-const Content = styled.div`
-  margin-left: 20px;
-  margin-top: 10px;
-  border: 2px solid grey;
-  width: 50vw;
-  border-radius: 4px;
-`;
-const ProductData = styled.div`
-  display: flex;
-`;
-
 const Picture = styled.div`
   margin-left: 20vw;
   margin-top: 10vh;
+  box-shadow: 1px 1px 1px 1px lightgray;
 `;
-const Wrapper = styled.div`
-  position: relative;
-  border: 2px grey solid;
-  border-radius: 4px;
-  padding: 5px;
-  margin: 3px 3px 3px 3px;
-`;
+
 const Info = styled.div`
   margin-top: 10vh;
-  border: 2px solid black;
   width: 50vw;
   margin-left: 20px;
 `;
-const ProductInfo = styled.div``;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const Quantity = styled.input`
+  width: 50px;
+  padding: 5px;
+  margin-top: 5px;
+`;
+const Button = styled.button`
+  border: 1px solid ghostwhite;
+  padding: 7px;
+  color: #fff;
+  box-shadow: 2px 2px 2px 2px lightgray;
+  margin-left: 10px;
+  background-color: #1e90ff;
+  border: 1px solid #a9a9a9;
+  transition: transform 0.2s;
+  margin-top: 15px;
+  font-weight: bold;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Price = styled.div`
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 15px;
+`;
+
+const Title = styled.span`
+  font-size: 20px;
+`;
+
+const Article = styled.img`
+  width: 300px;
+  height: 300px;
+`;
 export default ProductPage;
