@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import StoreItem from "./StoreItem";
 import Sidebar from "./Sidebar";
+import Spinner from "./Spinner";
 
 import useDocumentTitle from '../hooks/useDocumentTitle.hook';
 import { capitalize } from '../utils/utils';
@@ -73,8 +74,13 @@ const CategoryPage = () => {
         category={categoryId}
       />
       <Wrapper>
+        <Header>
+          <span>
+            {categoryId.charAt(0).toUpperCase() + categoryId.slice(1)}
+          </span>
+        </Header>
         {filteredCategories == null ? (
-          <div>loading...</div>
+          <Spinner />
         ) : (
           <>
             {filteredCategories.map((category) => {
@@ -94,6 +100,15 @@ const Wrapper = styled.div`
 `;
 const Div = styled.div`
   display: flex;
+`;
+const Header = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  margin-top: 8px;
+  font-weight: bold;
 `;
 
 export default CategoryPage;
