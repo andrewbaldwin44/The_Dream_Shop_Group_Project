@@ -33,7 +33,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (categoryData) {
-      if (bodyLocationFilters.length > 0 || brandFilters > 0) {
+      if (bodyLocationFilters.length > 0 || brandFilters.length > 0) {
         const newFilteredCategories =
           categoryData.filter(data => {
             if (bodyLocationFilters.length === 0 ) {
