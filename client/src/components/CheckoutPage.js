@@ -13,7 +13,7 @@ const CheckoutPage = () => {
     (item) => (total += parseFloat(item.price.replace("$", "")) * item.quantity)
   );
   return (
-    <Wrapper>
+    <>
       <Back>
         <Link to="/cart">
           {" "}
@@ -21,31 +21,46 @@ const CheckoutPage = () => {
           <div>Return to Cart</div>
         </Link>
       </Back>
-      <div>Your Current Order:</div>
-      <ItemsBox>
-        {cartData.map((data) => (
-          <CheckoutItem item={data} key={data.id} />
-        ))}
-        <div>ORDER TOTAL : ${total}</div>
-      </ItemsBox>
-      <CheckoutForm></CheckoutForm>
-    </Wrapper>
+      <Wrapper>
+        <CheckoutForm />
+        <ItemsBox>
+          <Head>Review Your Order:</Head>
+          {cartData.map((data) => (
+            <CheckoutItem item={data} key={data.id} />
+          ))}
+          <Total>ORDER TOTAL : ${total}</Total>
+        </ItemsBox>
+      </Wrapper>
+    </>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  margin: 40px;
+`;
 const ItemsBox = styled.div`
-  width: 70vw;
   padding: 10px;
 `;
-
 const Back = styled.div`
   font-size: large;
-  margin-bottom: 5vh;
+  margin-bottom: 20px;
   display: flex;
+  margin-left: 40px;
 `;
-
 const BackIcon = styled(GrFormPreviousLink)`
   font-size: 40px;
+`;
+
+const Head = styled.h2`
+  font-weight: bold;
+  font-size: larger;
+  margin-bottom: 12px;
+`;
+
+const Total = styled.div`
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: large;
 `;
 export default CheckoutPage;
