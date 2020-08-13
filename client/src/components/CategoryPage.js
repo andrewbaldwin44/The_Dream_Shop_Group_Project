@@ -12,6 +12,9 @@ import styled from "styled-components";
 import StoreItem from "./StoreItem";
 import Sidebar from "./Sidebar";
 
+import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+import { capitalize } from '../utils/utils';
+
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const categoryData = useSelector((state) => state.category.category);
@@ -21,6 +24,8 @@ const CategoryPage = () => {
   const [brandFilters, setBrandFilters] = useState([]);
   const [stockFilter, setStockFilter] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState(categoryData);
+
+  useDocumentTitle(`Dream Store - ${capitalize(categoryId)}`, 'Dream Store');
 
   useEffect(() => {
     dispatch(requestCategory());

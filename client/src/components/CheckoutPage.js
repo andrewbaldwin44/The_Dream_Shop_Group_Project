@@ -6,12 +6,18 @@ import CheckoutForm from "./CheckoutForm";
 import { Link } from "react-router-dom";
 import { GrFormPreviousLink } from "react-icons/gr";
 
+import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+
 const CheckoutPage = () => {
   const cartData = useSelector((state) => state.cart.cart);
+
+  useDocumentTitle(`Dream Store - Checkout`, 'Dream Store');
+
   let total = 0;
   cartData.map(
     (item) => (total += parseFloat(item.price.replace("$", "")) * item.quantity)
   );
+
   return (
     <Wrapper>
       <Back>

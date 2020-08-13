@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 
 import { AuthContext } from './AuthContext';
 
+import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+
 function Login({ accountCreated }) {
   const {
     appUser,
@@ -21,6 +23,8 @@ function Login({ accountCreated }) {
   const [password, setPassword] = useState('');
 
   const history = useHistory();
+
+  useDocumentTitle(`Dream Store - ${accountCreated ? 'Login' : 'Sign Up'}`, 'Dream Store');
 
   const submitForm = async event => {
     event.preventDefault();
@@ -49,7 +53,7 @@ function Login({ accountCreated }) {
         onClick={googleLogin}
       >
         <StyledGoogleIcon />
-        {accountCreated ? 'Login With Google' : 'Sign Up With Google'}
+        Continue with Google
       </GoogleButton>
       <StyledForm onSubmit={submitForm}>
         <TextField

@@ -6,9 +6,14 @@ import { useSelector } from "react-redux";
 import CartFooter from "./CartFooter";
 import { useHistory } from "react-router-dom";
 
+import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
   const history = useHistory();
+
+  useDocumentTitle(`Dream Store - View Cart`, 'Dream Store');
+
   return (
     <Wrapper>
       <h2>Shopping Cart</h2>

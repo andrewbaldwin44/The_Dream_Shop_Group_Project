@@ -40,6 +40,7 @@ function retreiveClientID(successCallBack, failureCallBack) {
 
 function onAuthStateChange(successCallBack, failureCallBack) {
   firebase.auth().onAuthStateChanged(() => {
+    console.log('**************')
     retreiveClientID(successCallBack, failureCallBack)
   });
 }
