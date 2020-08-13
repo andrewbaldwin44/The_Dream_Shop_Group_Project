@@ -7,37 +7,34 @@ import Dropdown from "./Dropdown";
 import styled from "styled-components";
 import { GrCart } from "react-icons/gr";
 
-import { AuthContext } from './AuthContext';
+import { AuthContext } from "./AuthContext";
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
+  const cart = useSelector((state) => state.cart.cart);
+  const { appUser, handleSignOut } = useContext(AuthContext);
 
-  const {
-    appUser,
-    handleSignOut,
-  } = useContext(AuthContext);
-
-  const navigateTocategory = category => {
+  const navigateTocategory = (category) => {
     history.push(`/products/${category.toLowerCase()}`);
   };
-
+  console.log(cart);
+  const reducer = (total, item) => total + item.quantity;
+  const totalQuantity = cart.reduce(reducer, 0);
   const handleLoginAction = () => {
     if (appUser.email) {
       handleSignOut();
-      history.push('/');
+      history.push("/");
+    } else {
+      history.push("/login");
     }
-    else {
-      history.push('/login');
-    }
-  }
-
+  };
   return (
     <>
       <TopItems>
         <Logo>ESHOP</Logo>
         <StyledButton onClick={handleLoginAction}>
-          {appUser.email ? 'Sign Out' :  'Sign In'}
+          {appUser.email ? "Sign Out" : "Sign In"}
         </StyledButton>
       </TopItems>
       <Navbar>
@@ -53,6 +50,7 @@ const Header = () => {
         </RightNavigation>
         <NavLink exact to="/cart">
           <CartIcon />
+          <Cartquantity>{totalQuantity}</Cartquantity>
         </NavLink>
       </Navbar>
     </>
@@ -73,7 +71,7 @@ const StyledButton = styled.button`
   font-size: 1.1em;
 
   &:hover {
-    color: #4285F4;
+    color: #4285f4;
   }
 `;
 
@@ -109,6 +107,12 @@ const Logo = styled.h1`
 
 const CartIcon = styled(GrCart)`
   font-size: 40px;
+`;
+const Cartquantity = styled.span`
+  background-color: #ffd700;
+  color: #fff;
+  border-radius: 100px;
+  padding: 4px;
 `;
 
 export default Header;

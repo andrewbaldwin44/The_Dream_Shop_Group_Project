@@ -119,7 +119,7 @@ const Categorylink = styled(NavLink)`
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 50%;
+  width: 60%;
 `;
 
 export default AllCategories;
