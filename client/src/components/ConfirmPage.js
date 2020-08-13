@@ -11,7 +11,7 @@ const ConfirmPage = () => {
   const confirmationData = useSelector(
     (state) => state.order.order.itemsPurchased
   );
-  console.log(confirmationData);
+  console.log("**********PAGEPAGE", confirmationData);
   const confirmationNumber = useSelector((state) => state.order.order.orderNo);
 
   let itemGeneration =

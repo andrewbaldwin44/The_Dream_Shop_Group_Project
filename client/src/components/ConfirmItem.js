@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const ConfirmItem = (item) => {
-  console.log(item.data.quantity);
+  console.log(item.data);
   let productNumber = item.data.productId;
   let prodductQty = item.data.quantity;
   const confirmationData = useSelector((state) => state.order.order);
-  console.log(confirmationData);
+  console.log("************ITEMPAGE", confirmationData);
 
   return (
     <Wrapper>
