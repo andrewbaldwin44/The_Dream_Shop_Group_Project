@@ -66,12 +66,11 @@ async function authenticateAdmin(req, res) {
   }
 }
 
-async function updateUser(data) {
-  const { email } = data;
+async function updateUser(data, email) {
   const user = (await getUser(email, db));
   const appUsersRef = db.ref('appUsers');
 
-  appUsersRef.child(user.userID).update(data);
+  appUsersRef.child(user.userID).update({ shippingData: data });
 }
 
 module.exports = {
