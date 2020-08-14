@@ -11,6 +11,8 @@ import { AuthContext } from "./AuthContext";
 
 import Cloud from "../assets/cloud.png";
 
+import ScaleIn from "./ScaleIn";
+
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
@@ -52,9 +54,13 @@ const Header = () => {
           />
         </RightNavigation>
         <LeftNavigation>
-          <NavLink exact to="/cart">
+          <NavLink exact to="/cart" style={{ position: "relative" }}>
             <CartIcon />
-            <Cartquantity>{totalQuantity}</Cartquantity>
+            {cart.length > 0 && (
+              <ScaleIn>
+                <Cartquantity>{totalQuantity}</Cartquantity>
+              </ScaleIn>
+            )}
           </NavLink>
           <StyledButton onClick={handleLoginAction}>
             {appUser.email ? "Sign Out" : "Sign In"}
@@ -134,11 +140,15 @@ const CartIcon = styled(GrCart)`
   font-size: 40px;
 `;
 const Cartquantity = styled.span`
-  background-color: #1e90ff;
-  z-index: 5;
+  background-color: #f03026;
+  z-index: 10;
   color: #fff;
   border-radius: 100px;
-  padding: 4px;
+  padding: 2px 7px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: small;
 `;
 
 export default Header;
