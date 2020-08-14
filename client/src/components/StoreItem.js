@@ -33,7 +33,7 @@ const StoreItem = ({ item }) => {
           : item.name}
       </Name>
       <Price>{item.price}</Price>
-      {item.numInStock < 5 && (
+      {item.numInStock < 5 && item.numInStock > 0 && (
         <LowStock>🔥 Only {item.numInStock} left! 🔥</LowStock>
       )}
       <Button
