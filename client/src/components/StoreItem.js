@@ -33,6 +33,9 @@ const StoreItem = ({ item }) => {
           : item.name}
       </Name>
       <Price>{item.price}</Price>
+      {item.numInStock < 5 && (
+        <LowStock>🔥 Only {item.numInStock} left! 🔥</LowStock>
+      )}
       <Button
         onClick={handleClick}
         className={`${isClicked && "animation"} ${
@@ -184,6 +187,16 @@ const Button = styled.button`
 const Name = styled.p`
   margin: 10px 0;
   color: #5f6368;
+`;
+
+const LowStock = styled.div`
+  position: absolute;
+  right: 15px;
+  bottom: 65px;
+  font-weight: bold;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 8px;
 `;
 
 export default StoreItem;
