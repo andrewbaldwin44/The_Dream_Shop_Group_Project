@@ -30,6 +30,8 @@ const Sidebar = ({
   setBrandFilters,
   stockFilter,
   setStockFilter,
+  topPickFilter,
+  setTopPickFilter,
   category,
 }) => {
   const [search, setSearch] = useState("");
@@ -88,6 +90,18 @@ const Sidebar = ({
         </AccordionSummary>
         <AccordionDetails>
           <List>
+            <li key='toppicks'>
+              <FormControlLabel
+                control={
+                    <Checkbox
+                      inputProps={{ 'aria-label': `Top Picks checkbox` }}
+                      name='Top Pick'
+                      onChange={() => setTopPickFilter(!topPickFilter)}
+                    />
+                  }
+                  label='Spicy Deals 🌶️🔥'
+              />
+            </li>
             <li key='instock'>
               <FormControlLabel
                 control={

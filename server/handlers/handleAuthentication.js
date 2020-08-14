@@ -52,10 +52,12 @@ async function authenticateAdmin(req, res) {
   const { idToken } = req.body;
 
   try {
-    const decodedToken = await admin.auth().verifyIdToken(idToken)
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
 
     if (decodedToken.admin) {
-      res.status(201).json({ status: 201, decodedToken });
+      const userData = (await queryDatabase(`appUsers`, db)) || {};
+
+      res.status(201).json({ status: 201, decodedToken, userData });
     }
     else {
       res.status(401).json({ status: 401, message: 'Invalid User' });
@@ -70,7 +72,20 @@ async function updateUser(data, email) {
   const user = (await getUser(email, db));
   const appUsersRef = db.ref('appUsers');
 
-  appUsersRef.child(user.userID).update({ shippingData: data });
+  const {
+    personalInfo,
+    shippingDetails,
+    paymentInfo,
+    orderDetails
+  } = data;
+
+  appUsersRef.child(user.userID).update({ shippingData: {
+    personalInfo,
+    shippingDetails,
+    paymentInfo,
+  }});
+
+  appUsersRef.child(user.userID).child('orderHistory').push(orderDetails);
 }
 
 module.exports = {

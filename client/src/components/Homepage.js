@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 const Text = styled.p`
   color: #fff;
   position: absolute;
-  font-size: 20px;
+  font-size: 30px;
   font-style: italic;
   text-shadow: 1px 1px black;
 
@@ -36,10 +36,11 @@ const Text = styled.p`
 const Shoplink = styled(NavLink)`
   color: #1e90ff;
   border-radius: 10px;
-  margin-top: 150px;
+  margin-top: 250px;
   border: 1px solid #1e90ff;
   padding: 5px;
-  height: 30px;
+  height: 40px;
+  font-size: 20px;
   background-color: #f0ffff;
 `;
 export default Homepage;

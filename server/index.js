@@ -6,7 +6,7 @@ const morgan = require("morgan");
 
 const {
   handleBrands,
-  handleProducts,
+  handleHotProducts,
   handleProductCategoriesID,
   handleSpecificBrand,
   handleCategories,
@@ -50,7 +50,7 @@ app
 .post('/admin', authenticateAdmin)
 
 .get("/brands", handleBrands)
-.get("/products", handleProducts)
+.get("/hotproducts", handleHotProducts)
 .get("/products/product/:id", handleSpecificProduct)
 .get("/products/categories", handleCategories)
 

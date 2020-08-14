@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Dropdown({ items, id, clickCallback }) {
   return (
     <DropdownContainer>
-      <DropdownButton>Categories</DropdownButton>
+      <button>Categories</button>
       <DropdownMenu className="dropdown-menu">
         {items.map((item, index) => {
           return (
@@ -35,10 +35,6 @@ const DropdownContainer = styled.div`
   }
 `;
 
-const DropdownButton = styled.button`
-
-`;
-
 const DropdownMenu = styled.div`
   display: none;
   position: absolute;
@@ -46,7 +42,7 @@ const DropdownMenu = styled.div`
   top: 68px;
   left: -12px;
   min-width: 230px;
-  z-index: 1;
+  z-index: 1000;
   backdrop-filter: blur(15px);
 `;
 

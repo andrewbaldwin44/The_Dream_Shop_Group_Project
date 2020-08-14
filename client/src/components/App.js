@@ -19,9 +19,10 @@ import CategoryPage from "./CategoryPage";
 import CheckoutPage from "./CheckoutPage";
 import ProductPage from "./ProductPage";
 import Cart from "./Cart";
+import FourOhFour from "./FourOhFour";
 
 import Login from "./Login";
-import Admin from "./Admin";
+import Admin from "./Admin/Admin";
 import ConfirmPage from "./ConfirmPage";
 
 import AllCategories from "./AllCategories";
@@ -100,6 +101,9 @@ function App() {
           </Route>
           <Route exact path="/confirmation">
             <ConfirmPage />
+          </Route>
+          <Route path="/">
+            <FourOhFour />
           </Route>
         </Switch>
       </Router>

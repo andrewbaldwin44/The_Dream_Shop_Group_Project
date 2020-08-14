@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <Logo>
+      <Logo to="/">
         <BlueText>Dream</BlueText>
         <h2>Shop</h2>
         <LogoImage src={Cloud} />
@@ -83,7 +83,7 @@ const Navbar = styled.div`
   border-right: none;
   border-left: none;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em;
   padding-right: 130px;
   padding-left: 300px;
 `;
@@ -97,9 +97,6 @@ const RightNavigation = styled.div`
 
 const LeftNavigation = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 15%;
 `;
 
 const StyledButton = styled.button`
@@ -113,10 +110,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.3em;
   font-family: inherit;
   font-weight: bold;
   margin: 20px 0;
@@ -134,8 +131,8 @@ const BlueText = styled.h1`
 `;
 
 const LogoImage = styled.img`
-  margin-left: -160px;
-  height: 150px;
+  margin-left: -100px;
+  height: 110px;
   width: auto;
 `;
 
@@ -144,6 +141,7 @@ const CartIcon = styled(GrCart)`
 `;
 const Cartquantity = styled.span`
   background-color: #f03026;
+  z-index: 10;
   color: #fff;
   border-radius: 100px;
   padding: 2px 7px;
