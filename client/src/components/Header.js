@@ -9,7 +9,7 @@ import { GrCart } from "react-icons/gr";
 
 import { AuthContext } from "./AuthContext";
 
-import Cloud from '../assets/cloud.png';
+import Cloud from "../assets/cloud.png";
 
 import ScaleIn from "./ScaleIn";
 
@@ -63,7 +63,7 @@ const Header = () => {
             )}
           </NavLink>
           <StyledButton onClick={handleLoginAction}>
-            {appUser.email ? 'Sign Out' :  'Sign In'}
+            {appUser.email ? "Sign Out" : "Sign In"}
           </StyledButton>
         </LeftNavigation>
       </Navbar>
@@ -97,9 +97,6 @@ const RightNavigation = styled.div`
 
 const LeftNavigation = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 15%;
 `;
 
 const StyledButton = styled.button`
@@ -109,7 +106,7 @@ const StyledButton = styled.button`
   font-size: 1.1em;
 
   &:hover {
-    color: #4285F4;
+    color: #4285f4;
   }
 `;
 
@@ -121,13 +118,14 @@ const Logo = styled(Link)`
   font-weight: bold;
   margin: 20px 0;
 
-  h1, h2 {
+  h1,
+  h2 {
     margin-top: 20px;
   }
 `;
 
 const BlueText = styled.h1`
-  color: #00A3E3;
+  color: #00a3e3;
   margin-right: 15px;
   margin-left: 30px;
 `;
