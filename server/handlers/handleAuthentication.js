@@ -72,7 +72,20 @@ async function updateUser(data, email) {
   const user = (await getUser(email, db));
   const appUsersRef = db.ref('appUsers');
 
-  appUsersRef.child(user.userID).update({ shippingData: data });
+  const {
+    personalInfo,
+    shippingDetails,
+    paymentInfo,
+    orderDetails
+  } = data;
+
+  appUsersRef.child(user.userID).update({ shippingData: {
+    personalInfo,
+    shippingDetails,
+    paymentInfo,
+  }});
+
+  appUsersRef.child(user.userID).child('orderHistory').push(orderDetails);
 }
 
 module.exports = {

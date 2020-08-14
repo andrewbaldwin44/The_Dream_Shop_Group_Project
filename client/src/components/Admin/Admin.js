@@ -72,7 +72,7 @@ function Admin() {
           if (typeof shippingData === 'undefined') return;
           console.log(shippingData);
 
-          const { personalinfo, paymentInfo, shippingDetails } = shippingData;
+          const { personalInfo, paymentInfo, shippingDetails } = shippingData;
 
           return (
             <Accordion key={`user${index}`}>
@@ -85,7 +85,7 @@ function Admin() {
 
                   <InformationAccordion
                     title='Personal Information'
-                    informationData={personalinfo}
+                    informationData={personalInfo}
                     id='personalinfo'
                   />
                   <InformationAccordion

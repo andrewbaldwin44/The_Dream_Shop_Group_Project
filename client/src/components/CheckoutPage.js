@@ -28,7 +28,7 @@ const CheckoutPage = () => {
         </Link>
       </Back>
       <Wrapper>
-        <CheckoutForm />
+        <CheckoutForm total={total} />
         <ItemsBox>
           <Head>Review Your Order:</Head>
           {cartData.map((data) => (
