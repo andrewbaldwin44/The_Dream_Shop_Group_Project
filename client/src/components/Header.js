@@ -97,6 +97,8 @@ const RightNavigation = styled.div`
 
 const LeftNavigation = styled.div`
   display: flex;
+  width: 15%;
+  justify-content: space-between;
 `;
 
 const StyledButton = styled.button`
