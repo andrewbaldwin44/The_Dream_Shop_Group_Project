@@ -34,7 +34,11 @@ const StoreItem = ({ item }) => {
       </Name>
       <Price>{item.price}</Price>
       {item.numInStock < 5 && item.numInStock > 0 && (
-        <LowStock>🔥 Only {item.numInStock} left! 🔥</LowStock>
+        <LowStock>
+          <span role='img' aria-label='Hot Pick'>
+            🔥 Only {item.numInStock} left! 🔥
+          </span>
+        </LowStock>
       )}
       <Button
         onClick={handleClick}

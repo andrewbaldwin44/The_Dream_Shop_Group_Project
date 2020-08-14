@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 import Clouds from '../assets/cloudsbackground.jpeg';
 
-const mouseX = '500';
-
 function FourOhFour() {
   const handleMouseMove = event => {
     const cloudImage = event.target;

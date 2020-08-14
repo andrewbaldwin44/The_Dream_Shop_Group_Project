@@ -11,12 +11,9 @@ import useDocumentTitle from '../hooks/useDocumentTitle.hook';
 
 function Login({ accountCreated }) {
   const {
-    appUser,
     createUserWithEmail,
     signInWithEmail,
     signInWithGoogle,
-    handleSignOut,
-    redirectLogout,
   } = useContext(AuthContext);
 
   const [email, setEmail] = useState('');

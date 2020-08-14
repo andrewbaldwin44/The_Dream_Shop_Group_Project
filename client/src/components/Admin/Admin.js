@@ -14,7 +14,6 @@ import { AuthContext } from '../AuthContext';
 
 function Admin() {
   const {
-    appUser,
     idToken,
   } = useContext(AuthContext);
 
@@ -38,8 +37,6 @@ function Admin() {
       sendIDToken(idToken)
         .then(response => response.json())
         .then(data => {
-          const { admin } = data;
-
           if (!data.decodedToken.admin) {
             setStatus('unauthorized');
           }
@@ -65,7 +62,6 @@ function Admin() {
         <Title>Welcome Admin!</Title>
         {userData.map((user, index) => {
           const {
-            amountDue,
             email,
             shippingData,
             orderHistory,
@@ -137,20 +133,6 @@ const HighestAccordionDetails = styled(AccordionDetails)`
 
 const StyledAccordionSummary = styled(AccordionSummary)`
   font-weight: bold;
-`;
-
-const InformationContainer = styled(AccordionDetails)`
-  display: flex;
-  flex-direction: column;
-
-  div {
-    margin-bottom: 20px;
-
-    span:first-child {
-      font-weight: bold;
-      margin-right: 10px;
-    }
-  }
 `;
 
 export default Admin;

@@ -50,7 +50,7 @@ const AuthProvider = ({ children, signOut, user }) => {
         .catch(error => console.log('unauthorized'));
     }
     else {
-      return;
+      setIdToken('unauthorized');
     }
   }
 

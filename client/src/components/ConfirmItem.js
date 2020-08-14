@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { roundNumber } from "./CartItem";
 
 const ConfirmItem = (item) => {
   const orderItem = item.data.itemDetails;
