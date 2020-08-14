@@ -69,6 +69,7 @@ const Info = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const Quantity = styled.input`

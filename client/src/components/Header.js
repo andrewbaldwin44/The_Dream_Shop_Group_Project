@@ -9,7 +9,7 @@ import { GrCart } from "react-icons/gr";
 
 import { AuthContext } from "./AuthContext";
 
-import Cloud from '../assets/cloud.png';
+import Cloud from "../assets/cloud.png";
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
@@ -57,7 +57,7 @@ const Header = () => {
             <Cartquantity>{totalQuantity}</Cartquantity>
           </NavLink>
           <StyledButton onClick={handleLoginAction}>
-            {appUser.email ? 'Sign Out' :  'Sign In'}
+            {appUser.email ? "Sign Out" : "Sign In"}
           </StyledButton>
         </LeftNavigation>
       </Navbar>
@@ -91,9 +91,6 @@ const RightNavigation = styled.div`
 
 const LeftNavigation = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 15%;
 `;
 
 const StyledButton = styled.button`
@@ -103,7 +100,7 @@ const StyledButton = styled.button`
   font-size: 1.1em;
 
   &:hover {
-    color: #4285F4;
+    color: #4285f4;
   }
 `;
 
@@ -115,13 +112,14 @@ const Logo = styled.div`
   font-weight: bold;
   margin: 20px 0;
 
-  h1, h2 {
+  h1,
+  h2 {
     margin-top: 20px;
   }
 `;
 
 const BlueText = styled.h1`
-  color: #00A3E3;
+  color: #00a3e3;
   margin-right: 15px;
   margin-left: 30px;
 `;
@@ -136,7 +134,8 @@ const CartIcon = styled(GrCart)`
   font-size: 40px;
 `;
 const Cartquantity = styled.span`
-  background-color: #ffd700;
+  background-color: #1e90ff;
+  z-index: 5;
   color: #fff;
   border-radius: 100px;
   padding: 4px;
