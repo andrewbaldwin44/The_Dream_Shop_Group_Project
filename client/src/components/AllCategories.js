@@ -77,7 +77,6 @@ const Banner = styled.div`
   width: 300px;
   height: 300px;
   box-shadow: 1px 1px 1px 1px black;
-  transition: 0.5s ease;
   width: 100vw;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -86,9 +85,17 @@ const Banner = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 
   &:hover {
     opacity: 0.3;
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
 `;
 
