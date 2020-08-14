@@ -1,4 +1,5 @@
 import React from "react";
+import Beach from "../assets/Beach.jpg";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const Homepage = () => {
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
   border: 1px solid black;
   height: 100vh;
   width: 100%;
-  background-image: url("../assets/beach.jpg");
+  background-image: url(${Beach});
   background-size: cover;
   text-align: center;
   display: flex;

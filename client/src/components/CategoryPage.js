@@ -13,8 +13,8 @@ import StoreItem from "./StoreItem";
 import Sidebar from "./Sidebar";
 import Spinner from "./Spinner";
 
-import useDocumentTitle from '../hooks/useDocumentTitle.hook';
-import { capitalize } from '../utils/utils';
+import useDocumentTitle from "../hooks/useDocumentTitle.hook";
+import { capitalize } from "../utils/utils";
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const CategoryPage = () => {
   const [stockFilter, setStockFilter] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState(categoryData);
 
-  useDocumentTitle(`Dream Store - ${capitalize(categoryId)}`, 'Dream Store');
+  useDocumentTitle(`Dream Store - ${capitalize(categoryId)}`, "Dream Store");
 
   useEffect(() => {
     dispatch(requestCategory());
@@ -41,19 +41,18 @@ const CategoryPage = () => {
   useEffect(() => {
     if (categoryData) {
       if (bodyLocationFilters.length > 0 || brandFilters.length > 0) {
-        const newFilteredCategories =
-          categoryData.filter(data => {
-            if (bodyLocationFilters.length === 0 ) {
-              return brandFilters.includes(String(data.companyId));
-            }
-            else if (brandFilters.length === 0) {
-              return bodyLocationFilters.includes(data.body_location);
-            }
-            else {
-              return brandFilters.includes(String(data.companyId)) &&
-                     bodyLocationFilters.includes(data.body_location);
-            }
-          });
+        const newFilteredCategories = categoryData.filter((data) => {
+          if (bodyLocationFilters.length === 0) {
+            return brandFilters.includes(String(data.companyId));
+          } else if (brandFilters.length === 0) {
+            return bodyLocationFilters.includes(data.body_location);
+          } else {
+            return (
+              brandFilters.includes(String(data.companyId)) &&
+              bodyLocationFilters.includes(data.body_location)
+            );
+          }
+        });
 
         setFilteredCategories(newFilteredCategories);
       } else {
@@ -95,7 +94,10 @@ const CategoryPage = () => {
 };
 
 const Wrapper = styled.div`
+  height: 100%;
   display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
   flex-wrap: wrap;
 `;
 const Div = styled.div`

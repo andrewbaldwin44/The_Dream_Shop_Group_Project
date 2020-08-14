@@ -106,7 +106,7 @@ async function handlePurchase(req, res) {
     });
 
     const {
-      personalinfo: { email }
+      personalInfo: { email }
     } = user;
 
     if (email) await updateUser(user, email);

@@ -11,6 +11,8 @@ import { AuthContext } from "./AuthContext";
 
 import Cloud from "../assets/cloud.png";
 
+import ScaleIn from "./ScaleIn";
+
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
   const history = useHistory();
@@ -35,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <Logo>
+      <Logo to="/">
         <BlueText>Dream</BlueText>
         <h2>Shop</h2>
         <LogoImage src={Cloud} />
@@ -52,9 +54,13 @@ const Header = () => {
           />
         </RightNavigation>
         <LeftNavigation>
-          <NavLink exact to="/cart">
+          <NavLink exact to="/cart" style={{ position: "relative" }}>
             <CartIcon />
-            <Cartquantity>{totalQuantity}</Cartquantity>
+            {cart.length > 0 && (
+              <ScaleIn>
+                <Cartquantity>{totalQuantity}</Cartquantity>
+              </ScaleIn>
+            )}
           </NavLink>
           <StyledButton onClick={handleLoginAction}>
             {appUser.email ? "Sign Out" : "Sign In"}
@@ -77,7 +83,7 @@ const Navbar = styled.div`
   border-right: none;
   border-left: none;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em;
   padding-right: 130px;
   padding-left: 300px;
 `;
@@ -104,10 +110,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.3em;
   font-family: inherit;
   font-weight: bold;
   margin: 20px 0;
@@ -125,8 +131,8 @@ const BlueText = styled.h1`
 `;
 
 const LogoImage = styled.img`
-  margin-left: -160px;
-  height: 150px;
+  margin-left: -100px;
+  height: 110px;
   width: auto;
 `;
 
@@ -134,11 +140,15 @@ const CartIcon = styled(GrCart)`
   font-size: 40px;
 `;
 const Cartquantity = styled.span`
-  background-color: #1e90ff;
-  z-index: 5;
+  background-color: #f03026;
+  z-index: 10;
   color: #fff;
   border-radius: 100px;
-  padding: 4px;
+  padding: 2px 7px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: small;
 `;
 
 export default Header;

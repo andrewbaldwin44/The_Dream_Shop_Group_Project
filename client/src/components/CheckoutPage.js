@@ -6,12 +6,12 @@ import CheckoutForm from "./CheckoutForm";
 import { Link } from "react-router-dom";
 import { GrFormPreviousLink } from "react-icons/gr";
 
-import useDocumentTitle from '../hooks/useDocumentTitle.hook';
+import useDocumentTitle from "../hooks/useDocumentTitle.hook";
 
 const CheckoutPage = () => {
   const cartData = useSelector((state) => state.cart.cart);
 
-  useDocumentTitle(`Dream Store - Checkout`, 'Dream Store');
+  useDocumentTitle(`Dream Store - Checkout`, "Dream Store");
 
   let total = 0;
   cartData.map(
@@ -28,7 +28,7 @@ const CheckoutPage = () => {
         </Link>
       </Back>
       <Wrapper>
-        <CheckoutForm />
+        <CheckoutForm total={total} />
         <ItemsBox>
           <Head>Review Your Order:</Head>
           {cartData.map((data) => (
@@ -44,6 +44,7 @@ const CheckoutPage = () => {
 const Wrapper = styled.div`
   display: flex;
   margin: 40px;
+  justify-content: center;
 `;
 const ItemsBox = styled.div`
   padding: 10px;

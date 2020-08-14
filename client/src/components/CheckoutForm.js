@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { orderAddedItem, orderAddItem } from "../actions";
+import { orderAddedItem, orderAddItem, cartReset } from "../actions";
 
 import { AuthContext } from "./AuthContext";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ total }) => {
   const dispatch = useDispatch();
 
   const cartData = useSelector((state) => state.cart.cart);
@@ -38,9 +38,10 @@ const CheckoutForm = () => {
 
   let userInfo = () => {
     const { email } = appUser;
+    const orderDate = new Date();
 
     return {
-      personalinfo: {
+      personalInfo: {
         email: email,
         name: nameInput.current.value,
         address: addressInput.current.value,
@@ -60,12 +61,17 @@ const CheckoutForm = () => {
         expiry: expiryInput.current.value,
         cvc: cvcInput.current.value,
       },
+      orderDetails: {
+        itemsPurchased: checkoutData,
+        amountPaid: total,
+        datePurchased: orderDate,
+      }
     };
   };
 
   let handleCheckOut = (event) => {
     event.preventDefault();
-    console.log(userInfo());
+
     fetch("/purchase", {
       method: "post",
       headers: {
@@ -80,12 +86,10 @@ const CheckoutForm = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data.status, data.message);
-        console.log("------------", data.orderNo);
         if (data.status === 401) {
           window.alert(data.message);
         } else {
-          console.log(data);
+          dispatch(cartReset());
           dispatch(
             orderAddedItem({
               itemsPurchased: data.purchasedItems,

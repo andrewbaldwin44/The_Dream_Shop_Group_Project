@@ -22,7 +22,7 @@ import Cart from "./Cart";
 import FourOhFour from "./FourOhFour";
 
 import Login from "./Login";
-import Admin from "./Admin";
+import Admin from "./Admin/Admin";
 import ConfirmPage from "./ConfirmPage";
 
 import AllCategories from "./AllCategories";
