@@ -20,8 +20,8 @@ function getRandomSample(array, size) {
 }
 
 function reduceStock(product, productID, quantity = 1) {
-  if (typeof product !== 'undefined') {
-    if (product.numInStock > 0) {
+  if (typeof product !== "undefined") {
+    if (product.numInStock > 0 && product.numInStock > quantity) {
       product.numInStock -= quantity;
     } else {
       throw new Error(`${product.name} is out of stock!`);
