@@ -1,92 +1,63 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { roundNumber } from "./CartItem";
 
 const ConfirmItem = (item) => {
-  console.log(item.data);
-
-  const confirmationData = useSelector((state) => state.order.order);
-  const itemsArray = confirmationData.itemsPurchased;
-  console.log("************ITEMPAGE", confirmationData.itemsPurchased);
-
-  let total = 0;
-  itemsArray.map(
-    (item) =>
-      (total +=
-        parseFloat(item.itemDetails.price.replace("$", "")) *
-        item.itemDetails.quantity)
-  );
-  console.log("total", total);
-
-  const rounded = total.toFixed(2);
-  let itemGeneration =
-    confirmationData === undefined || null ? (
-      <div>There's nothing in your cart!</div>
-    ) : (
-      itemsArray.map((item) => {
-        console.log(
-          item.itemDetails.name,
-          item.itemDetails.quantity,
-          "this guy is what we need"
-        );
-        return (
-          <Iteminfo>
-            <ItemName>{item.itemDetails.name}</ItemName>
-            <ItemSpent>
-              {" "}
-              {item.itemDetails.quantity} @ {item.itemDetails.price}
-            </ItemSpent>
-            <ItemPic>
-              <img
-                src={item.itemDetails.imageSrc}
-                alt={item.itemDetails.name}
-              />
-            </ItemPic>
-          </Iteminfo>
-        );
-      })
-    );
+  const orderItem = item.data.itemDetails;
 
   return (
     <Wrapper>
-      <ItemDetails>
-        <div>{itemGeneration}</div>
-      </ItemDetails>
-      <Cost>Total cost = ${rounded}</Cost>
+      <Item>
+        <img src={orderItem.imageSrc} alt={orderItem.name} />
+        <Info>
+          <h4>{orderItem.name}</h4>
+          <p>
+            {orderItem.quantity} x <span>{orderItem.price}</span>
+          </p>
+        </Info>
+      </Item>
     </Wrapper>
   );
 };
 
-const ItemDetails = styled.div`
-  display: flex;
-`;
-
-const Cost = styled.div`
-  margin-left: 5vw;
-`;
-const ItemName = styled.div`
-  justify-items: inline block;
-`;
-const ItemSpent = styled.div`
-  margin-left: 3px;
-  border-left: 1px dashed lightgray;
-  border-right: 1px dashed lightgray;
-`;
-const Iteminfo = styled.div`
-  border: black 1px solid;
-  margin-left: 5vw;
-  margin-right: 15vw;
-  display: flex;
-`;
-
-const ItemPic = styled.div`
-  margin-left: max;
-`;
-
 const Wrapper = styled.div`
-  margin-top: 10px;
-  margin-left: 20vw;
-  margin-bottom: 20px;
+  width: 700px;
+  height: 120px;
+  display: flex;
+  margin-bottom: 5px;
+  p {
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.9em;
+  }
+`;
+const Item = styled.div`
+  width: 700px;
+  height: auto;
+  border: 2px solid #eee;
+  display: flex;
+  padding: 12px;
+  position: relative;
+  img {
+    object-fit: contain;
+  }
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  h4 {
+    font-weight: bold;
+    font-size: large;
+  }
+  p {
+    font-size: 1.1em;
+    span {
+      color: green;
+    }
+  }
 `;
 
 export default ConfirmItem;
