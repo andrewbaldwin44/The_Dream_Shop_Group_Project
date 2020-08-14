@@ -2,15 +2,21 @@ function findItem(items, id) {
   return items.find(item => item.id === Number(id));
 }
 
-function paginateModel(page, limit, model) {
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
-
-  return model.slice(startIndex, endIndex);
+function getRandom(length) {
+  return Math.floor(Math.random() * length);
 }
 
-function getQueryValue(queryValue, defaultValue) {
-  return queryValue !== undefined ? Number(queryValue) : defaultValue;
+function getRandomSample(array, size) {
+    const length = array.length;
+
+    for(var i = size; i--;) {
+        const index = getRandom(length);
+        const temp = array[index];
+        array[index] = array[i];
+        array[i] = temp;
+    }
+
+    return array.slice(0, size);
 }
 
 function reduceStock(product, productID, quantity = 1) {
@@ -27,7 +33,6 @@ function reduceStock(product, productID, quantity = 1) {
 
 module.exports = {
   findItem,
-  paginateModel,
-  getQueryValue,
   reduceStock,
+  getRandomSample,
 }

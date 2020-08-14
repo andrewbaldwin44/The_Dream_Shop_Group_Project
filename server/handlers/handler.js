@@ -3,23 +3,19 @@ const brandsData = require("../data/companies.json");
 
 const {
   findItem,
-  paginateModel,
-  getQueryValue,
   reduceStock,
+  getRandomSample,
 } = require("../utils/utils");
 
 const { updateUser } = require('./handleAuthentication');
 
-const defaultStartPage = 1;
-const defaultPageLimit = 10;
+function handleHotProducts(req, res) {
+  const hotProducts = productsData.filter(products => (
+    products.numInStock > 0 && products.numInStock < 5
+  ))
+  const top50Products = getRandomSample(hotProducts, 50)
 
-function handleProducts(req, res) {
-  const page = getQueryValue(req.query.page, defaultStartPage);
-  const limit = getQueryValue(req.query.limit, defaultPageLimit);
-
-  paginatedProducts = paginateModel(page, limit, productsData);
-
-  res.status(200).json({ status: 200, products: paginatedProducts });
+  res.status(200).json({ status: 200, top50Products });
 }
 
 function handleBrands(req, res) {
@@ -135,7 +131,7 @@ function handleBodyLocation(req, res) {
 
 module.exports = {
   handleBrands,
-  handleProducts,
+  handleHotProducts,
   handleCategories,
   handleProductCategoriesID,
   handleSpecificBrand,
