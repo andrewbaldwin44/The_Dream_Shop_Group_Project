@@ -9,7 +9,9 @@ import { GrCart } from "react-icons/gr";
 
 import { AuthContext } from "./AuthContext";
 
-import Cloud from '../assets/cloud.png';
+import Cloud from "../assets/cloud.png";
+
+import ScaleIn from "./ScaleIn";
 
 const Header = () => {
   const categories = useSelector((state) => state.items.categories);
@@ -52,12 +54,16 @@ const Header = () => {
           />
         </RightNavigation>
         <LeftNavigation>
-          <NavLink exact to="/cart">
+          <NavLink exact to="/cart" style={{ position: "relative" }}>
             <CartIcon />
-            <Cartquantity>{totalQuantity}</Cartquantity>
+            {cart.length > 0 && (
+              <ScaleIn>
+                <Cartquantity>{totalQuantity}</Cartquantity>
+              </ScaleIn>
+            )}
           </NavLink>
           <StyledButton onClick={handleLoginAction}>
-            {appUser.email ? 'Sign Out' :  'Sign In'}
+            {appUser.email ? "Sign Out" : "Sign In"}
           </StyledButton>
         </LeftNavigation>
       </Navbar>
@@ -103,7 +109,7 @@ const StyledButton = styled.button`
   font-size: 1.1em;
 
   &:hover {
-    color: #4285F4;
+    color: #4285f4;
   }
 `;
 
@@ -115,13 +121,14 @@ const Logo = styled.div`
   font-weight: bold;
   margin: 20px 0;
 
-  h1, h2 {
+  h1,
+  h2 {
     margin-top: 20px;
   }
 `;
 
 const BlueText = styled.h1`
-  color: #00A3E3;
+  color: #00a3e3;
   margin-right: 15px;
   margin-left: 30px;
 `;
@@ -136,10 +143,14 @@ const CartIcon = styled(GrCart)`
   font-size: 40px;
 `;
 const Cartquantity = styled.span`
-  background-color: #ffd700;
+  background-color: #f03026;
   color: #fff;
   border-radius: 100px;
-  padding: 4px;
+  padding: 2px 7px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: small;
 `;
 
 export default Header;
