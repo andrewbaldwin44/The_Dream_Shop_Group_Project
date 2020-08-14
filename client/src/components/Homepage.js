@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+
+import Beach from "../assets/beach.jpg";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +45,7 @@ const Wrapper = styled.div`
   border: 1px solid black;
   height: 900px;
   width: 100%;
-  background-image: url("../assets/beach.jpg");
+  background-image: url(${Beach});
   background-size: cover;
   display: flex;
   flex-direction: column;
