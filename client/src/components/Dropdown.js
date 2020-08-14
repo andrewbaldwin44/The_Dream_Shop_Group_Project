@@ -46,7 +46,7 @@ const DropdownMenu = styled.div`
   top: 68px;
   left: -12px;
   min-width: 230px;
-  z-index: 1;
+  z-index: 1000;
   backdrop-filter: blur(15px);
 `;
 
