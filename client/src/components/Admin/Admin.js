@@ -72,7 +72,6 @@ function Admin() {
           } = user;
 
           if (typeof shippingData === 'undefined') return;
-          console.log(shippingData);
 
           const { personalInfo, paymentInfo, shippingDetails } = shippingData;
 
