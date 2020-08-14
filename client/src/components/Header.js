@@ -77,7 +77,7 @@ const Navbar = styled.div`
   border-right: none;
   border-left: none;
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em;
   padding-right: 130px;
   padding-left: 300px;
 `;
@@ -107,7 +107,7 @@ const StyledButton = styled.button`
 const Logo = styled.div`
   display: flex;
   align-items: center;
-  font-size: 3em;
+  font-size: 2.3em;
   font-family: inherit;
   font-weight: bold;
   margin: 20px 0;
@@ -125,8 +125,8 @@ const BlueText = styled.h1`
 `;
 
 const LogoImage = styled.img`
-  margin-left: -160px;
-  height: 150px;
+  margin-left: -100px;
+  height: 110px;
   width: auto;
 `;
 

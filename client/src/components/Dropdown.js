@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Dropdown({ items, id, clickCallback }) {
   return (
     <DropdownContainer>
-      <DropdownButton>Categories</DropdownButton>
+      <button>Categories</button>
       <DropdownMenu className="dropdown-menu">
         {items.map((item, index) => {
           return (
@@ -33,10 +33,6 @@ const DropdownContainer = styled.div`
   &:hover .dropdown-menu {
     display: block;
   }
-`;
-
-const DropdownButton = styled.button`
-
 `;
 
 const DropdownMenu = styled.div`
