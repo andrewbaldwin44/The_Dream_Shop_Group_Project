@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { GrCart } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { cartAddItem, cartItemAdded, cartAddItemError } from "../actions";
+import { cartItemAdded } from "../actions";
 
 const StoreItem = ({ item }) => {
   const dispatch = useDispatch();

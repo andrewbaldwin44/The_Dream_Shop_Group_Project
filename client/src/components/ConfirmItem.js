@@ -1,35 +1,63 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { roundNumber } from "./CartItem";
 
 const ConfirmItem = (item) => {
-  console.log(item.data);
-  let productNumber = item.data.productId;
-  let prodductQty = item.data.quantity;
-  const confirmationData = useSelector((state) => state.order.order);
-  console.log("************ITEMPAGE", confirmationData);
-
+  const orderItem = item.data.itemDetails;
+  console.log(orderItem);
   return (
     <Wrapper>
-      <ItemDetails>
-        <div>item</div>
-      </ItemDetails>
+      <Item>
+        <img src={orderItem.imageSrc} alt={orderItem.name} />
+        <Info>
+          <h4>{orderItem.name}</h4>
+          <p>
+            {orderItem.quantity} x <span>{orderItem.price}</span>
+          </p>
+        </Info>
+      </Item>
     </Wrapper>
   );
 };
 
-const ItemDetails = styled.div`
-  display: flex;
-`;
-const ItemImage = styled.div`
-  margin-left: 30vw;
-  margin-right: 10px;
-  margin-bottom: 4px;
-`;
-const Iteminfo = styled.div``;
 const Wrapper = styled.div`
-  border: 2px black solid;
-  margin-bottom: 10px;
+  width: 700px;
+  height: 120px;
+  display: flex;
+  margin-bottom: 5px;
+  p {
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.9em;
+  }
+`;
+const Item = styled.div`
+  width: 700px;
+  height: auto;
+  border: 2px solid #eee;
+  display: flex;
+  padding: 12px;
+  position: relative;
+  img {
+    object-fit: contain;
+  }
+`;
+
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  h4 {
+    font-weight: bold;
+    font-size: large;
+  }
+  p {
+    font-size: 1.1em;
+    span {
+      color: green;
+    }
+  }
 `;
 
 export default ConfirmItem;

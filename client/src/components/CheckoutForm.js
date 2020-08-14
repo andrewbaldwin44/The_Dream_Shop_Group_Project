@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { orderAddedItem, orderAddItem, cartReset } from "../actions";
+import { orderAddedItem, cartReset } from "../actions";
 
 import { AuthContext } from "./AuthContext";
 
