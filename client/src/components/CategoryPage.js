@@ -24,6 +24,7 @@ const CategoryPage = () => {
   const [bodyLocationFilters, setBodyLocationFilters] = useState([]);
   const [brandFilters, setBrandFilters] = useState([]);
   const [stockFilter, setStockFilter] = useState(false);
+  const [topPickFilter, setTopPickFilter] = useState(false);
   const [filteredCategories, setFilteredCategories] = useState(categoryData);
 
   useDocumentTitle(`Dream Store - ${capitalize(categoryId)}`, "Dream Store");
@@ -40,8 +41,10 @@ const CategoryPage = () => {
 
   useEffect(() => {
     if (categoryData) {
+      let newFilteredCategories = [...categoryData];
+
       if (bodyLocationFilters.length > 0 || brandFilters.length > 0) {
-        const newFilteredCategories = categoryData.filter((data) => {
+        newFilteredCategories = newFilteredCategories.filter((data) => {
           if (bodyLocationFilters.length === 0) {
             return brandFilters.includes(String(data.companyId));
           } else if (brandFilters.length === 0) {
@@ -53,13 +56,21 @@ const CategoryPage = () => {
             );
           }
         });
-
-        setFilteredCategories(newFilteredCategories);
-      } else {
-        setFilteredCategories(categoryData);
       }
+
+      if (stockFilter) {
+        newFilteredCategories = newFilteredCategories.filter(data => data.numInStock > 0);
+      }
+
+      if (topPickFilter) {
+        newFilteredCategories = newFilteredCategories.filter(data =>
+          data.numInStock > 0 && data.numInStock < 5
+        );
+      }
+
+      setFilteredCategories(newFilteredCategories);
     }
-  }, [bodyLocationFilters, brandFilters, stockFilter, categoryData]);
+  }, [bodyLocationFilters, brandFilters, stockFilter, topPickFilter, categoryData]);
 
   return (
     <Div>
@@ -70,6 +81,8 @@ const CategoryPage = () => {
         setBrandFilters={setBrandFilters}
         stockFilter={stockFilter}
         setStockFilter={setStockFilter}
+        topPickFilter={topPickFilter}
+        setTopPickFilter={setTopPickFilter}
         category={categoryId}
       />
       <Wrapper>
@@ -83,7 +96,6 @@ const CategoryPage = () => {
         ) : (
           <>
             {filteredCategories.map((category) => {
-              if (stockFilter && category.numInStock === 0) return;
               return <StoreItem item={category} key={category.id} />;
             })}
           </>
