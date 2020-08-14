@@ -14,29 +14,57 @@ const AllCategories = () => {
         <div>loading...</div>
       ) : (
         <>
-          <Title>Select a category you wish to see products of:</Title>
           <Wrapper>
             <Categorylink to={`/products/${categoryData[0]}`}>
-              <Fitness>{categoryData[0]}</Fitness>
+              <Banner
+                style={{ backgroundImage: "url('../assets/fitness.jpg')" }}
+              >
+                {categoryData[0]}
+              </Banner>
             </Categorylink>
-
             <Categorylink to={`/products/${categoryData[1]}`}>
-              <Medical> {categoryData[1]}</Medical>
+              <Banner
+                style={{ backgroundImage: "url('../assets/health.jpg')" }}
+              >
+                {categoryData[1]}
+              </Banner>
             </Categorylink>
             <Categorylink to={`/products/${categoryData[2]}`}>
-              <Lifestyle>{categoryData[2]}</Lifestyle>
+              <Banner
+                style={{
+                  backgroundImage: "url('../assets/lifestyle.jpg')",
+                }}
+              >
+                {categoryData[2]}
+              </Banner>
             </Categorylink>
             <Categorylink to={`/products/${categoryData[3]}`}>
-              <Entertainment>{categoryData[3]}</Entertainment>
+              <Banner
+                style={{
+                  backgroundImage: "url('../assets/entertainment.jpg')",
+                }}
+              >
+                {categoryData[3]}
+              </Banner>
             </Categorylink>
             <Categorylink to={`/products/${categoryData[4]}`}>
-              <Industrial>{categoryData[4]}</Industrial>
+              <Banner
+                style={{ backgroundImage: "url('../assets/industrial.jpg')" }}
+              >
+                {categoryData[4]}
+              </Banner>
             </Categorylink>
             <Categorylink to={`/products/${categoryData[5]}`}>
-              <Pets>{categoryData[5]}</Pets>
+              <Banner style={{ backgroundImage: "url('../assets/pets.jpg')" }}>
+                {categoryData[5]}
+              </Banner>
             </Categorylink>
             <Categorylink to={`/products/${categoryData[6]}`}>
-              <Gaming>{categoryData[6]}</Gaming>
+              <Banner
+                style={{ backgroundImage: "url('../../assets/games.png')" }}
+              >
+                {categoryData[6]}
+              </Banner>
             </Categorylink>
           </Wrapper>
         </>
@@ -44,82 +72,36 @@ const AllCategories = () => {
     </>
   );
 };
-const Title = styled.h3`
-  color: black;
-  margin-bottom: 30px;
-  font-weight: bold;
-`;
-const Fitness = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/fitness.jpg");
+
+const Banner = styled.div`
+  width: 300px;
+  height: 300px;
+  box-shadow: 1px 1px 1px 1px black;
+  transition: 0.5s ease;
+  width: 100vw;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-size: cover;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
-    opacity: 0.25;
+    opacity: 0.3;
   }
 `;
-const Medical = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/health.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
-const Lifestyle = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/lifestyle.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
-const Entertainment = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/entertainment.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
-const Industrial = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/industrial.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
-const Pets = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/pets.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
-const Gaming = styled.div`
-  width: 200px;
-  height: 200px;
-  background-image: url("../assets/gaming.jpg");
-  background-size: cover;
-  &:hover {
-    opacity: 0.25;
-  }
-`;
+
 const Categorylink = styled(NavLink)`
   color: #fff;
+  font-size: 25px;
   text-shadow: 1px 1px black;
 `;
 const Wrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 60%;
+  max-width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export default AllCategories;
