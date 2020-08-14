@@ -4,16 +4,55 @@ import styled from "styled-components";
 
 const ConfirmItem = (item) => {
   console.log(item.data);
-  let productNumber = item.data.productId;
-  let prodductQty = item.data.quantity;
+
   const confirmationData = useSelector((state) => state.order.order);
-  console.log("************ITEMPAGE", confirmationData);
+  const itemsArray = confirmationData.itemsPurchased;
+  console.log("************ITEMPAGE", confirmationData.itemsPurchased);
+
+  let total = 0;
+  itemsArray.map(
+    (item) =>
+      (total +=
+        parseFloat(item.itemDetails.price.replace("$", "")) *
+        item.itemDetails.quantity)
+  );
+  console.log("total", total);
+
+  const rounded = total.toFixed(2);
+  let itemGeneration =
+    confirmationData === undefined || null ? (
+      <div>There's nothing in your cart!</div>
+    ) : (
+      itemsArray.map((item) => {
+        console.log(
+          item.itemDetails.name,
+          item.itemDetails.quantity,
+          "this guy is what we need"
+        );
+        return (
+          <Iteminfo>
+            <ItemName>{item.itemDetails.name}</ItemName>
+            <ItemSpent>
+              {" "}
+              {item.itemDetails.quantity} @ {item.itemDetails.price}
+            </ItemSpent>
+            <ItemPic>
+              <img
+                src={item.itemDetails.imageSrc}
+                alt={item.itemDetails.name}
+              />
+            </ItemPic>
+          </Iteminfo>
+        );
+      })
+    );
 
   return (
     <Wrapper>
       <ItemDetails>
-        <div>item</div>
+        <div>{itemGeneration}</div>
       </ItemDetails>
+      <Cost>Total cost = ${rounded}</Cost>
     </Wrapper>
   );
 };
@@ -21,15 +60,33 @@ const ConfirmItem = (item) => {
 const ItemDetails = styled.div`
   display: flex;
 `;
-const ItemImage = styled.div`
-  margin-left: 30vw;
-  margin-right: 10px;
-  margin-bottom: 4px;
+
+const Cost = styled.div`
+  margin-left: 5vw;
 `;
-const Iteminfo = styled.div``;
+const ItemName = styled.div`
+  justify-items: inline block;
+`;
+const ItemSpent = styled.div`
+  margin-left: 3px;
+  border-left: 1px dashed lightgray;
+  border-right: 1px dashed lightgray;
+`;
+const Iteminfo = styled.div`
+  border: black 1px solid;
+  margin-left: 5vw;
+  margin-right: 15vw;
+  display: flex;
+`;
+
+const ItemPic = styled.div`
+  margin-left: max;
+`;
+
 const Wrapper = styled.div`
-  border: 2px black solid;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 20vw;
+  margin-bottom: 20px;
 `;
 
 export default ConfirmItem;
