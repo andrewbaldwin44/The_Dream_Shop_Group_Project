@@ -94,8 +94,10 @@ const CategoryPage = () => {
 };
 
 const Wrapper = styled.div`
+  height: 100%;
   display: flex;
   justify-content: space-evenly;
+  align-items: flex-start;
   flex-wrap: wrap;
 `;
 const Div = styled.div`
