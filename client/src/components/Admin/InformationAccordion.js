@@ -30,11 +30,11 @@ function InformationAccordion({ title, informationData, id }) {
   )
 }
 
-const StyledAccordionSummary = styled(AccordionSummary)`
+export const StyledAccordionSummary = styled(AccordionSummary)`
   font-weight: bold;
 `;
 
-const InformationContainer = styled(AccordionDetails)`
+export const InformationContainer = styled(AccordionDetails)`
   display: flex;
   flex-direction: column;
 

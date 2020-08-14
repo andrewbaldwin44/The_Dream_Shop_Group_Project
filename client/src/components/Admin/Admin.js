@@ -8,6 +8,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import InformationAccordion from './InformationAccordion';
+import OrderHistoryAccordion from './OrderHistoryAccordion';
 
 import { AuthContext } from '../AuthContext';
 
@@ -66,7 +67,8 @@ function Admin() {
           const {
             amountDue,
             email,
-            shippingData
+            shippingData,
+            orderHistory,
           } = user;
 
           if (typeof shippingData === 'undefined') return;
@@ -83,6 +85,11 @@ function Admin() {
                 </StyledAccordionSummary>
                 <HighestAccordionDetails>
 
+                  <OrderHistoryAccordion
+                    title='Order History'
+                    informationData={orderHistory}
+                    id='orderhistory'
+                  />
                   <InformationAccordion
                     title='Personal Information'
                     informationData={personalInfo}
