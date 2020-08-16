@@ -1,54 +1,55 @@
-# Wearables E-Commerce Project
+# The Dream Shop
+> Group E-Commerce Project for Concordia University
 
-[See the list of TEAMS](__documentation/TEAMS.md)
+<img src="./server/assets/homepage.png" style="width: 100%;" />
 
-You will make use of _everything_ that you have learned thus far in the bootcamp to build an e-commerce app that will showcase all of the provided _wearables_ items.
+## Demo
 
-The stack is React.Js, Redux, Node.Js, and styled-components.
+[View the Live Demo](https://the-dream-store.herokuapp.com/)
 
-Your node server should be RESTful and follow REST principles, at least to the extent we learned during the bootcamp.
+### Deploy the project
 
-## Getting Started
+__Clone the repo to your local machine using the terminal__:
+```
+$ git clone git@github.com:andrewbaldwin44/project-m5-e-commerce.git
+```
 
-<img src="./server/assets/software-dev-path.jpg" style="width: 100%;" />
+__Install the Dependencies__:
+1. Navigate into the server directory `cd server`
+2. Install the required server packages `yarn install`
+3. Navigate into the client directory `cd client`
+4. Install the required client packages `yarn install`
+3. Start the development server `yarn start`
 
-You have your assignment and your team. What should you do first? This will vary for every team, and even every team member.
+This will run the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-**The important thing is to NOT just jump in and start coding!**
+The page will reload if you make edits.
 
-There probably shouldn't be any coding until very near the end of the first day.
+__The Server__
 
-## Meet your Product Manager!
+A folder is provided, `/server`, with the backend code. This is a local server that you will connect to to retrieve/write the data. An API is provided, and documented in `server/API_DOCS.md`. You can read this document thoroughly to build an understanding of what the different endpoints are, and how they work.
 
-Each team has been assigned a product manager. This person is in charge of answering questions, guiding you and basically preventing everything from falling apart!
+### Technologies Used
 
-This person should be present for some of your team meetings, but not all. PMs are super busy people and have multiple projects, people to manage. 😉
+__Frontend__:
 
-## Planning
+- React
+- Redux
 
-1. You will break into 3 groups (with your assigned PM.)
-2. Your PM will answer any initial questions, and give you more information, as required.
-3. Breakout into a separate meeting with just your team. _Your PM will bounce from team to team to make sure you're on track._
-4. Time to use the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDA.md)
+__Backend__:
 
-### First team meeting
+- Nodejs
+- Express
 
-It could also be a good/fun idea to give yourselves an original team name. :)
+### Authors
 
-Your first team meeting should start with the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDa.md).
+👤 **Andrew Baldwin**
+👤 **Lucas D'Alessandro**
+👤 **Matthew Cote**
+👤 **Stephanos Criticos**
 
-[Successful Software Project Delivery in 10 Steps](https://www.appnovation.com/blog/successful-software-project-delivery-10-steps).
-
-💡 How a project starts is indicative of how it will end.
-
-## Teamwork
-
-The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, you should understand the **FULL** codebase. This will require that you
-
-- **review** each other's code
-- **ask** questions when you don't understand
-- **comment** your code extensively. _Always go for clarity over brevity._
-
-## GitHub
-
-see the [GITHUB Document](__documentation/GITHUB.md)
+- Github: [@andrewbaldwin44](https://github.com/andrewbaldwin44)
+- Github: [@lucasd514](https://github.com/lucasd514)
+- Github: [@Matcote](https://github.com/Matcote)
+- Github: [@criticos123](https://github.com/criticos123)

@@ -18,6 +18,7 @@
 
 # production
 /client/build
+/Heroku_Deployment
 
 # misc
 .DS_Store
